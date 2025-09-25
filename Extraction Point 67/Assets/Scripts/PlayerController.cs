@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
         }
         else // Player 2 uses arrow keys
         {
-            horizontal = Input.GetAxis("Horizontal2"); // You'll need to set this up in Input Manager
+            horizontal = Input.GetAxis("Horizontal2");
             vertical = Input.GetAxis("Vertical2");
         }
 
