@@ -139,6 +139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   playerNumber: 1
   moveSpeed: 5
+  autoAimRange: 12
 --- !u!143 &192493203
 CharacterController:
   m_ObjectHideFlags: 0
@@ -302,6 +303,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   playerNumber: 2
   moveSpeed: 5
+  autoAimRange: 12
 --- !u!143 &618657692
 CharacterController:
   m_ObjectHideFlags: 0
