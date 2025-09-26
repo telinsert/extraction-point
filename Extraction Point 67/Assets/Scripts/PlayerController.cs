@@ -6,9 +6,14 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 5f;
     public float autoAimRange = 12f; // Maximum distance to auto-aim at enemies
 
+    public GameObject bulletPrefab;
+    public Transform firePoint;
+    public float fireRate = 2f; // Shots per second
+
     private CharacterController controller;
     private Animator animator;
     private Vector3 moveDirection;
+    private float nextFireTime = 0f;
 
     void Start()
     {
@@ -63,6 +68,12 @@ public class PlayerController : MonoBehaviour
             {
                 transform.rotation = Quaternion.LookRotation(targetDirection);
             }
+
+            if (Time.time >= nextFireTime)
+            {
+                nextFireTime = Time.time + 1f / fireRate;
+                Fire();
+            }
         }
         else
         {
@@ -73,6 +84,14 @@ public class PlayerController : MonoBehaviour
                 transform.rotation = Quaternion.LookRotation(moveDir.normalized);
             }
             // else: do nothing, preserve last facing direction
+        }
+    }
+
+    void Fire()
+    {
+        if (bulletPrefab != null && firePoint != null)
+        {
+            Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         }
     }
 
