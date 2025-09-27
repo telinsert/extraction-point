@@ -97,10 +97,13 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        // Make sure the green spheres are tagged "PowerUp"
         if (other.CompareTag("PowerUp"))
         {
-            Debug.Log("Player " + playerNumber + " collected a power-up!");
-            Destroy(other.gameObject); // Make the power-up disappear
+            // Get our own Health component and heal
+            GetComponent<Health>()?.Heal(25); // Heals for 25 health
+
+            Destroy(other.gameObject); // Make the health pack disappear
         }
     }
 }

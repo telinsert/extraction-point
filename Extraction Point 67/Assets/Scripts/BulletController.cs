@@ -17,14 +17,15 @@ public class BulletController : MonoBehaviour
         Destroy(gameObject, lifetime);
     }
 
-    // This function is called when the bullet collides with another object
     void OnCollisionEnter(Collision collision)
     {
-        // Check if the object we hit has the "Enemy" tag
-        if (collision.gameObject.CompareTag("Enemy"))
+        // Try to get the Health component from the object we hit
+        Health health = collision.gameObject.GetComponent<Health>();
+
+        // If the object has a Health component, deal damage
+        if (health != null)
         {
-            // Destroy the enemy
-            Destroy(collision.gameObject);
+            health.TakeDamage(10); // Deals 10 damage, you can make this a variable
         }
 
         // Destroy the bullet itself after hitting anything (except the player)
