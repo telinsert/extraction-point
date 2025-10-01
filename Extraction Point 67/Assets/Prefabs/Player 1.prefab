@@ -1078,7 +1078,7 @@ GameObject:
   - component: {fileID: 3423228037120948473}
   - component: {fileID: 2485597214030322897}
   - component: {fileID: 1596387713389569959}
-  - component: {fileID: 153629476483958128}
+  - component: {fileID: -1215576144601572553}
   m_Layer: 0
   m_Name: Player 1
   m_TagString: Player
@@ -1170,7 +1170,7 @@ MonoBehaviour:
     type: 3}
   firePoint: {fileID: 411964467055405098}
   fireRate: 2
---- !u!114 &153629476483958128
+--- !u!114 &-1215576144601572553
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1183,6 +1183,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
   maxHealth: 100
-  OnDeath:
-    m_PersistentCalls:
-      m_Calls: []

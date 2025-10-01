@@ -1,44 +1,37 @@
 using UnityEngine;
-using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] private int maxHealth = 100;
+    public int maxHealth = 100;
     private int currentHealth;
-
-    public UnityEvent OnDeath;
-
-    // Change "Start" to "Awake" to ensure this runs first
-    void Awake()
+    void Start()
     {
         currentHealth = maxHealth;
     }
 
-    public void TakeDamage(int damageAmount)
+    public void TakeDamage(int amount)
     {
-        currentHealth -= damageAmount;
-        Debug.Log(gameObject.name + " took " + damageAmount + " damage. Health is now " + currentHealth);
-
+        currentHealth -= amount;
         if (currentHealth <= 0)
         {
             Die();
         }
     }
 
-    public void Heal(int healAmount)
+    public void Heal(int amount)
     {
-        currentHealth += healAmount;
-        if (currentHealth > maxHealth)
-        {
-            currentHealth = maxHealth;
-        }
-        Debug.Log(gameObject.name + " healed for " + healAmount + ". Health is now " + currentHealth);
+        currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
     }
 
-    private void Die()
+    void Die()
     {
-        Debug.Log(gameObject.name + " has died.");
-        OnDeath?.Invoke();
+        // Handle death (e.g., play animation, destroy object)
+        Debug.Log($"{gameObject.name} has died.");
         Destroy(gameObject);
+    }
+
+    public int GetCurrentHealth()
+    {
+        return currentHealth;
     }
 }

@@ -25,7 +25,7 @@ public class CameraMovement : MonoBehaviour
 
     void LateUpdate()
     {
-        if (player1 == null || player2 == null)
+        if (player1 == null && player2 == null)
             return;
 
         // Find the midpoint and the new zoom level
@@ -43,12 +43,24 @@ public class CameraMovement : MonoBehaviour
     // A helper function to get the distance between players
     float GetDistanceBetweenPlayers()
     {
-        return Vector3.Distance(player1.position, player2.position);
+        if (player1 != null && player2 != null)
+            return Vector3.Distance(player1.position, player2.position);
+        else if (player1 != null)
+            return 0f; // Single player, no distance
+        else if (player2 != null)
+            return 0f; // Single player, no distance
+        return 0f;
     }
 
     // A helper function to find the midpoint
     Vector3 GetMidpoint()
     {
-        return (player1.position + player2.position) / 2f;
+        if (player1 != null && player2 != null)
+            return (player1.position + player2.position) / 2f;
+        else if (player1 != null)
+            return player1.position; // Focus on player1
+        else if (player2 != null)
+            return player2.position; // Focus on player2
+        return Vector3.zero;
     }
 }

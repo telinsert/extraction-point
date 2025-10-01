@@ -1,17 +1,21 @@
 using UnityEngine;
-using UnityEngine.AI; // IMPORTANT: Add this line to use the navigation system
+using UnityEngine.AI;
 
 public class ZombieAI : MonoBehaviour
 {
     private NavMeshAgent agent;
     private Transform[] players;
 
+    [Header("Damage Settings")]
+    public int damageAmount = 10;
+    public float attackRange = 1.5f; // Range within which the zombie can attack
+    public float attackCooldown = 1.0f; // Time between attacks
+    private float lastAttackTime;
+
     void Start()
     {
-        // Get the NavMeshAgent component attached to this zombie
         agent = GetComponent<NavMeshAgent>();
 
-        // Find all GameObjects tagged as "Player" at the start of the game
         GameObject[] playerObjects = GameObject.FindGameObjectsWithTag("Player");
         players = new Transform[playerObjects.Length];
         for (int i = 0; i < playerObjects.Length; i++)
@@ -22,11 +26,16 @@ public class ZombieAI : MonoBehaviour
 
     void Update()
     {
-        // Find the closest player and set them as the destination
         Transform closestPlayer = GetClosestPlayer();
         if (closestPlayer != null)
         {
             agent.SetDestination(closestPlayer.position);
+
+            // Check if the zombie is within attack range
+            if (Vector3.Distance(transform.position, closestPlayer.position) <= attackRange)
+            {
+                TryAttack(closestPlayer);
+            }
         }
     }
 
@@ -37,7 +46,6 @@ public class ZombieAI : MonoBehaviour
 
         foreach (Transform player in players)
         {
-            // Make sure the player object still exists before checking its distance
             if (player != null)
             {
                 float distance = Vector3.Distance(transform.position, player.position);
@@ -51,12 +59,17 @@ public class ZombieAI : MonoBehaviour
         return closest;
     }
 
-    // This is your existing code for damaging the player on contact
-    private void OnCollisionEnter(Collision collision)
+    void TryAttack(Transform player)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (Time.time - lastAttackTime >= attackCooldown)
         {
-            collision.gameObject.GetComponent<Health>()?.TakeDamage(5);
+            Health playerHealth = player.GetComponent<Health>();
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(damageAmount);
+                Debug.Log($"Zombie attacked {player.name} for {damageAmount} damage.");
+            }
+            lastAttackTime = Time.time;
         }
     }
 }
