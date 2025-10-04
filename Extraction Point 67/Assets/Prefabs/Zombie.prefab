@@ -917,7 +917,7 @@ Animator:
   m_GameObject: {fileID: 7685620803484742914}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: f88c8301226fd194cbbc64e25b20d567, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cf0218e3c46539940a731e2590a1ac8e, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -964,6 +964,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d19763b43691e940adedf9a0558821a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieAI
+  damageAmount: 10
+  attackRange: 1.5
+  attackCooldown: 1
 --- !u!195 &645355428777208353
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -998,7 +1001,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 750b4fd7ea2ff9b4c84078c8ac15c427, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
-  maxHealth: 100
+  maxHealth: 80
 --- !u!114 &6081195297839711947
 MonoBehaviour:
   m_ObjectHideFlags: 0

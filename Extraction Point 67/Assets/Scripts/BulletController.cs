@@ -16,4 +16,14 @@ public class BulletController : MonoBehaviour
         // Destroy the bullet after a certain time to clean up misses
         Destroy(gameObject, lifetime);
     }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        // Check if the bullet hits an enemy
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            // Destroy the bullet upon hitting an enemy
+            Destroy(gameObject);
+        }
+    }
 }
