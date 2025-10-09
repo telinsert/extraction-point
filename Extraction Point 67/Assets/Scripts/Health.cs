@@ -1,9 +1,13 @@
 using UnityEngine;
+using System;
 
 public class Health : MonoBehaviour
 {
     public int maxHealth = 100;
     private int currentHealth;
+
+    public event Action OnDeath;
+
     void Start()
     {
         currentHealth = maxHealth;
@@ -25,6 +29,9 @@ public class Health : MonoBehaviour
 
     void Die()
     {
+        // Trigger the OnDeath event
+        OnDeath?.Invoke();
+
         // Handle death (e.g., play animation, destroy object)
         Debug.Log($"{gameObject.name} has died.");
         Destroy(gameObject);

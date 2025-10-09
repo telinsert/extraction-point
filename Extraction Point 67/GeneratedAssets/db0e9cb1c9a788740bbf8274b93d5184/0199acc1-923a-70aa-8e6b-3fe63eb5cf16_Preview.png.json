@@ -1,0 +1,11 @@
+{
+    "asset": "db0e9cb1c9a788740bbf8274b93d5184",
+    "fileName": "0199acc1-923a-70aa-8e6b-3fe63eb5cf16_Preview.png",
+    "prompt": "Zombie spawner material for a forest level, designed to be destroyable by players. The material should have a glowing, eerie orange hue to indicate its functionality and danger.",
+    "negativePrompt": "",
+    "model": "575ecf67-4425-4939-97b9-5e138b8ee234",
+    "modelName": "Unity Texture2D",
+    "customSeed": 2053751015,
+    "w3CTraceId": "6fb61da2a637c98ae85ed5a1ca95aa29",
+    "refinementMode": "Generation"
+}
