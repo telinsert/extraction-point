@@ -16,6 +16,11 @@ public class ZombieSpawner : MonoBehaviour
     private int currentZombieCount = 0;
     private Health spawnerHealth;
 
+    [Header("Loot")]
+    public GameObject chestPrefab;
+    [Tooltip("Offset added to the chest spawn position (default slightly below).")]
+    public Vector3 chestSpawnOffset = new Vector3(0f, -0.25f, 0f);
+
     void Start()
     {
         // Attach a Health component to the spawner if it doesn't already have one
@@ -25,6 +30,7 @@ public class ZombieSpawner : MonoBehaviour
             spawnerHealth = gameObject.AddComponent<Health>();
             spawnerHealth.maxHealth = 100; // Set default health for the spawner
         }
+        spawnerHealth.OnDeath += SpawnChestOnDeath;
 
         // Find all players in the scene
         GameObject[] playerObjects = GameObject.FindGameObjectsWithTag("Player");
@@ -38,13 +44,32 @@ public class ZombieSpawner : MonoBehaviour
         InvokeRepeating(nameof(CheckPlayerProximity), 0f, 0.5f); // Check every 0.5 seconds
     }
 
-    void Update()
+    void OnDestroy()
     {
-        // Check if the spawner is destroyed
-        if (spawnerHealth.GetCurrentHealth() <= 0)
+        // It's good practice to unsubscribe from events when the object is destroyed
+        // to prevent potential memory leaks or errors.
+        if (spawnerHealth != null)
         {
-            DestroySpawner();
+            spawnerHealth.OnDeath -= SpawnChestOnDeath;
         }
+    }
+
+    void SpawnChestOnDeath()
+    {
+        Debug.Log($"{gameObject.name} spawner has died. Spawning chest...");
+
+        // Spawn a chest at the spawner's location with an offset
+        if (chestPrefab != null)
+        {
+            Instantiate(chestPrefab, transform.position + chestSpawnOffset, Quaternion.identity);
+        }
+        else
+        {
+            Debug.LogWarning($"Chest Prefab is not assigned on the {gameObject.name} spawner!");
+        }
+
+        // Note: We no longer need to call Destroy(gameObject) here, because the
+        // Health.cs script's Die() method is already handling the destruction.
     }
 
     void CheckPlayerProximity()
@@ -98,6 +123,10 @@ public class ZombieSpawner : MonoBehaviour
     {
         // Optional: Add visual effects or animations for destruction
         Debug.Log($"{gameObject.name} spawner destroyed!");
+        if (chestPrefab != null)
+        {
+            Instantiate(chestPrefab, transform.position + chestSpawnOffset, Quaternion.identity);
+        }
         Destroy(gameObject);
     }
 }

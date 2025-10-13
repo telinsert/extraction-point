@@ -4,7 +4,7 @@ public class BulletController : MonoBehaviour
 {
     public float speed = 20f;
     public float lifetime = 3f; // Time in seconds before the bullet disappears
-
+    public int damageAmount = 10;
     private Rigidbody rb;
 
     void Start()
@@ -19,11 +19,16 @@ public class BulletController : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        // Check if the bullet hits an enemy
-        if (collision.gameObject.CompareTag("Enemy"))
+        // Check if the bullet hits something with a Health component
+        Health health = collision.gameObject.GetComponent<Health>();
+        if (health != null)
         {
-            // Destroy the bullet upon hitting an enemy
-            Destroy(gameObject);
+            // Apply damage directly from the bullet
+            health.TakeDamage(damageAmount);
         }
+
+        // Destroy the bullet on any impact to prevent it from piercing
+        // You can keep your old tag check if you want bullets to only die on enemies
+        Destroy(gameObject);
     }
 }
