@@ -10,7 +10,9 @@ public enum StatType
     BulletDamage,
     BulletSpeed,
     CritChance,
-    CritDamage
+    CritDamage,
+    MaxHealth,
+    HealthRegen
 }
 
 // We add the CreateAssetMenu attribute here, on the specific type, not the base class.
@@ -65,9 +67,27 @@ public class StatUpgrade : Upgrade
 
             case StatType.CritDamage:
                 if (isMultiplier)
-                    targetStats.critDamage *= (1 + value);
+                    targetStats.critDamage *= (value);
                 else
                     targetStats.critDamage += value;
+                break;
+            case StatType.MaxHealth:
+                int healthIncrease = (int)value;
+
+                // 1. Permanently increase the stat on the PlayerStats component.
+                targetStats.maxHealth += healthIncrease;
+
+                // 2. Find the Health component on the player.
+                Health health = targetStats.GetComponent<Health>();
+                if (health != null)
+                {
+                    // 3. Tell the Health component to update itself with the new value.
+                    health.UpdateMaxHealth(targetStats.maxHealth, healthIncrease);
+                }
+                break;
+            case StatType.HealthRegen:
+                // Regen is a simple additive value
+                targetStats.healthRegenRate += value;
                 break;
         }
     }

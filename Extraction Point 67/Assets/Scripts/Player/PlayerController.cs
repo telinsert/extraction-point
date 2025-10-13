@@ -106,6 +106,8 @@ public class PlayerController : MonoBehaviour
             {
                 bulletCtrl.damageAmount = stats.bulletDamage;
                 bulletCtrl.speed = stats.bulletSpeed;
+                bulletCtrl.critChance = stats.critChance;   // <-- ADD THIS
+                bulletCtrl.critDamage = stats.critDamage;
             }
         }
     }

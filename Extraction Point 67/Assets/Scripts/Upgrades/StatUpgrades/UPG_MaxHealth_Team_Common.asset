@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eadf02aacdf79864986862c328e9c1df, type: 3}
-  m_Name: UPG_Damage_Common
+  m_Name: UPG_MaxHealth_Team_Common
   m_EditorClassIdentifier: Assembly-CSharp::StatUpgrade
-  upgradeName: Bullet Damage 1
-  description: Adds 5+ damage to bullets (Common)
-  icon: {fileID: 21300000, guid: 8793d931000a6fa4fa3dfb6a50e1bb49, type: 3}
+  upgradeName: Health Upgrade 1
+  description: Adds 50+ health to both players (Common)
+  icon: {fileID: 21300000, guid: e63e9474ecc75784b8265d9940413e4b, type: 3}
   rarity: 0
-  isTeamUpgrade: 0
-  statToModify: 2
-  value: 5
+  isTeamUpgrade: 1
+  statToModify: 6
+  value: 50
   isMultiplier: 0

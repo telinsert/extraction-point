@@ -130,7 +130,8 @@ MonoBehaviour:
   spawnInterval: 5
   maxZombies: 10
   spawnPoints: []
-  activationRange: 45
+  activationRange: 20
+  chestoffset: {x: 0, y: -0.25, z: 0}
   chestPrefab: {fileID: 5971506605154683073, guid: 6871a7c0106106b4091b4851c2bed59c,
     type: 3}
 --- !u!114 &1460424851595334472
@@ -145,4 +146,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 750b4fd7ea2ff9b4c84078c8ac15c427, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
-  maxHealth: 100
+  initialMaxHealth: 100

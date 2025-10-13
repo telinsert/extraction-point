@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eadf02aacdf79864986862c328e9c1df, type: 3}
-  m_Name: UPG_Damage_Common
+  m_Name: UPG_CritRate_Common
   m_EditorClassIdentifier: Assembly-CSharp::StatUpgrade
-  upgradeName: Bullet Damage 1
-  description: Adds 5+ damage to bullets (Common)
-  icon: {fileID: 21300000, guid: 8793d931000a6fa4fa3dfb6a50e1bb49, type: 3}
+  upgradeName: Crit Rate 1
+  description: Increases chance of a critical hit by 5%!(Common)
+  icon: {fileID: 21300000, guid: 66802ab5946f3dc47aef821e7edaac7e, type: 3}
   rarity: 0
   isTeamUpgrade: 0
-  statToModify: 2
-  value: 5
+  statToModify: 4
+  value: 0.05
   isMultiplier: 0

@@ -15,7 +15,8 @@ public class HealthDisplay : MonoBehaviour
         {
             health.OnHealthChanged += UpdateHealthUI;
             // Also update the UI immediately on start
-            UpdateHealthUI(health.GetCurrentHealth(), health.maxHealth);
+            // --- THIS IS THE LINE TO CHANGE ---
+            UpdateHealthUI(health.GetCurrentHealth(), health.MaxHealth);
         }
     }
 

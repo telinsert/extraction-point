@@ -15,8 +15,12 @@ public class PlayerStats : MonoBehaviour
     public float bulletSpeed = 20f;  // New stat!
 
     [Header("Advanced Combat")]
-    public float critChance = 0.05f; // 5% chance
-    public float critDamage = 1.5f;  // 150% damage
+    public float critChance = 0.00f; // 0% chance
+    public float critDamage = 2f;  // 100% damage
+
+    [Header("Health Stats")]
+    public int maxHealth = 100;
+    public float healthRegenRate = 0f;
 
     // This will eventually hold references to StatusEffect ScriptableObjects
     // public List<StatusEffect> activeEffects;

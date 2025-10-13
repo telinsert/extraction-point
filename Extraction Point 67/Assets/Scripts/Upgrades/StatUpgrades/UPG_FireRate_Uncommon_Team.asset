@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StatUpgrade
   upgradeName: FireRate 1
   description: Upgrades the firerate for both players by 10%! (Uncommon)
-  icon: {fileID: 21300000, guid: c542de88966439b4aa3c9a1967bbe006, type: 3}
+  icon: {fileID: 21300000, guid: 8716a26fb157be348bd4b165c7aca61f, type: 3}
   rarity: 1
   isTeamUpgrade: 1
   statToModify: 1

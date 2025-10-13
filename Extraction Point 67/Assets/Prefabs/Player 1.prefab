@@ -1080,6 +1080,7 @@ GameObject:
   - component: {fileID: 1596387713389569959}
   - component: {fileID: -1215576144601572553}
   - component: {fileID: 8363809020297235273}
+  - component: {fileID: 2009714427385025167}
   m_Layer: 0
   m_Name: Player 1
   m_TagString: Player
@@ -1165,13 +1166,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   playerNumber: 1
-  moveSpeed: 5
   autoAimRange: 12
   bulletPrefab: {fileID: 8242929160270563135, guid: ed7fc0b4b2a77af4dac37d0167666649,
     type: 3}
   firePoint: {fileID: 411964467055405098}
-  fireRate: 2
-  bulletDamage: 10
 --- !u!114 &-1215576144601572553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1184,7 +1182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 750b4fd7ea2ff9b4c84078c8ac15c427, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
-  maxHealth: 100
+  initialMaxHealth: 100
 --- !u!114 &8363809020297235273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1203,4 +1201,18 @@ MonoBehaviour:
   bulletDamage: 10
   bulletSpeed: 20
   critChance: 0.05
-  critDamage: 1.5
+  critDamage: 2
+  maxHealth: 100
+  healthRegenRate: 0
+--- !u!114 &2009714427385025167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8955220933333927351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d15ae78669d02f6419fd61aaa3973d0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StatEffectController
