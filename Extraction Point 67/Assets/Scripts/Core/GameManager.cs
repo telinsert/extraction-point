@@ -12,6 +12,12 @@ public class GameManager : MonoBehaviour
     public PlayerStats player1Stats;
     public PlayerStats player2Stats;
 
+    // --- NEW CODE START ---
+    // Public properties to check player status from other scripts
+    public bool IsPlayer1Down { get; private set; }
+    public bool IsPlayer2Down { get; private set; }
+    // --- NEW CODE END ---
+
     private void Awake()
     {
         // --- Singleton Logic ---
@@ -27,6 +33,48 @@ public class GameManager : MonoBehaviour
         // --- Persistence ---
         // This is the magic line that keeps the GameManager alive between scenes.
         DontDestroyOnLoad(gameObject);
+    }
+
+    // --- NEW METHOD ---
+    // This method will be called by a player's Health script when they die.
+    public void OnPlayerDowned(int playerNumber)
+    {
+        if (playerNumber == 1)
+        {
+            IsPlayer1Down = true;
+        }
+        else if (playerNumber == 2)
+        {
+            IsPlayer2Down = true;
+        }
+
+        // Check if both players are now down
+        if (IsPlayer1Down && IsPlayer2Down)
+        {
+            TriggerGameOver();
+        }
+    }
+
+    // --- NEW METHOD ---
+    // We will use this later for the revive mechanic
+    public void OnPlayerRevived(int playerNumber)
+    {
+        if (playerNumber == 1)
+        {
+            IsPlayer1Down = false;
+        }
+        else if (playerNumber == 2)
+        {
+            IsPlayer2Down = false;
+        }
+    }
+
+    // --- NEW METHOD ---
+    private void TriggerGameOver()
+    {
+        // For now, we'll just log a message.
+        // In a future step, this will activate the Game Over UI.
+        Debug.Log("GAME OVER! Both players are down.");
     }
 
     // This method will be called to load the next level

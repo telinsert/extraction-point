@@ -11,6 +11,7 @@ public class Health : MonoBehaviour
 
     private int currentHealth;
     private PlayerStats stats; // This will remain null for non-player objects.
+    private Animator animator;
 
     public event Action OnDeath;
     public event Action<int, int> OnHealthChanged;
@@ -19,6 +20,7 @@ public class Health : MonoBehaviour
     {
         // Try to get the stats component. It's okay if this is null.
         stats = GetComponent<PlayerStats>();
+        animator = GetComponent<Animator>();
 
         // If we ARE on a player that has stats...
         if (stats != null)
@@ -68,7 +70,57 @@ public class Health : MonoBehaviour
     void Die()
     {
         OnDeath?.Invoke();
-        Destroy(gameObject);
+        // --- MODIFIED LOGIC START ---
+        // Check if this object is a player by seeing if it has PlayerStats
+        if (stats != null)
+        {
+            // --- IT'S A PLAYER ---
+            // 1. Notify the GameManager that this player is down.
+            GameManager.Instance.OnPlayerDowned(stats.playerNumber);
+            // 2. Disable player components to stop them from moving or shooting.
+            GetComponent<PlayerController>().enabled = false;
+            GetComponent<CharacterController>().enabled = false;
+            gameObject.tag = "DownedPlayer"; // Change the tag so zombies will ignore this player.
+
+            if (animator != null) // Tell the animator to play the downed animation
+            {
+                animator.SetTrigger("IsDowned");
+            }
+
+            Debug.Log($"Player {stats.playerNumber} is downed.");
+        }
+        else
+        {
+            // --- IT'S AN ENEMY OR OTHER OBJECT ---
+            // Use the original behavior: destroy it.
+            Destroy(gameObject);
+        }
+        // --- MODIFIED LOGIC END ---
+    }
+
+    // --- NEW METHOD START ---
+    public void Revive(float healthPercentage)
+    {
+        // 1. Re-enable player components
+        GetComponent<PlayerController>().enabled = true;
+        GetComponent<CharacterController>().enabled = true;
+
+        // 2. Change the tag back to "Player" so zombies can target them again.
+        gameObject.tag = "Player";
+
+        // 3. Heal for a percentage of max health.
+        int healthToRestore = Mathf.FloorToInt(MaxHealth * healthPercentage);
+        Heal(healthToRestore);
+
+        // 4. Notify the GameManager that this player is back in the fight.
+        GameManager.Instance.OnPlayerRevived(stats.playerNumber);
+
+        if (animator != null) // Tell the animator to play the get up animation
+        {
+            animator.SetTrigger("IsRevived");
+        }
+
+        Debug.Log($"Player {stats.playerNumber} has been revived!");
     }
 
     public int GetCurrentHealth()

@@ -18,11 +18,34 @@ public class PlayerController : MonoBehaviour
     private Vector3 moveDirection;
     private float nextFireTime = 0f;
 
+    // --- NEW REVIVE VARIABLES ---
+    [Header("Revive Settings")]
+    public float reviveRange = 2.5f;
+    public float reviveTime = 10f;
+    private float reviveProgress = 0f;
+    private Transform otherPlayer;
+    private Health otherPlayerHealth;
+    // --- END NEW REVIVE VARIABLES ---
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         stats = GetComponent<PlayerStats>();
+
+        // --- NEW CODE IN START() ---
+        // Find the other player in the scene to handle reviving them.
+        PlayerStats[] allPlayers = FindObjectsOfType<PlayerStats>();
+        foreach (PlayerStats player in allPlayers)
+        {
+            if (player.gameObject != this.gameObject)
+            {
+                otherPlayer = player.transform;
+                otherPlayerHealth = player.GetComponent<Health>();
+                break;
+            }
+        }
+        // --- END NEW CODE IN START() ---
     }
 
     void Update()
@@ -88,6 +111,43 @@ public class PlayerController : MonoBehaviour
             {
                 transform.rotation = Quaternion.LookRotation(moveDir.normalized);
             }
+        }
+
+        // --- NEW METHOD CALL IN UPDATE() ---
+        HandleRevive();
+    }
+
+    // --- NEW METHOD ---
+    private void HandleRevive()
+    {
+        // If there's no other player, or they aren't downed, do nothing.
+        if (otherPlayer == null || otherPlayerHealth.GetCurrentHealth() > 0)
+        {
+            // Reset progress if we look away from a downed player
+            reviveProgress = 0f;
+            return;
+        }
+
+        // Check distance to the downed player
+        float distance = Vector3.Distance(transform.position, otherPlayer.position);
+
+        if (distance <= reviveRange)
+        {
+            // We are in range, start the revive timer
+            reviveProgress += Time.deltaTime;
+            Debug.Log($"Reviving... Progress: {reviveProgress}"); // Good for testing
+
+            if (reviveProgress >= reviveTime)
+            {
+                // Timer complete! Revive the other player with 50% health.
+                otherPlayerHealth.Revive(0.5f); // 0.5f = 50%
+                reviveProgress = 0f;
+            }
+        }
+        else
+        {
+            // We moved out of range, reset the timer
+            reviveProgress = 0f;
         }
     }
 
