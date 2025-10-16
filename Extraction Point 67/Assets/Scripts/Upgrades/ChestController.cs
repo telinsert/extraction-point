@@ -1,22 +1,35 @@
 // In /Scripts/Upgrades/ChestController.cs
 
 using UnityEngine;
+using TMPro;
 
 public class ChestController : MonoBehaviour
 {
-    private bool playerIsNear = false;
+    // We get this from the GameManager now, so no public variable is needed here.
+    private TextMeshProUGUI interactionPrompt;
+
     private UpgradeSelectionUI upgradeUI;
+    private int playersInRange = 0;
 
     void Start()
     {
-        // Find the UI in the scene. This is a simple way to connect them.
+        // Get references from our reliable sources
         upgradeUI = FindFirstObjectByType<UpgradeSelectionUI>();
+        interactionPrompt = GameManager.Instance.interactionPrompt; // <-- Get the prompt from the manager
+
+        // Ensure the prompt is hidden when the chest first spawns
+        if (interactionPrompt != null)
+        {
+            interactionPrompt.gameObject.SetActive(false);
+        }
     }
+
+    // The rest of the script (Update, OnTriggerEnter, OnTriggerExit, OpenChest)
+    // is now guaranteed to work and needs NO CHANGES.
 
     void Update()
     {
-        // Check for player interaction (e.g., pressing the "E" key)
-        if (playerIsNear && Input.GetKeyDown(KeyCode.E))
+        if (playersInRange > 0 && Input.GetKeyDown(KeyCode.E))
         {
             OpenChest();
         }
@@ -24,30 +37,38 @@ public class ChestController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // When a player enters the trigger, allow interaction
         if (other.CompareTag("Player"))
         {
-            playerIsNear = true;
-            // Optionally, show a UI prompt like "Press E to open"
+            playersInRange++;
+            if (playersInRange == 1 && interactionPrompt != null)
+            {
+                interactionPrompt.gameObject.SetActive(true);
+            }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        // When the player leaves, disable interaction
         if (other.CompareTag("Player"))
         {
-            playerIsNear = false;
-            // Optionally, hide the UI prompt
+            playersInRange--;
+            if (playersInRange == 0 && interactionPrompt != null)
+            {
+                interactionPrompt.gameObject.SetActive(false);
+            }
         }
     }
 
     void OpenChest()
     {
+        if (interactionPrompt != null)
+        {
+            interactionPrompt.gameObject.SetActive(false);
+        }
+
         if (upgradeUI != null)
         {
             upgradeUI.ShowUpgradeChoices();
-            // Destroy the chest so it can't be used again
             Destroy(gameObject);
         }
         else

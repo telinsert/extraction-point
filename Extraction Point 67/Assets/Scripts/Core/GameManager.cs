@@ -1,5 +1,6 @@
 // In /Scripts/Core/GameManager.cs
 
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,11 +8,11 @@ public class GameManager : MonoBehaviour
 {
     // The Singleton pattern
     public static GameManager Instance { get; private set; }
-
+    public TextMeshProUGUI interactionPrompt;
     // We can store references to player stats here
     public PlayerStats player1Stats;
     public PlayerStats player2Stats;
-
+    
     // --- NEW CODE START ---
     // Public properties to check player status from other scripts
     public bool IsPlayer1Down { get; private set; }

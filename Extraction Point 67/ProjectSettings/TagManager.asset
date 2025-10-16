@@ -8,6 +8,7 @@ TagManager:
   - PowerUp
   - Bullet
   - DownedPlayer
+  - InteractionPrompt
   layers:
   - Default
   - TransparentFX
