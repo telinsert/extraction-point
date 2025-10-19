@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     // Public properties to check player status from other scripts
     public bool IsPlayer1Down { get; private set; }
     public bool IsPlayer2Down { get; private set; }
+    public ReviveUIController reviveUIController;
     // --- NEW CODE END ---
 
     private void Awake()
@@ -54,6 +55,10 @@ public class GameManager : MonoBehaviour
         {
             TriggerGameOver();
         }
+        if (reviveUIController != null)
+        {
+            reviveUIController.ShowPlayerDownedMessage(playerNumber);
+        }
     }
 
     // --- NEW METHOD ---
@@ -67,6 +72,10 @@ public class GameManager : MonoBehaviour
         else if (playerNumber == 2)
         {
             IsPlayer2Down = false;
+        }
+        if (reviveUIController != null)
+        {
+            reviveUIController.HideAllUI();
         }
     }
 
