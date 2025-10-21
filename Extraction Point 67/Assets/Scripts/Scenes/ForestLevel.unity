@@ -35619,7 +35619,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 9100000, guid: cf0218e3c46539940a731e2590a1ac8e, type: 2}
     - target: {fileID: 7189002446497436077, guid: 4f2d51d85f248124888303e559ec3afc,
         type: 3}
       propertyPath: target
@@ -36134,7 +36134,7 @@ PrefabInstance:
     - target: {fileID: 8363809020297235273, guid: 52797c890391ef54388aa16dfb94e3bd,
         type: 3}
       propertyPath: maxHealth
-      value: 10
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8955220933333927351, guid: 52797c890391ef54388aa16dfb94e3bd,
         type: 3}

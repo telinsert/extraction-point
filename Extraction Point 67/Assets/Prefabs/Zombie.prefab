@@ -1000,7 +1000,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 750b4fd7ea2ff9b4c84078c8ac15c427, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
-  maxHealth: 80
+  initialMaxHealth: 100
 --- !u!1 &7728244797233314796
 GameObject:
   m_ObjectHideFlags: 0
