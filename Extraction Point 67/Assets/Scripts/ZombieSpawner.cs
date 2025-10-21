@@ -1,32 +1,33 @@
 using UnityEngine;
 
+// This attribute ensures that a Health component is always on the same GameObject.
+// If you try to add this script without a Health component, Unity will add one for you.
+[RequireComponent(typeof(Health))]
 public class ZombieSpawner : MonoBehaviour
 {
     [Header("Spawner Settings")]
-    public GameObject zombiePrefab; // Assign the zombie prefab here
-    public float spawnInterval = 5f; // Time between spawns
-    public int maxZombies = 10; // Maximum zombies spawned at a time
-    public Transform[] spawnPoints; // Optional: Specific points to spawn zombies
+    public GameObject zombiePrefab;
+    public float spawnInterval = 5f;
+    public int maxZombies = 10;
+    public Transform[] spawnPoints;
 
     [Header("Activation Settings")]
-    public float activationRange = 20f; // Range within which the spawner activates
-    private Transform[] players; // References to all player transforms
-    private bool isActive = false; // Whether the spawner is currently active
+    public float activationRange = 20f;
+    private Transform[] players;
+    private bool isActive = false;
+    public Vector3 chestoffset = new Vector3(0, -0.25f, 0);
+    [Header("Loot")]
+    public GameObject chestPrefab;
 
     private int currentZombieCount = 0;
-    private Health spawnerHealth;
+    private Health spawnerHealth; // This will now be assigned automatically
 
     void Start()
     {
-        // Attach a Health component to the spawner if it doesn't already have one
+        // Because of [RequireComponent], we are guaranteed to have a Health component.
+        // The logic to add one is no longer needed.
         spawnerHealth = GetComponent<Health>();
-        if (spawnerHealth == null)
-        {
-            spawnerHealth = gameObject.AddComponent<Health>();
-            spawnerHealth.maxHealth = 100; // Set default health for the spawner
-        }
 
-        // Find all players in the scene
         GameObject[] playerObjects = GameObject.FindGameObjectsWithTag("Player");
         players = new Transform[playerObjects.Length];
         for (int i = 0; i < playerObjects.Length; i++)
@@ -34,17 +35,35 @@ public class ZombieSpawner : MonoBehaviour
             players[i] = playerObjects[i].transform;
         }
 
-        // Start checking for player proximity
-        InvokeRepeating(nameof(CheckPlayerProximity), 0f, 0.5f); // Check every 0.5 seconds
+        InvokeRepeating(nameof(CheckPlayerProximity), 0f, 0.5f);
     }
 
-    void Update()
+    // The Update() method is no longer needed as the Health component handles its own death.
+    // The OnDeath event is subscribed to in the Die() method of Health.cs.
+    // However, we still need a way to trigger our spawner-specific death logic.
+    // We do this by listening to the OnDeath event.
+
+    void OnEnable()
     {
-        // Check if the spawner is destroyed
-        if (spawnerHealth.GetCurrentHealth() <= 0)
+        // When the spawner is enabled, subscribe to the death event
+        GetComponent<Health>().OnDeath += HandleSpawnerDeath;
+    }
+
+    void OnDisable()
+    {
+        // When the spawner is disabled or destroyed, unsubscribe to prevent memory leaks
+        GetComponent<Health>().OnDeath -= HandleSpawnerDeath;
+    }
+
+    // This method will be called automatically when the Health component reaches zero.
+    void HandleSpawnerDeath()
+    {
+        Debug.Log($"{gameObject.name} spawner destroyed!");
+        if (chestPrefab != null)
         {
-            DestroySpawner();
+            Instantiate(chestPrefab, transform.position + chestoffset, Quaternion.identity);
         }
+        // The Health script will handle destroying the GameObject.
     }
 
     void CheckPlayerProximity()
@@ -94,10 +113,5 @@ public class ZombieSpawner : MonoBehaviour
         }
     }
 
-    public void DestroySpawner()
-    {
-        // Optional: Add visual effects or animations for destruction
-        Debug.Log($"{gameObject.name} spawner destroyed!");
-        Destroy(gameObject);
-    }
+    
 }

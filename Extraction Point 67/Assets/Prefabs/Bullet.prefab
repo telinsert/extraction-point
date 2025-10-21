@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 3066545669232637617}
   - component: {fileID: 2300294251226429761}
   - component: {fileID: 3050031068352440366}
-  - component: {fileID: -1264940943511886786}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Bullet
@@ -155,16 +154,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BulletController
   speed: 20
   lifetime: 3
---- !u!114 &-1264940943511886786
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8242929160270563135}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 628620fd4e6a716469b87d0755a77959, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DamageDealer
   damageAmount: 10
