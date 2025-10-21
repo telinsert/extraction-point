@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     // We can store references to player stats here
     public PlayerStats player1Stats;
     public PlayerStats player2Stats;
-    
+
     // --- NEW CODE START ---
     // Public properties to check player status from other scripts
     public bool IsPlayer1Down { get; private set; }

@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     public int playerNumber = 1;
     public float autoAimRange = 12f;
 
- 
+
     public GameObject bulletPrefab;
     public Transform firePoint;
 
@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     private Transform otherPlayer;
     private Health otherPlayerHealth;
     private ReviveUIController reviveUI;
-   
+
 
     void Start()
     {
@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         stats = GetComponent<PlayerStats>();
 
-        reviveUI = FindObjectOfType<ReviveUIController>(); 
+        reviveUI = FindObjectOfType<ReviveUIController>();
 
         PlayerStats[] allPlayers = FindObjectsOfType<PlayerStats>();
         foreach (PlayerStats player in allPlayers)
@@ -119,21 +119,21 @@ public class PlayerController : MonoBehaviour
     // --- NEW METHOD ---
     private void HandleRevive()
     {
-        
+
         if (otherPlayer == null || otherPlayerHealth == null) return;
 
-        
+
         if (otherPlayerHealth.GetCurrentHealth() > 0)
         {
-            
+
             if (reviveProgress != 0f)
             {
-                
+
                 reviveProgress = 0f;
                 if (reviveUI != null) reviveUI.HideAllUI();
             }
 
-            
+
             return;
         }
 
@@ -141,7 +141,7 @@ public class PlayerController : MonoBehaviour
 
         if (distance <= reviveRange)
         {
-            
+
             reviveProgress += Time.deltaTime;
 
             if (reviveUI != null)
@@ -151,17 +151,17 @@ public class PlayerController : MonoBehaviour
 
             if (reviveProgress >= reviveTime)
             {
-             
+
                 otherPlayerHealth.Revive(0.5f);
-                reviveProgress = 0f; 
+                reviveProgress = 0f;
             }
         }
         else
         {
-            
+
             if (reviveProgress > 0f)
             {
-         
+
                 reviveProgress = 0f;
                 if (reviveUI != null) reviveUI.HideReviveProgress();
             }
