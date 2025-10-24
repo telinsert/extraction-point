@@ -5,7 +5,7 @@ public class ZombieAI : MonoBehaviour
 {
     private NavMeshAgent agent;
     private Transform[] players;
-
+    private Animator animator;
     [Header("Damage Settings")]
     public int damageAmount = 10;
     public float attackRange = 1.5f; // Range within which the zombie can attack
@@ -15,7 +15,7 @@ public class ZombieAI : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-
+        animator = GetComponent<Animator>();
         GameObject[] playerObjects = GameObject.FindGameObjectsWithTag("Player");
         players = new Transform[playerObjects.Length];
         for (int i = 0; i < playerObjects.Length; i++)
@@ -26,6 +26,19 @@ public class ZombieAI : MonoBehaviour
 
     void Update()
     {
+        if (animator != null && agent != null)
+        {
+            float speed = agent.velocity.magnitude;
+            animator.SetFloat("Speed", speed, 0.1f, Time.deltaTime); // This controls the switch between Idle and Run
+
+           
+            if (agent.speed > 0) // Avoid division by zero
+            {
+                float speedMultiplier = agent.velocity.magnitude / agent.speed;
+                animator.SetFloat("RunSpeedMultiplier", speedMultiplier);
+            }
+        }
+
         Transform closestPlayer = GetClosestPlayer();
         if (closestPlayer != null)
         {
@@ -63,6 +76,10 @@ public class ZombieAI : MonoBehaviour
     {
         if (Time.time - lastAttackTime >= attackCooldown)
         {
+            if (animator != null)
+            {
+                animator.SetTrigger("Attack");
+            }
             Health playerHealth = player.GetComponent<Health>();
             if (playerHealth != null)
             {
