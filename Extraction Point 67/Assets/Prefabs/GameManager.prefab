@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &642918476610658753
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2379107302590430285}
+  - component: {fileID: 9053114428868926983}
+  - component: {fileID: 612183490372087346}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2379107302590430285
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642918476610658753}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 65.52799, y: 0, z: -30.16879}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9053114428868926983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642918476610658753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32f4e78a4cdad33429da5b572109103f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  interactionPrompt: {fileID: 0}
+  player1Stats: {fileID: 0}
+  player2Stats: {fileID: 0}
+  reviveUIController: {fileID: 0}
+--- !u!114 &612183490372087346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642918476610658753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a3e51d921b1c264790b81d6474f5e15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UpgradeManager
+  allUpgrades:
+  - {fileID: 11400000, guid: 1cf31bd4b76a16643af1b7a8fe53a298, type: 2}
+  - {fileID: 11400000, guid: c67230ad7ad42264b814b1be174b3991, type: 2}
+  - {fileID: 11400000, guid: 1d5c7ecd0c5506a43a0a745ac9572420, type: 2}
+  - {fileID: 11400000, guid: 7e23e3d89c9dbf44d9281decf119e1d2, type: 2}
+  - {fileID: 11400000, guid: fb7e8ba242215824f9c417d869d092c3, type: 2}
+  - {fileID: 11400000, guid: 93c4aa29d40273b4bb7230b709da27b5, type: 2}
+  - {fileID: 11400000, guid: 5fe5b6c9a35f66840b3d01d98194044f, type: 2}
+  - {fileID: 11400000, guid: 815e70c3d4521804caa78cd8aa2043a3, type: 2}
+  - {fileID: 11400000, guid: 9151e7e399a3f4b449fca055c58d1764, type: 2}
+  - {fileID: 11400000, guid: caa6ef25d30bed84cbf1e5fdae22cbd5, type: 2}
