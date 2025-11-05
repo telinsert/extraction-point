@@ -33,9 +33,9 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         stats = GetComponent<PlayerStats>();
 
-        reviveUI = FindObjectOfType<ReviveUIController>();
+        reviveUI = Object.FindFirstObjectByType<ReviveUIController>(); // Replaced  FindObjectOfType<ReviveUIController>()  with  Object.FindFirstObjectByType<ReviveUIController>() on 11/04
 
-        PlayerStats[] allPlayers = FindObjectsOfType<PlayerStats>();
+        PlayerStats[] allPlayers = Object.FindObjectsByType<PlayerStats>(FindObjectsSortMode.None); // Replaced  FindObjectsOfType<PlayerStats>()  with  Object.FindObjectsByType<PlayerStats>(FindObjectsSortMode.None) on 11/04
         foreach (PlayerStats player in allPlayers)
         {
             if (player.gameObject != this.gameObject)
