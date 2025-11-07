@@ -46,12 +46,12 @@ public class UpgradeSelectionUI : MonoBehaviour
     public void ShowUpgradeChoices()
     {
         // 1. Pause the game
-        Time.timeScale = 0f;
+        GameManager.Instance.PauseGameForUI();
         if (columnsContainer != null) columnsContainer.SetActive(true);
         // 2. Get random upgrades from the manager
-        p1_upgrade = upgradeManager.GetRandomUpgrade(false); // false = not a team upgrade
-        p2_upgrade = upgradeManager.GetRandomUpgrade(false);
-        team_upgrade = upgradeManager.GetRandomUpgrade(true); // true = team upgrade
+        p1_upgrade = upgradeManager.GetRandomUpgrade(1); // 1 = Player 1 Solo
+        p2_upgrade = upgradeManager.GetRandomUpgrade(2); // 2 = Player 2 Solo
+        team_upgrade = upgradeManager.GetRandomUpgrade(3);
 
         // 3. Populate the UI with the upgrade data
         p1_upgradeNameText.text = p1_upgrade.upgradeName;
@@ -86,9 +86,11 @@ public class UpgradeSelectionUI : MonoBehaviour
             if (player1Stats != null) player1Stats.Apply(chosenUpgrade);
             if (player2Stats != null) player2Stats.Apply(chosenUpgrade);
         }
+        upgradeManager.HandleUpgradeSelection(chosenUpgrade, choiceType);
 
         // Hide the UI and resume the game
         if (columnsContainer != null) columnsContainer.SetActive(false);
-        Time.timeScale = 1f;
+        // --- MODIFIED ---
+        GameManager.Instance.ResumeGameFromUI();
     }
 }

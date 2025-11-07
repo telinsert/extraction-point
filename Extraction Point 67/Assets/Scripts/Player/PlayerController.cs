@@ -185,6 +185,14 @@ public class PlayerController : MonoBehaviour
                 bulletCtrl.speed = stats.bulletSpeed;
                 bulletCtrl.critChance = stats.critChance;   // <-- ADD THIS
                 bulletCtrl.critDamage = stats.critDamage;
+                bulletCtrl.voidChance = stats.voidChance;
+
+                bulletCtrl.fireDamagePerTick = stats.fireDamagePerTick;
+                bulletCtrl.fireDuration = stats.fireDuration;
+                bulletCtrl.poisonDamagePerTick = stats.poisonDamagePerTick;
+                bulletCtrl.poisonDuration = stats.poisonDuration;
+                bulletCtrl.poisonSlowAmount = stats.poisonSlowAmount;
+                bulletCtrl.sourcePlayer = this.gameObject;
             }
         }
     }

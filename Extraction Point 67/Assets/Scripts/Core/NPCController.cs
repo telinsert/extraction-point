@@ -29,7 +29,7 @@ public class NPCController : MonoBehaviour
 
     void Update()
     {
-        if (playersInRange > 0 && Input.GetKeyDown(KeyCode.E))
+        if (playersInRange > 0 && Input.GetKeyDown(KeyCode.E) && !GameManager.Instance.IsGamePaused)
         {
             TriggerDialogue();
         }

@@ -12,7 +12,13 @@ public enum StatType
     CritChance,
     CritDamage,
     MaxHealth,
-    HealthRegen
+    HealthRegen,
+    VoidChance,
+    FireDamage,
+    FireDuration,
+    PoisonDamage,
+    PoisonDuration,
+    PoisonSlow
 }
 
 // We add the CreateAssetMenu attribute here, on the specific type, not the base class.
@@ -89,6 +95,35 @@ public class StatUpgrade : Upgrade
                 // Regen is a simple additive value
                 targetStats.healthRegenRate += value;
                 break;
+            case StatType.VoidChance:
+                if (isMultiplier)
+                    targetStats.voidChance *= (value);
+                else
+                    targetStats.voidChance += value; // Value should be small, like 0.01
+                break;
+            case StatType.FireDamage:
+                if (isMultiplier)
+                    targetStats.fireDamagePerTick = Mathf.CeilToInt(targetStats.fireDamagePerTick * (value));
+                else
+                    targetStats.fireDamagePerTick += (int)value;
+                break;
+            case StatType.FireDuration:
+                targetStats.fireDuration += value;
+                break;
+            case StatType.PoisonDamage:
+                if (isMultiplier)
+                    targetStats.poisonDamagePerTick = Mathf.CeilToInt(targetStats.poisonDamagePerTick * (value));
+                else
+                    targetStats.poisonDamagePerTick += (int)value;
+                break;
+            case StatType.PoisonDuration:
+                targetStats.poisonDuration += value;
+                break;
+            case StatType.PoisonSlow: // <-- ADD THIS CASE
+                                      // Increase the slow amount. Clamp at 90% to prevent total stoppage.
+                targetStats.poisonSlowAmount = Mathf.Clamp(targetStats.poisonSlowAmount + value, 0f, 0.9f);
+                break;
+
         }
     }
 }

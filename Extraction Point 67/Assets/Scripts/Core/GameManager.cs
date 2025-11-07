@@ -18,7 +18,19 @@ public class GameManager : MonoBehaviour
     public bool IsPlayer1Down { get; private set; }
     public bool IsPlayer2Down { get; private set; }
     public ReviveUIController reviveUIController;
+    public bool IsGamePaused { get; private set; }
     // --- NEW CODE END ---
+    public void PauseGameForUI()
+    {
+        Time.timeScale = 0f;
+        IsGamePaused = true;
+    }
+
+    public void ResumeGameFromUI()
+    {
+        Time.timeScale = 1f;
+        IsGamePaused = false;
+    }
 
     private void Awake()
     {

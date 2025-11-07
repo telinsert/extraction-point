@@ -883,6 +883,7 @@ GameObject:
   - component: {fileID: 7189002446497436077}
   - component: {fileID: 645355428777208353}
   - component: {fileID: 6983075127145718254}
+  - component: {fileID: 3582487744102726475}
   m_Layer: 0
   m_Name: BeachZombie_Lifeguard
   m_TagString: Enemy
@@ -1002,6 +1003,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
   initialMaxHealth: 100
+--- !u!114 &3582487744102726475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7685620803484742914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1be46491628209b41b99c41a9d97d4b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StatusEffectReceiver
+  fireParticlesPrefab: {fileID: 134823598688396054, guid: 5e7c08cf117d8fc4f8101736ba1e992d,
+    type: 3}
+  poisonParticlesPrefab: {fileID: 3965813303793493672, guid: d0df4f40eba1ecf418bee1896cc4b820,
+    type: 3}
 --- !u!1 &7728244797233314796
 GameObject:
   m_ObjectHideFlags: 0

@@ -45,8 +45,7 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue)
     {
-        Time.timeScale = 0f; // Pause the game
-        // --- THIS LINE IS CHANGED ---
+        GameManager.Instance.PauseGameForUI(); // Use the central method
         dialogueContentHolder.SetActive(true);
 
         sentences.Clear();
@@ -106,8 +105,8 @@ public class DialogueManager : MonoBehaviour
 
     void EndDialogue()
     {
-        // --- THIS LINE IS CHANGED ---
         dialogueContentHolder.SetActive(false);
-        Time.timeScale = 1f; // Resume the game
+        // --- MODIFIED ---
+        GameManager.Instance.ResumeGameFromUI();
     }
 }

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eadf02aacdf79864986862c328e9c1df, type: 3}
+  m_Name: UPG_SYFIRE
+  m_EditorClassIdentifier: Assembly-CSharp::StatUpgrade
+  upgradeName: FIRESTORM
+  description: Doubles the fire damage of both players!(Legendary)
+  icon: {fileID: 21300000, guid: 24228f7040e076a488e4902346e03ccb, type: 3}
+  rarity: 0
+  isTeamUpgrade: 1
+  isUnlockable: 1
+  removeAfterSelection: 0
+  unlocksUpgrades: []
+  isSynergy: 1
+  synergyRequirements:
+    requiredUpgradesForP1:
+    - {fileID: 11400000, guid: 6323250f0e8751c4f8e108f5ba2d8c5a, type: 2}
+    requiredUpgradesForP2:
+    - {fileID: 11400000, guid: 6323250f0e8751c4f8e108f5ba2d8c5a, type: 2}
+  statToModify: 9
+  value: 2
+  isMultiplier: 1

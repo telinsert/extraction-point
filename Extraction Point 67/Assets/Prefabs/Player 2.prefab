@@ -937,6 +937,7 @@ GameObject:
   - component: {fileID: 7193609496829778041}
   - component: {fileID: -2916060406756906390}
   - component: {fileID: 6982320010591633841}
+  - component: {fileID: 6673401064093491430}
   m_Layer: 0
   m_Name: Player 2
   m_TagString: Player
@@ -1028,6 +1029,8 @@ MonoBehaviour:
   bulletPrefab: {fileID: 8242929160270563135, guid: ed7fc0b4b2a77af4dac37d0167666649,
     type: 3}
   firePoint: {fileID: 5987437024647263361}
+  reviveRange: 2.5
+  reviveTime: 10
 --- !u!114 &7193609496829778041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1060,6 +1063,12 @@ MonoBehaviour:
   bulletSpeed: 20
   critChance: 0.05
   critDamage: 2
+  voidChance: 0
+  fireDamagePerTick: 0
+  fireDuration: 3
+  poisonChance: 0
+  poisonDamagePerTick: 0
+  poisonDuration: 5
   maxHealth: 100
   healthRegenRate: 0
 --- !u!114 &6982320010591633841
@@ -1074,6 +1083,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d15ae78669d02f6419fd61aaa3973d0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StatEffectController
+--- !u!114 &6673401064093491430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6969477385674194270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1be46491628209b41b99c41a9d97d4b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StatusEffectReceiver
+  fireParticlesPrefab: {fileID: 134823598688396054, guid: 5e7c08cf117d8fc4f8101736ba1e992d,
+    type: 3}
+  poisonParticlesPrefab: {fileID: 3965813303793493672, guid: d0df4f40eba1ecf418bee1896cc4b820,
+    type: 3}
 --- !u!1 &7139942503748050721
 GameObject:
   m_ObjectHideFlags: 0

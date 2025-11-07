@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eadf02aacdf79864986862c328e9c1df, type: 3}
+  m_Name: UPG_PSYN
+  m_EditorClassIdentifier: Assembly-CSharp::StatUpgrade
+  upgradeName: POISONSTORM
+  description: Doubles poison damage for BOTH players!(Legendary)
+  icon: {fileID: 21300000, guid: 9b2bbf8232558b440ac4e079cb753ebb, type: 3}
+  rarity: 0
+  isTeamUpgrade: 1
+  isUnlockable: 1
+  removeAfterSelection: 0
+  unlocksUpgrades: []
+  isSynergy: 1
+  synergyRequirements:
+    requiredUpgradesForP1:
+    - {fileID: 11400000, guid: f6879dcc08c07e84896c462fd9891758, type: 2}
+    requiredUpgradesForP2:
+    - {fileID: 11400000, guid: f6879dcc08c07e84896c462fd9891758, type: 2}
+  statToModify: 11
+  value: 2
+  isMultiplier: 1
