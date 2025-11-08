@@ -18,7 +18,11 @@ public enum StatType
     FireDuration,
     PoisonDamage,
     PoisonDuration,
-    PoisonSlow
+    PoisonSlow,
+    ExplosionChance,
+    ExplosionDamage,
+    ExplosionRadius,
+    UltimateChance
 }
 
 // We add the CreateAssetMenu attribute here, on the specific type, not the base class.
@@ -122,6 +126,21 @@ public class StatUpgrade : Upgrade
             case StatType.PoisonSlow: // <-- ADD THIS CASE
                                       // Increase the slow amount. Clamp at 90% to prevent total stoppage.
                 targetStats.poisonSlowAmount = Mathf.Clamp(targetStats.poisonSlowAmount + value, 0f, 0.9f);
+                break;
+            case StatType.ExplosionChance:
+                targetStats.explosionChance += value; 
+                break;
+            case StatType.ExplosionDamage:
+                if (isMultiplier)
+                    targetStats.explosionDamage = Mathf.CeilToInt(targetStats.explosionDamage * (value));
+                else
+                    targetStats.explosionDamage += (int)value;
+                break;
+            case StatType.ExplosionRadius:
+                targetStats.explosionRadius += value;
+                break;
+            case StatType.UltimateChance:
+                targetStats.ultimateChance += value; // e.g., value = 0.02 for a 2% chance
                 break;
 
         }

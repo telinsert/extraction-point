@@ -193,6 +193,11 @@ public class PlayerController : MonoBehaviour
                 bulletCtrl.poisonDuration = stats.poisonDuration;
                 bulletCtrl.poisonSlowAmount = stats.poisonSlowAmount;
                 bulletCtrl.sourcePlayer = this.gameObject;
+                bulletCtrl.explosionChance = stats.explosionChance;
+                bulletCtrl.explosionDamage = stats.explosionDamage;
+                bulletCtrl.explosionRadius = stats.explosionRadius;
+                bulletCtrl.ultimateChance = stats.ultimateChance;
+
             }
         }
     }

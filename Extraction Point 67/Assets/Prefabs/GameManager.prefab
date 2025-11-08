@@ -62,12 +62,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeManager
   masterUpgradeList:
+  - {fileID: 11400000, guid: 01bd1306bc5532448baee8a2212ac7a5, type: 2}
   - {fileID: 11400000, guid: 5fe5b6c9a35f66840b3d01d98194044f, type: 2}
   - {fileID: 11400000, guid: 815e70c3d4521804caa78cd8aa2043a3, type: 2}
   - {fileID: 11400000, guid: 9151e7e399a3f4b449fca055c58d1764, type: 2}
   - {fileID: 11400000, guid: 1cf31bd4b76a16643af1b7a8fe53a298, type: 2}
   - {fileID: 11400000, guid: 7e23e3d89c9dbf44d9281decf119e1d2, type: 2}
   - {fileID: 11400000, guid: c67230ad7ad42264b814b1be174b3991, type: 2}
+  - {fileID: 11400000, guid: f5c0e1f5db2180b45afd85f2df7311a6, type: 2}
+  - {fileID: 11400000, guid: c3656da6c5807814d9ad6f0526a2c752, type: 2}
+  - {fileID: 11400000, guid: ca510861af84e814cafb76de97981a2e, type: 2}
+  - {fileID: 11400000, guid: d739c4882ea2eb649a6ea9ee5c3e52c5, type: 2}
   - {fileID: 11400000, guid: b8437b92996266047a13eef9fa6c1e95, type: 2}
   - {fileID: 11400000, guid: 1d5c7ecd0c5506a43a0a745ac9572420, type: 2}
   - {fileID: 11400000, guid: 3c7dd674680e88d49b424b497b46bdfd, type: 2}

@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eadf02aacdf79864986862c328e9c1df, type: 3}
+  m_Name: UPG_ULTFFF
+  m_EditorClassIdentifier: Assembly-CSharp::StatUpgrade
+  upgradeName: The Nuke
+  description: Bullets now have a small chance of unleashing a large nuke that deals
+    extreme damage in a large area with all element effects.(ULTIMATE)
+  icon: {fileID: 21300000, guid: 1f07c41500efe69448fb532934e0bc12, type: 3}
+  rarity: 0
+  isTeamUpgrade: 1
+  isUnlockable: 1
+  removeAfterSelection: 1
+  unlocksUpgrades: []
+  isSynergy: 1
+  synergyRequirements:
+    requiredUpgradesForP1:
+    - {fileID: 11400000, guid: bf373dd171454c34287e5697f1fb9d6f, type: 2}
+    - {fileID: 11400000, guid: 937f90d4e5e333d43b961db0567a4080, type: 2}
+    - {fileID: 11400000, guid: 82a090ed3ad46f14cb1f85c304894005, type: 2}
+    - {fileID: 11400000, guid: 01bd1306bc5532448baee8a2212ac7a5, type: 2}
+    requiredUpgradesForP2:
+    - {fileID: 11400000, guid: bf373dd171454c34287e5697f1fb9d6f, type: 2}
+    - {fileID: 11400000, guid: 937f90d4e5e333d43b961db0567a4080, type: 2}
+    - {fileID: 11400000, guid: 82a090ed3ad46f14cb1f85c304894005, type: 2}
+    - {fileID: 11400000, guid: 01bd1306bc5532448baee8a2212ac7a5, type: 2}
+  statToModify: 17
+  value: 0.02
+  isMultiplier: 0

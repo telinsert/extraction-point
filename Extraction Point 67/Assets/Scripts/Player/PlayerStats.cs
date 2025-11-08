@@ -29,6 +29,11 @@ public class PlayerStats : MonoBehaviour
     public float poisonDuration = 5f;
     public float poisonSlowAmount = 0.3f;
 
+    public float explosionChance = 0.0f;
+    public int explosionDamage = 25;
+    public float explosionRadius = 0.2f;
+    public float ultimateChance = 0.0f;
+
     [Header("Health Stats")]
     public int maxHealth = 100;
     public float healthRegenRate = 0f;

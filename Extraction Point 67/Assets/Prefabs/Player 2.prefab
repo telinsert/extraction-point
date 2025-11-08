@@ -975,7 +975,7 @@ Animator:
   m_GameObject: {fileID: 6969477385674194270}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 3d06f9e13e57b434dbbb7e7b64c158e1, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 94d76f859419a5048a2d6cf80ef45f88, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -1011,7 +1011,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 1.1, z: 0}
 --- !u!114 &2663465179014949918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1057,6 +1057,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
   playerNumber: 2
+  appliedUpgrades: []
   moveSpeed: 5
   fireRate: 2
   bulletDamage: 10
@@ -1066,9 +1067,12 @@ MonoBehaviour:
   voidChance: 0
   fireDamagePerTick: 0
   fireDuration: 3
-  poisonChance: 0
   poisonDamagePerTick: 0
   poisonDuration: 5
+  poisonSlowAmount: 0.3
+  explosionChance: 0
+  explosionDamage: 25
+  explosionRadius: 1
   maxHealth: 100
   healthRegenRate: 0
 --- !u!114 &6982320010591633841
@@ -1336,7 +1340,12 @@ PrefabInstance:
         type: 3}
       propertyPath: health
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 7193609496829778041}
+    - target: {fileID: 1846463161795407878, guid: 180630f4fde888b4dab4748c5f081805,
+        type: 3}
+      propertyPath: healthSlider
+      value: 
+      objectReference: {fileID: 6281465675421564642}
     - target: {fileID: 5036278130857027493, guid: 180630f4fde888b4dab4748c5f081805,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1463,3 +1472,15 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 8174152852206421567}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6281465675421564642 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2764176036157274333, guid: 180630f4fde888b4dab4748c5f081805,
+    type: 3}
+  m_PrefabInstance: {fileID: 8174152852206421567}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
