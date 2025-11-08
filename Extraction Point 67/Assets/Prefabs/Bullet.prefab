@@ -155,3 +155,20 @@ MonoBehaviour:
   speed: 20
   lifetime: 3
   damageAmount: 10
+  critChance: 0
+  critDamage: 0
+  voidChance: 0
+  fireDamagePerTick: 0
+  fireDuration: 0
+  poisonDamagePerTick: 0
+  poisonDuration: 0
+  poisonSlowAmount: 0
+  explosionChance: 0
+  explosionDamage: 0
+  explosionRadius: 0
+  explosionEffectPrefab: {fileID: 7908695135813814355, guid: e645b878e9733c846bc7029f32849725,
+    type: 3}
+  ultimateChance: 0
+  nukeEffectPrefab: {fileID: 1077891177771626118, guid: 9906b811980fb924284902bcdc534ecf,
+    type: 3}
+  sourcePlayer: {fileID: 0}

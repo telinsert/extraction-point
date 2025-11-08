@@ -1199,6 +1199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
   playerNumber: 1
+  appliedUpgrades: []
   moveSpeed: 5
   fireRate: 2
   bulletDamage: 10
@@ -1208,9 +1209,12 @@ MonoBehaviour:
   voidChance: 0
   fireDamagePerTick: 0
   fireDuration: 3
-  poisonChance: 0
   poisonDamagePerTick: 0
   poisonDuration: 5
+  poisonSlowAmount: 0.3
+  explosionChance: 0
+  explosionDamage: 25
+  explosionRadius: 1
   maxHealth: 100
   healthRegenRate: 0
 --- !u!114 &2009714427385025167
