@@ -55,4 +55,33 @@ public class PlayerStats : MonoBehaviour
         appliedUpgrades.Add(upgrade);
         upgrade.ApplyUpgrade(this);
     }
+
+    // Add this new method inside your PlayerStats.cs script
+    public void ResetStats()
+    {
+        Debug.Log($"Resetting stats for Player {playerNumber}.");
+
+        // Reset all stats to their starting values
+        moveSpeed = 5f;
+        fireRate = 2f;
+        bulletDamage = 10;
+        bulletSpeed = 20f;
+        critChance = 0.00f;
+        critDamage = 2f;
+        voidChance = 0.00f;
+        fireDamagePerTick = 0;
+        poisonDamagePerTick = 0;
+        maxHealth = 100;
+        healthRegenRate = 0f;
+
+        // Clear the list of acquired upgrades
+        appliedUpgrades.Clear();
+
+        // Also, tell the Health component to reset itself
+        Health health = GetComponent<Health>();
+        if (health != null)
+        {
+            health.UpdateMaxHealth(maxHealth, maxHealth); // Restore to full, new health
+        }
+    }
 }
