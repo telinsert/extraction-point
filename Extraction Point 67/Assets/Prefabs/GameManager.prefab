@@ -48,6 +48,8 @@ MonoBehaviour:
   interactionPrompt: {fileID: 0}
   player1Stats: {fileID: 0}
   player2Stats: {fileID: 0}
+  gameOverUI: {fileID: 0}
+  upgradeManager: {fileID: 612183490372087346}
   reviveUIController: {fileID: 0}
 --- !u!114 &612183490372087346
 MonoBehaviour:
@@ -84,6 +86,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9293f24065dfd0c4da91521b5d375faa, type: 2}
   - {fileID: 11400000, guid: 937f90d4e5e333d43b961db0567a4080, type: 2}
   - {fileID: 11400000, guid: bf373dd171454c34287e5697f1fb9d6f, type: 2}
+  - {fileID: 11400000, guid: c66e035514677a0478831c39ad903058, type: 2}
   - {fileID: 11400000, guid: 6323250f0e8751c4f8e108f5ba2d8c5a, type: 2}
   - {fileID: 11400000, guid: f6879dcc08c07e84896c462fd9891758, type: 2}
   - {fileID: 11400000, guid: 82a090ed3ad46f14cb1f85c304894005, type: 2}
