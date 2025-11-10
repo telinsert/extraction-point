@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 990595791661785082}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bip001 R Clavicle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 4260336574272618916}
   - component: {fileID: 8438401609039730192}
   - component: {fileID: 5743027783934324708}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: w_flamethrower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,7 +131,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1196414484855670797}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bip001 L UpperArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -163,7 +163,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5130377025914119698}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: HEAD_CONTAINER
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -195,7 +195,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3054661029868334489}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bip001 L Clavicle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -227,7 +227,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1670139815722165533}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bip001 Spine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -263,7 +263,7 @@ GameObject:
   - component: {fileID: 3375828400908941044}
   - component: {fileID: 2114511807261523903}
   - component: {fileID: 9069184842810446665}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Head_german_gasmask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -351,7 +351,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6521500644311567015}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bip001 Neck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -383,7 +383,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 589428249704483108}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: R_hand_container
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -415,7 +415,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3214751471216050773}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bip001 L Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -446,7 +446,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6630861777765505200}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bip001 R Toe0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -477,7 +477,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4768720221119865590}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bip001 R UpperArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -509,7 +509,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4338329236818818612}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bip001 L Thigh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -542,7 +542,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1092237112994193362}
   - component: {fileID: 8128908398409330293}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: backpack_flamethrower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -633,7 +633,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8915336776024241134}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bip001 L Toe0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -664,7 +664,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8995599963157360799}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bip001 R Foot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -696,7 +696,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8664656500298430686}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bip001 L Foot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -729,7 +729,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2690969795415743244}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bip001 L Calf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -761,7 +761,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8345843246535999295}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bip001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -794,7 +794,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3016510984171336594}
   - component: {fileID: 6437211284219351737}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Body_german_C
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -899,7 +899,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661930450763411517}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bip001 R Forearm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -938,7 +938,7 @@ GameObject:
   - component: {fileID: -2916060406756906390}
   - component: {fileID: 6982320010591633841}
   - component: {fileID: 6673401064093491430}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player 2
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1073,6 +1073,7 @@ MonoBehaviour:
   explosionChance: 0
   explosionDamage: 25
   explosionRadius: 1
+  ultimateChance: 0
   maxHealth: 100
   healthRegenRate: 0
 --- !u!114 &6982320010591633841
@@ -1112,7 +1113,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4104994538034435187}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bip001 R Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1144,7 +1145,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5681141654421140592}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bip001 R Calf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1176,7 +1177,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3556719088474535737}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bip001 Pelvis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1210,7 +1211,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5987437024647263361}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1241,7 +1242,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 276901331339596828}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bip001 L Forearm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1273,7 +1274,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2307065802945697674}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bip001 Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1305,7 +1306,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5333734836450007294}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bip001 R Thigh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1336,6 +1337,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1966834442704222439}
     m_Modifications:
+    - target: {fileID: 264262153740746946, guid: 180630f4fde888b4dab4748c5f081805,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 759995695859032960, guid: 180630f4fde888b4dab4748c5f081805,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1846463161795407878, guid: 180630f4fde888b4dab4748c5f081805,
         type: 3}
       propertyPath: health
@@ -1346,6 +1357,21 @@ PrefabInstance:
       propertyPath: healthSlider
       value: 
       objectReference: {fileID: 6281465675421564642}
+    - target: {fileID: 2163176861974611990, guid: 180630f4fde888b4dab4748c5f081805,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2851219130022207660, guid: 180630f4fde888b4dab4748c5f081805,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4947417570762743109, guid: 180630f4fde888b4dab4748c5f081805,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5036278130857027493, guid: 180630f4fde888b4dab4748c5f081805,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1360,6 +1386,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HealthBarPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 7537166684267126189, guid: 180630f4fde888b4dab4748c5f081805,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8090456940195803742, guid: 180630f4fde888b4dab4748c5f081805,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8384828922378850983, guid: 180630f4fde888b4dab4748c5f081805,
         type: 3}

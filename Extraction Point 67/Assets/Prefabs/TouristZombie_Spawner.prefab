@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5025672454564553315}
   - component: {fileID: 2340560341953658882}
   - component: {fileID: 4631591208538282175}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TouristZombie_Spawner
   m_TagString: Enemy
   m_Icon: {fileID: 0}

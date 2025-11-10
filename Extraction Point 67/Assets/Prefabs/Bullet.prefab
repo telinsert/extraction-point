@@ -166,9 +166,9 @@ MonoBehaviour:
   explosionChance: 0
   explosionDamage: 0
   explosionRadius: 0
-  explosionEffectPrefab: {fileID: 7908695135813814355, guid: e645b878e9733c846bc7029f32849725,
+  explosionEffectPrefab: {fileID: 6608169823480895805, guid: 7143597fbf10dac4c95477e30b695740,
     type: 3}
   ultimateChance: 0
-  nukeEffectPrefab: {fileID: 1077891177771626118, guid: 9906b811980fb924284902bcdc534ecf,
+  nukeEffectPrefab: {fileID: 6249987851181365548, guid: 35dc02646c23e864980aa047d8a20ca2,
     type: 3}
   sourcePlayer: {fileID: 0}

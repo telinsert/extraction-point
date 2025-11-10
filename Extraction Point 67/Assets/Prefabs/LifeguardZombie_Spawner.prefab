@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6199026504008085133}
   - component: {fileID: 8601048855267533543}
   - component: {fileID: 8070639558140671279}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LifeguardZombie_Spawner
   m_TagString: Enemy
   m_Icon: {fileID: 0}
