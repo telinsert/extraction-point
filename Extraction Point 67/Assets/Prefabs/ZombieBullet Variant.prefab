@@ -68,6 +68,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ZombieBullet Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 8242929160270563135, guid: ed7fc0b4b2a77af4dac37d0167666649,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3050031068352440366, guid: ed7fc0b4b2a77af4dac37d0167666649, type: 3}
     m_RemovedGameObjects: []
@@ -99,3 +104,10 @@ MonoBehaviour:
   speed: 15
   lifetime: 3
   damageAmount: 15
+  isExplosive: 0
+  explosionDamage: 0
+  explosionRadius: 0
+  explosionEffectPrefab: {fileID: 0}
+  damageableLayerMask:
+    serializedVersion: 2
+    m_Bits: 0

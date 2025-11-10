@@ -29,7 +29,7 @@ public class ChestController : MonoBehaviour
 
     void Update()
     {
-        if (playersInRange > 0 && Input.GetKeyDown(KeyCode.E) && !GameManager.Instance.IsGamePaused)
+        if (playersInRange > 0 && Input.GetKeyDown(KeyCode.E) && !GameManager.Instance.IsGamePaused && !GameManager.Instance.IsGameOver)
         {
             OpenChest();
         }

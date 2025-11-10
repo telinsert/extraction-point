@@ -84,4 +84,39 @@ public class PlayerStats : MonoBehaviour
             health.UpdateMaxHealth(maxHealth, maxHealth); // Restore to full, new health
         }
     }
+    public void CopyStatsFrom(PlayerStats source)
+    {
+        if (source == null) return;
+
+        // Copy all the stat values
+        this.moveSpeed = source.moveSpeed;
+        this.fireRate = source.fireRate;
+        this.bulletDamage = source.bulletDamage;
+        this.bulletSpeed = source.bulletSpeed;
+        this.critChance = source.critChance;
+        this.critDamage = source.critDamage;
+        this.voidChance = source.voidChance;
+        this.fireDamagePerTick = source.fireDamagePerTick;
+        this.fireDuration = source.fireDuration;
+        this.poisonDamagePerTick = source.poisonDamagePerTick;
+        this.poisonDuration = source.poisonDuration;
+        this.poisonSlowAmount = source.poisonSlowAmount;
+        this.explosionChance = source.explosionChance;
+        this.explosionDamage = source.explosionDamage;
+        this.explosionRadius = source.explosionRadius;
+        this.ultimateChance = source.ultimateChance;
+        this.maxHealth = source.maxHealth;
+        this.healthRegenRate = source.healthRegenRate;
+
+        // Copy the list of applied upgrades
+        this.appliedUpgrades = new List<Upgrade>(source.appliedUpgrades);
+
+        // IMPORTANT: Update the health component with the new max health
+        Health health = GetComponent<Health>();
+        if (health != null)
+        {
+            // Update max health and heal to full
+            health.UpdateMaxHealth(this.maxHealth, this.maxHealth);
+        }
+    }
 }

@@ -7,9 +7,10 @@ using TMPro;
 public class UpgradeSelectionUI : MonoBehaviour
 {
     [Header("Dependencies")]
-    public UpgradeManager upgradeManager; // Drag the GameManager object here
     public PlayerStats player1Stats; // Drag Player 1 here
     public PlayerStats player2Stats; // Drag Player 2 here
+    private UpgradeManager upgradeManager;
+
     [Header("UI Structure")]
     public GameObject columnsContainer;
 
@@ -36,11 +37,18 @@ public class UpgradeSelectionUI : MonoBehaviour
 
     void Start()
     {
+        // --- NEW --- Find the persistent singleton instance.
+        upgradeManager = UpgradeManager.Instance;
+        if (upgradeManager == null)
+        {
+            Debug.LogError("UpgradeManager instance not found!");
+            return;
+        }
+
         // Wire up the button clicks to call our selection methods
         p1_selectButton.onClick.AddListener(() => OnUpgradeSelected(p1_upgrade, 1));
         p2_selectButton.onClick.AddListener(() => OnUpgradeSelected(p2_upgrade, 2));
-        team_selectButton.onClick.AddListener(() => OnUpgradeSelected(team_upgrade, 3)); // 3 for team
-
+        team_selectButton.onClick.AddListener(() => OnUpgradeSelected(team_upgrade, 3));
     }
 
     public void ShowUpgradeChoices()

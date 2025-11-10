@@ -1,47 +1,64 @@
 // In /Scripts/Upgrades/UpgradeManager.cs
 
+
 using UnityEngine;
 using System.Collections.Generic;
-using System.Linq; // Needed for the filtering (Where)
+using System.Linq;
 
 public class UpgradeManager : MonoBehaviour
 {
+    // --- NEW --- Singleton Pattern
+    public static UpgradeManager Instance { get; private set; }
+
     [Tooltip("Drag ALL of your Upgrade ScriptableObject assets here. This is the master list.")]
     public List<Upgrade> masterUpgradeList;
     [Header("Player References")]
-    public PlayerStats player1Stats;
+    public PlayerStats player1Stats; // Note: These will be updated by GameManager
     public PlayerStats player2Stats;
-    // --- MODIFIED ---
-    // We now have three distinct pools instead of one.
+
     private List<Upgrade> player1SoloPool;
     private List<Upgrade> player2SoloPool;
     private List<Upgrade> teamUpgradePool;
 
+    // --- MODIFIED ---
     void Awake()
     {
+        // --- Singleton Logic ---
+        if (Instance != null && Instance != this)
+        {
+            // If another instance already exists, destroy this one.
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+
+        // --- Persistence ---
+        DontDestroyOnLoad(gameObject);
+
+        // --- Initialize Pools ---
+        // This will now only run ONCE at the start of the entire game.
         InitializeUpgradePool();
     }
 
+    // The rest of your UpgradeManager script remains exactly the same.
+    // No other changes are needed in this file.
+
     public void InitializeUpgradePool()
     {
-        // --- MODIFIED ---
-        // Create new instances for all three lists.
+        // ... (This method is unchanged)
         player1SoloPool = new List<Upgrade>();
         player2SoloPool = new List<Upgrade>();
         teamUpgradePool = new List<Upgrade>();
-
         foreach (var upgrade in masterUpgradeList)
         {
             if (!upgrade.isUnlockable)
             {
                 if (upgrade.isTeamUpgrade)
                 {
-                    // Add team upgrades to the shared team pool.
                     teamUpgradePool.Add(upgrade);
                 }
                 else
                 {
-                    // Add solo upgrades to BOTH player pools at the start.
                     player1SoloPool.Add(upgrade);
                     player2SoloPool.Add(upgrade);
                 }
@@ -49,26 +66,13 @@ public class UpgradeManager : MonoBehaviour
         }
     }
 
-    // --- MODIFIED ---
-    // The signature has changed. Instead of a boolean, we use an integer
-    // to specify which column (P1, P2, or Team) we need an upgrade for.
     public Upgrade GetRandomUpgrade(int choiceType)
     {
+        // ... (This method is unchanged)
         List<Upgrade> sourcePool;
-
-        // Select the correct pool based on the choice type
-        if (choiceType == 1)
-        {
-            sourcePool = player1SoloPool;
-        }
-        else if (choiceType == 2)
-        {
-            sourcePool = player2SoloPool;
-        }
-        else // choiceType == 3
-        {
-            sourcePool = teamUpgradePool;
-        }
+        if (choiceType == 1) sourcePool = player1SoloPool;
+        else if (choiceType == 2) sourcePool = player2SoloPool;
+        else sourcePool = teamUpgradePool;
 
         if (sourcePool.Count == 0)
         {
@@ -76,14 +80,7 @@ public class UpgradeManager : MonoBehaviour
             return null;
         }
 
-        // The weighted random selection logic itself is unchanged.
-        // It now correctly operates on the specified player's pool.
-        float totalWeight = 0;
-        foreach (var upgrade in sourcePool)
-        {
-            totalWeight += GetWeightForRarity(upgrade.rarity);
-        }
-
+        float totalWeight = sourcePool.Sum(upgrade => GetWeightForRarity(upgrade.rarity));
         float randomValue = Random.Range(0, totalWeight);
         float currentWeight = 0;
 
@@ -95,22 +92,18 @@ public class UpgradeManager : MonoBehaviour
                 return upgrade;
             }
         }
-
         return null;
     }
 
-    // --- MODIFIED ---
-    // This method now also takes the choiceType to know which pool to modify.
     public void HandleUpgradeSelection(Upgrade chosenUpgrade, int choiceType)
     {
-        // Handle UNLOCKS first.
+        // ... (This method is unchanged)
         if (chosenUpgrade.unlocksUpgrades != null && chosenUpgrade.unlocksUpgrades.Count > 0)
         {
             foreach (var unlockedUpgrade in chosenUpgrade.unlocksUpgrades)
             {
                 if (unlockedUpgrade.isTeamUpgrade)
                 {
-                    // If a team upgrade is unlocked, add it to the team pool.
                     if (!teamUpgradePool.Contains(unlockedUpgrade))
                     {
                         teamUpgradePool.Add(unlockedUpgrade);
@@ -119,28 +112,24 @@ public class UpgradeManager : MonoBehaviour
                 }
                 else
                 {
-                    if (choiceType == 1) // Player 1 made the choice.
+                    if (choiceType == 1)
                     {
-                        // Add the unlocked solo upgrade ONLY to Player 1's pool.
                         if (!player1SoloPool.Contains(unlockedUpgrade))
                         {
                             player1SoloPool.Add(unlockedUpgrade);
-                            // Updated log for clarity
                             Debug.Log($"Unlocked new SOLO upgrade for PLAYER 1: {unlockedUpgrade.upgradeName}");
                         }
                     }
-                    else if (choiceType == 2) // Player 2 made the choice.
+                    else if (choiceType == 2)
                     {
-                        // Add the unlocked solo upgrade ONLY to Player 2's pool.
                         if (!player2SoloPool.Contains(unlockedUpgrade))
                         {
                             player2SoloPool.Add(unlockedUpgrade);
                             Debug.Log($"Unlocked new SOLO upgrade for PLAYER 2: {unlockedUpgrade.upgradeName}");
                         }
                     }
-                    else // choiceType == 3 (A team upgrade unlocked a solo upgrade)
+                    else
                     {
-                        // If a team choice unlocks a solo upgrade, it's fair to add it to both pools.
                         if (!player1SoloPool.Contains(unlockedUpgrade)) player1SoloPool.Add(unlockedUpgrade);
                         if (!player2SoloPool.Contains(unlockedUpgrade)) player2SoloPool.Add(unlockedUpgrade);
                         Debug.Log($"Unlocked new SOLO upgrade for BOTH players (from a team choice): {unlockedUpgrade.upgradeName}");
@@ -149,76 +138,38 @@ public class UpgradeManager : MonoBehaviour
             }
         }
 
-
-        // Handle REMOVAL second.
         if (chosenUpgrade.removeAfterSelection)
         {
-            if (choiceType == 1)
-            {
-                player1SoloPool.Remove(chosenUpgrade);
-                Debug.Log($"Removed {chosenUpgrade.upgradeName} from Player 1's pool.");
-            }
-            else if (choiceType == 2)
-            {
-                player2SoloPool.Remove(chosenUpgrade);
-                Debug.Log($"Removed {chosenUpgrade.upgradeName} from Player 2's pool.");
-            }
-            else // choiceType == 3
-            {
-                teamUpgradePool.Remove(chosenUpgrade);
-                Debug.Log($"Removed TEAM upgrade {chosenUpgrade.upgradeName} from the shared pool.");
-            }
+            if (choiceType == 1) player1SoloPool.Remove(chosenUpgrade);
+            else if (choiceType == 2) player2SoloPool.Remove(chosenUpgrade);
+            else teamUpgradePool.Remove(chosenUpgrade);
         }
         CheckForSynergyUnlocks();
-
     }
+
     private void CheckForSynergyUnlocks()
     {
-        // We need to check every upgrade in our master list.
+        // ... (This method is unchanged)
         foreach (var potentialSynergy in masterUpgradeList)
         {
-            // Skip if it's not a synergy, or if it's already in the team pool.
-            if (!potentialSynergy.isSynergy || teamUpgradePool.Contains(potentialSynergy))
-            {
-                continue;
-            }
+            if (!potentialSynergy.isSynergy || teamUpgradePool.Contains(potentialSynergy)) continue;
 
-            // Assume the conditions are met until proven otherwise.
-            bool p1ConditionsMet = true;
-            foreach (var requiredUpg in potentialSynergy.synergyRequirements.requiredUpgradesForP1)
-            {
-                // If P1 is missing even one required upgrade, the condition fails.
-                if (!player1Stats.appliedUpgrades.Contains(requiredUpg))
-                {
-                    p1ConditionsMet = false;
-                    break;
-                }
-            }
-
-            // If P1 failed, no need to check P2.
+            bool p1ConditionsMet = potentialSynergy.synergyRequirements.requiredUpgradesForP1.All(req => player1Stats.appliedUpgrades.Contains(req));
             if (!p1ConditionsMet) continue;
 
-            bool p2ConditionsMet = true;
-            foreach (var requiredUpg in potentialSynergy.synergyRequirements.requiredUpgradesForP2)
-            {
-                if (!player2Stats.appliedUpgrades.Contains(requiredUpg))
-                {
-                    p2ConditionsMet = false;
-                    break;
-                }
-            }
+            bool p2ConditionsMet = potentialSynergy.synergyRequirements.requiredUpgradesForP2.All(req => player2Stats.appliedUpgrades.Contains(req));
 
-            // If both players meet all their requirements...
             if (p1ConditionsMet && p2ConditionsMet)
             {
-                // ...add the synergy upgrade to the team pool!
                 teamUpgradePool.Add(potentialSynergy);
                 Debug.Log($"SYNERGY UNLOCKED: {potentialSynergy.upgradeName} was added to the team pool!");
             }
         }
     }
+
     private float GetWeightForRarity(UpgradeRarity rarity)
     {
+        // ... (This method is unchanged)
         switch (rarity)
         {
             case UpgradeRarity.Common: return 10.0f;

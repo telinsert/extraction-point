@@ -23,14 +23,13 @@ public class ZombieAI : MonoBehaviour
     public float statusDuration = 4f;
     public float poisonSlowAmount = 0.3f;
 
-    [Header("Explosive Behavior")]
+    [Header("Explosive Behavior (Zombie Itself)")]
     public bool explodesOnDeath = false;
     public bool explodesOnProximity = false;
     public float detonationRange = 2.5f;
     public int explosionDamage = 30;
     public float explosionRadius = 5f;
     public GameObject explosionEffectPrefab;
-    // --- MODIFIED --- Renamed for clarity
     [Tooltip("Set this to include both 'Player' and 'Enemy' layers.")]
     public LayerMask damageableLayerMask;
 
@@ -41,6 +40,13 @@ public class ZombieAI : MonoBehaviour
     public float shootRange = 15f;
     public float shootCooldown = 3.0f;
     private float lastShootTime;
+
+    // --- NEW --- Settings for explosive bullets
+    [Header("Explosive Bullet Settings")]
+    public bool hasExplosiveBullets = false;
+    public int bulletExplosionDamage = 15;
+    public float bulletExplosionRadius = 3f;
+
 
     // --- Optimization Variables ---
     private Transform currentTarget;
@@ -203,10 +209,28 @@ public class ZombieAI : MonoBehaviour
         }
     }
 
+    // --- THIS METHOD IS NOW UPDATED ---
     void Shoot()
     {
         if (projectilePrefab == null || firePoint == null) return;
-        Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+
+        // Instantiate the bullet
+        GameObject bulletGO = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+        EnemyBulletController bulletCtrl = bulletGO.GetComponent<EnemyBulletController>();
+
+        if (bulletCtrl != null)
+        {
+            // Check if this zombie has the explosive bullet upgrade
+            if (hasExplosiveBullets)
+            {
+                // Pass the explosive properties to the bullet
+                bulletCtrl.isExplosive = true;
+                bulletCtrl.explosionDamage = this.bulletExplosionDamage;
+                bulletCtrl.explosionRadius = this.bulletExplosionRadius;
+                bulletCtrl.explosionEffectPrefab = this.explosionEffectPrefab;
+                bulletCtrl.damageableLayerMask = this.damageableLayerMask;
+            }
+        }
     }
 
     void HandleDeathExplosion()
@@ -241,26 +265,31 @@ public class ZombieAI : MonoBehaviour
         }
     }
 
-    // --- THIS METHOD IS NOW UPDATED ---
     void DealExplosionDamage()
     {
-        // Use the flexible layer mask to find all colliders on the specified layers
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius, damageableLayerMask);
         foreach (Collider hit in colliders)
         {
-            // --- NEW --- Prevent the explosion from damaging its own collider
-            if (hit.gameObject == this.gameObject)
-            {
-                continue; // Skip to the next item in the loop
-            }
+            if (hit.gameObject == this.gameObject) continue;
 
-            // The layer mask ensures we only hit things that should take damage,
-            // so we can just grab the Health component and apply damage.
             Health victimHealth = hit.GetComponent<Health>();
             if (victimHealth != null)
             {
                 victimHealth.TakeDamage(explosionDamage);
             }
+        }
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, shootRange);
+        if (explodesOnProximity)
+        {
+            Gizmos.color = Color.magenta;
+            Gizmos.DrawWireSphere(transform.position, detonationRange);
         }
     }
 }

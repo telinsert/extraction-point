@@ -11,6 +11,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scripts/Scenes/ForestLevel.unity
     guid: 2f68bf61fc3c9ef4ea9d1f78fe5fb79a
+  - enabled: 1
+    path: Assets/Scripts/Scenes/BeachLevel.unity
+    guid: 273ac3c9806a76f4d97cc5bd2ca91ab0
+  - enabled: 1
+    path: Assets/Scripts/Scenes/CityLevel.unity
+    guid: 43d913d3839fcdc439f6e92c89b10e14
   m_configObjects:
     com.unity.dt.app-ui: {fileID: 11400000, guid: 1b1c20d82303e4b5781c3ef50ac1449f,
       type: 2}

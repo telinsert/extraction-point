@@ -2,44 +2,60 @@ using UnityEngine;
 
 public class LevelCompletionTrigger : MonoBehaviour
 {
-    public GameObject levelCompleteUI; // UI element to display level completion message
+    [Header("UI Elements")]
+    [Tooltip("Assign the UI GameObject that appears when the level is complete.")]
+    public GameObject levelCompleteUI;
+
+    private bool levelIsCompleting = false;
 
     private void OnTriggerEnter(Collider other)
     {
-        // Check if the player entered the trigger
-        if (other.CompareTag("Player"))
+        // Only trigger once and only for the player
+        if (levelIsCompleting || !other.CompareTag("Player"))
         {
-            // Check if all enemies are destroyed
-            if (AreAllEnemiesDestroyed())
-            {
-                // Display level completion message
-                if (levelCompleteUI != null)
-                {
-                    levelCompleteUI.SetActive(true);
-                }
+            return;
+        }
 
-                Debug.Log("Level Completed!");
-            }
-            else
+        // Check if all enemies tagged "Enemy" are gone
+        if (AreAllEnemiesDestroyed())
+        {
+            levelIsCompleting = true;
+            Debug.Log("Level Complete! Proceeding to next level.");
+
+            // Show the completion UI if it's assigned
+            if (levelCompleteUI != null)
             {
-                Debug.Log("Not all enemies are destroyed yet!");
+                levelCompleteUI.SetActive(true);
             }
+
+            // Tell the GameManager to load the next level after a short delay
+            // Using Invoke is a simple way to create a delay.
+            Invoke(nameof(GoToNextLevel), 3f); // 3-second delay
+        }
+        else
+        {
+            Debug.Log("Level not yet complete. Enemies still remain.");
+            // Optionally, show a message to the player telling them to defeat all enemies.
         }
     }
 
     private bool AreAllEnemiesDestroyed()
     {
-        // Find all GameObjects with the "Enemy" tag
+        // FindObjectsWithTag is okay for this check, as it only happens once at the end of a level.
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        return enemies.Length == 0;
+    }
 
-        // Check if any enemies still exist
-        foreach (GameObject enemy in enemies)
+    private void GoToNextLevel()
+    {
+        // The GameManager handles the scene loading logic
+        if (GameManager.Instance != null)
         {
-            if (enemy != null) // If any enemy still exists
-            {
-                return false;
-            }
+            GameManager.Instance.LoadNextLevel();
         }
-        return true; // All enemies are destroyed
+        else
+        {
+            Debug.LogError("GameManager instance not found! Cannot load the next level.");
+        }
     }
 }
