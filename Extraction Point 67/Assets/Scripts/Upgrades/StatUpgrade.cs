@@ -22,7 +22,8 @@ public enum StatType
     ExplosionChance,
     ExplosionDamage,
     ExplosionRadius,
-    UltimateChance
+    UltimateChance,
+    ReviveTime
 }
 
 // We add the CreateAssetMenu attribute here, on the specific type, not the base class.
@@ -141,6 +142,20 @@ public class StatUpgrade : Upgrade
                 break;
             case StatType.UltimateChance:
                 targetStats.ultimateChance += value; // e.g., value = 0.02 for a 2% chance
+                break;
+            case StatType.ReviveTime:
+                if (isMultiplier)
+                {
+                    // A value of 0.1 will reduce revive time by 10%
+                    targetStats.reviveTime *= (1 - value);
+                }
+                else
+                {
+                    // A value of 1.5 will reduce revive time by 1.5 seconds
+                    targetStats.reviveTime -= value;
+                }
+                // Clamp the value to a minimum of 1 second to prevent bugs
+                targetStats.reviveTime = Mathf.Max(1f, targetStats.reviveTime);
                 break;
 
         }

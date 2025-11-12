@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eadf02aacdf79864986862c328e9c1df, type: 3}
+  m_Name: UPG_HRegen2
+  m_EditorClassIdentifier: Assembly-CSharp::StatUpgrade
+  upgradeName: Health Regeneration 2
+  description: Increases health regeneration by 1.5+ every second for a total of
+    2.(Uncommon)
+  icon: {fileID: 1811068146, guid: 018073e9791a3ef47ad4f31c7afc5917, type: 3}
+  rarity: 1
+  isTeamUpgrade: 0
+  isUnlockable: 1
+  removeAfterSelection: 1
+  unlocksUpgrades: []
+  isSynergy: 0
+  synergyRequirements:
+    requiredUpgradesForP1: []
+    requiredUpgradesForP2: []
+  statToModify: 7
+  value: 1.5
+  isMultiplier: 0

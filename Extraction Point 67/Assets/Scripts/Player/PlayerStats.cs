@@ -38,6 +38,10 @@ public class PlayerStats : MonoBehaviour
     public int maxHealth = 100;
     public float healthRegenRate = 0f;
 
+    [Header("Interaction Stats")]
+    [Tooltip("How many seconds it takes to revive a teammate. Lower is better.")]
+    public float reviveTime = 10f;
+
 
 
     // This will eventually hold references to StatusEffect ScriptableObjects
@@ -73,7 +77,7 @@ public class PlayerStats : MonoBehaviour
         poisonDamagePerTick = 0;
         maxHealth = 100;
         healthRegenRate = 0f;
-
+        reviveTime = 10f;
         // Clear the list of acquired upgrades
         appliedUpgrades.Clear();
 
@@ -107,7 +111,7 @@ public class PlayerStats : MonoBehaviour
         this.ultimateChance = source.ultimateChance;
         this.maxHealth = source.maxHealth;
         this.healthRegenRate = source.healthRegenRate;
-
+        this.reviveTime = source.reviveTime;
         // Copy the list of applied upgrades
         this.appliedUpgrades = new List<Upgrade>(source.appliedUpgrades);
 

@@ -10,13 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eadf02aacdf79864986862c328e9c1df, type: 3}
-  m_Name: UPG_HealthRegen_Rare
+  m_Name: U_Revive2
   m_EditorClassIdentifier: Assembly-CSharp::StatUpgrade
-  upgradeName: Health Regen
-  description: Increases health regeneration by 1+ every second!.(Rare)
-  icon: {fileID: 21300000, guid: af0a45a4cc2592045b35e1638f9e1bf5, type: 3}
-  rarity: 2
+  upgradeName: Faster Revive 2
+  description: Reduces revive time by 2 seconds from 7 to 5 seconds. (Common)
+  icon: {fileID: -1492036940, guid: 9939e4ab9700ac24faf7034e44a168d3, type: 3}
+  rarity: 0
   isTeamUpgrade: 0
-  statToModify: 7
-  value: 1
+  isUnlockable: 1
+  removeAfterSelection: 1
+  unlocksUpgrades: []
+  isSynergy: 0
+  synergyRequirements:
+    requiredUpgradesForP1: []
+    requiredUpgradesForP2: []
+  statToModify: 18
+  value: 2
   isMultiplier: 0

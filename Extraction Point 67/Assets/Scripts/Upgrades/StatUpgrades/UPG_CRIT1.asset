@@ -10,13 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eadf02aacdf79864986862c328e9c1df, type: 3}
-  m_Name: UPG_CritDamage_Common
+  m_Name: UPG_CRIT1
   m_EditorClassIdentifier: Assembly-CSharp::StatUpgrade
   upgradeName: Crit Damage 1
-  description: Increases critical damage by 25% (Base 100%) Common
-  icon: {fileID: 21300000, guid: 66802ab5946f3dc47aef821e7edaac7e, type: 3}
+  description: Increases the damage critical hits do by 50% for a total of 150% (Common)
+  icon: {fileID: -182371145, guid: b507d1bc2457dca42898400437c4d035, type: 3}
   rarity: 0
   isTeamUpgrade: 0
+  isUnlockable: 1
+  removeAfterSelection: 1
+  unlocksUpgrades:
+  - {fileID: 11400000, guid: de4f8a2e50e9658428ab8e3ab358a0d2, type: 2}
+  isSynergy: 0
+  synergyRequirements:
+    requiredUpgradesForP1: []
+    requiredUpgradesForP2: []
   statToModify: 5
-  value: 0.25
+  value: 0.5
   isMultiplier: 0

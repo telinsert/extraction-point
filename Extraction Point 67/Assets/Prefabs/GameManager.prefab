@@ -64,6 +64,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeManager
   masterUpgradeList:
+  - {fileID: 11400000, guid: d99c6c6f72fb4d54696ce5b4e2a59b87, type: 2}
+  - {fileID: 11400000, guid: f2fdc63e83898ed49aedcff92f2a6b48, type: 2}
+  - {fileID: 11400000, guid: 83c7b0455ce73564a907dc77b45b2d8d, type: 2}
   - {fileID: 11400000, guid: 01bd1306bc5532448baee8a2212ac7a5, type: 2}
   - {fileID: 11400000, guid: 5fe5b6c9a35f66840b3d01d98194044f, type: 2}
   - {fileID: 11400000, guid: 815e70c3d4521804caa78cd8aa2043a3, type: 2}

@@ -1173,7 +1173,6 @@ MonoBehaviour:
     type: 3}
   firePoint: {fileID: 411964467055405098}
   reviveRange: 2.5
-  reviveTime: 10
 --- !u!114 &-1215576144601572553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1205,7 +1204,7 @@ MonoBehaviour:
   fireRate: 2
   bulletDamage: 10
   bulletSpeed: 20
-  critChance: 0.05
+  critChance: 0
   critDamage: 2
   voidChance: 0
   fireDamagePerTick: 0
@@ -1219,6 +1218,7 @@ MonoBehaviour:
   ultimateChance: 0
   maxHealth: 100
   healthRegenRate: 0
+  reviveTime: 10
 --- !u!114 &2009714427385025167
 MonoBehaviour:
   m_ObjectHideFlags: 0

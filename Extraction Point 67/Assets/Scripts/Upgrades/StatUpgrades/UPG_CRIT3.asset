@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eadf02aacdf79864986862c328e9c1df, type: 3}
+  m_Name: UPG_CRIT3
+  m_EditorClassIdentifier: Assembly-CSharp::StatUpgrade
+  upgradeName: Critical Damage 3
+  description: Increases the damage critical hits do by 100% for a total of 300%
+    (Uncommon)
+  icon: {fileID: -202660826, guid: b507d1bc2457dca42898400437c4d035, type: 3}
+  rarity: 1
+  isTeamUpgrade: 1
+  isUnlockable: 1
+  removeAfterSelection: 1
+  unlocksUpgrades: []
+  isSynergy: 1
+  synergyRequirements:
+    requiredUpgradesForP1:
+    - {fileID: 11400000, guid: de4f8a2e50e9658428ab8e3ab358a0d2, type: 2}
+    requiredUpgradesForP2:
+    - {fileID: 11400000, guid: de4f8a2e50e9658428ab8e3ab358a0d2, type: 2}
+  statToModify: 5
+  value: 1
+  isMultiplier: 0

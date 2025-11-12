@@ -20,7 +20,6 @@ public class PlayerController : MonoBehaviour
 
     [Header("Revive Settings")]
     public float reviveRange = 2.5f;
-    public float reviveTime = 10f;
     private float reviveProgress = 0f;
     private Transform otherPlayer;
     private Health otherPlayerHealth;
@@ -146,15 +145,15 @@ public class PlayerController : MonoBehaviour
 
             if (reviveUI != null)
             {
-                reviveUI.ShowReviveProgress(reviveProgress, reviveTime);
+                reviveUI.ShowReviveProgress(reviveProgress, stats.reviveTime);
             }
 
-            if (reviveProgress >= reviveTime)
+            if (reviveProgress >= stats.reviveTime)
             {
-
                 otherPlayerHealth.Revive(0.5f);
                 reviveProgress = 0f;
             }
+
         }
         else
         {
