@@ -12271,7 +12271,7 @@ PrefabInstance:
     - target: {fileID: 16500171366824030, guid: 43001fea80d77704a9c23b8a9224b404,
         type: 3}
       propertyPath: spawnInterval
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 16500171366824030, guid: 43001fea80d77704a9c23b8a9224b404,
         type: 3}
@@ -35256,7 +35256,7 @@ PrefabInstance:
     - target: {fileID: 16500171366824030, guid: 43001fea80d77704a9c23b8a9224b404,
         type: 3}
       propertyPath: spawnInterval
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 16500171366824030, guid: 43001fea80d77704a9c23b8a9224b404,
         type: 3}
@@ -37048,6 +37048,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8363809020297235273, guid: 52797c890391ef54388aa16dfb94e3bd,
+        type: 3}
+      propertyPath: ultimateChance
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8955220933333927351, guid: 52797c890391ef54388aa16dfb94e3bd,
         type: 3}
       propertyPath: m_Name
@@ -37250,7 +37255,7 @@ PrefabInstance:
     - target: {fileID: 16500171366824030, guid: 43001fea80d77704a9c23b8a9224b404,
         type: 3}
       propertyPath: maxZombies
-      value: 10
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 16500171366824030, guid: 43001fea80d77704a9c23b8a9224b404,
         type: 3}
@@ -37260,7 +37265,7 @@ PrefabInstance:
     - target: {fileID: 16500171366824030, guid: 43001fea80d77704a9c23b8a9224b404,
         type: 3}
       propertyPath: spawnInterval
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 16500171366824030, guid: 43001fea80d77704a9c23b8a9224b404,
         type: 3}
@@ -40189,6 +40194,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2916060406756906390, guid: 1ad0bc9922292ab47882bb3ea7a82f9e,
+        type: 3}
+      propertyPath: ultimateChance
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1966834442704222439, guid: 1ad0bc9922292ab47882bb3ea7a82f9e,
         type: 3}
       propertyPath: m_LocalPosition.x
