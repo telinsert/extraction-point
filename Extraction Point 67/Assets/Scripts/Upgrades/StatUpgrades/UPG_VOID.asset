@@ -16,7 +16,7 @@ MonoBehaviour:
   description: Doubles the chance for BOTH players to instantly one-shot any non-boss
     zombie.(Legendary)
   icon: {fileID: 21300000, guid: 87a60b5e5db799445828fbfaf92e9897, type: 3}
-  rarity: 0
+  rarity: 4
   isTeamUpgrade: 1
   isUnlockable: 1
   removeAfterSelection: 0

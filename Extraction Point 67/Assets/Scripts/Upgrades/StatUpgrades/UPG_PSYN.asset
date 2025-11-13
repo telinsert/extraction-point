@@ -15,7 +15,7 @@ MonoBehaviour:
   upgradeName: POISONSTORM
   description: Doubles poison damage for BOTH players!(Legendary)
   icon: {fileID: 21300000, guid: 9b2bbf8232558b440ac4e079cb753ebb, type: 3}
-  rarity: 0
+  rarity: 4
   isTeamUpgrade: 1
   isUnlockable: 1
   removeAfterSelection: 0

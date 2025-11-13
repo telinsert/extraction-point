@@ -15,7 +15,7 @@ MonoBehaviour:
   upgradeName: Explosive Luck
   description: Increases chance of a bullet exploding by 5%!(Rare)
   icon: {fileID: 21300000, guid: 4f5a42bf32a9ec1429e66fe72de2e3f0, type: 3}
-  rarity: 0
+  rarity: 2
   isTeamUpgrade: 0
   isUnlockable: 1
   removeAfterSelection: 0

@@ -15,7 +15,7 @@ MonoBehaviour:
   upgradeName: FIRESTORM
   description: Doubles the fire damage of both players!(Legendary)
   icon: {fileID: 21300000, guid: 24228f7040e076a488e4902346e03ccb, type: 3}
-  rarity: 0
+  rarity: 4
   isTeamUpgrade: 1
   isUnlockable: 1
   removeAfterSelection: 0

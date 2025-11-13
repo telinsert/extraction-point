@@ -34,16 +34,7 @@ public class PlayerController : MonoBehaviour
 
         reviveUI = Object.FindFirstObjectByType<ReviveUIController>(); // Replaced  FindObjectOfType<ReviveUIController>()  with  Object.FindFirstObjectByType<ReviveUIController>() on 11/04
 
-        PlayerStats[] allPlayers = Object.FindObjectsByType<PlayerStats>(FindObjectsSortMode.None); // Replaced  FindObjectsOfType<PlayerStats>()  with  Object.FindObjectsByType<PlayerStats>(FindObjectsSortMode.None) on 11/04
-        foreach (PlayerStats player in allPlayers)
-        {
-            if (player.gameObject != this.gameObject)
-            {
-                otherPlayer = player.transform;
-                otherPlayerHealth = player.GetComponent<Health>();
-                break;
-            }
-        }
+        
     }
 
     void Update()
@@ -207,6 +198,22 @@ public class PlayerController : MonoBehaviour
         {
             GetComponent<Health>()?.Heal(25);
             Destroy(other.gameObject);
+        }
+    }
+    public void SetTeammate(Transform teammate)
+    {
+        if (teammate == null)
+        {
+            Debug.LogWarning($"Player {playerNumber} was given a null teammate reference.");
+            return;
+        }
+
+        otherPlayer = teammate;
+        otherPlayerHealth = teammate.GetComponent<Health>();
+
+        if (otherPlayerHealth == null)
+        {
+            Debug.LogError($"CRITICAL: Player {playerNumber}'s teammate {teammate.name} is missing a Health component!");
         }
     }
 }

@@ -19,6 +19,7 @@ public class UpgradeManager : MonoBehaviour
     private List<Upgrade> player1SoloPool;
     private List<Upgrade> player2SoloPool;
     private List<Upgrade> teamUpgradePool;
+    private List<Upgrade> unlockedSynergiesThisRun;
 
     // --- MODIFIED ---
     void Awake()
@@ -49,6 +50,9 @@ public class UpgradeManager : MonoBehaviour
         player1SoloPool = new List<Upgrade>();
         player2SoloPool = new List<Upgrade>();
         teamUpgradePool = new List<Upgrade>();
+
+        unlockedSynergiesThisRun = new List<Upgrade>();
+
         foreach (var upgrade in masterUpgradeList)
         {
             if (!upgrade.isUnlockable)
@@ -149,10 +153,17 @@ public class UpgradeManager : MonoBehaviour
 
     private void CheckForSynergyUnlocks()
     {
-        // ... (This method is unchanged)
         foreach (var potentialSynergy in masterUpgradeList)
         {
-            if (!potentialSynergy.isSynergy || teamUpgradePool.Contains(potentialSynergy)) continue;
+            // --- UPDATED THIS CONDITION ---
+            // Skip if it's not a synergy, is already in the pool,
+            // OR if it has ALREADY BEEN UNLOCKED this run.
+            if (!potentialSynergy.isSynergy
+                || teamUpgradePool.Contains(potentialSynergy)
+                || unlockedSynergiesThisRun.Contains(potentialSynergy))
+            {
+                continue;
+            }
 
             bool p1ConditionsMet = potentialSynergy.synergyRequirements.requiredUpgradesForP1.All(req => player1Stats.appliedUpgrades.Contains(req));
             if (!p1ConditionsMet) continue;
@@ -161,7 +172,9 @@ public class UpgradeManager : MonoBehaviour
 
             if (p1ConditionsMet && p2ConditionsMet)
             {
+                // Add the synergy to the pool AND to our permanent memory for this run.
                 teamUpgradePool.Add(potentialSynergy);
+                unlockedSynergiesThisRun.Add(potentialSynergy); // <-- ADD THIS LINE
                 Debug.Log($"SYNERGY UNLOCKED: {potentialSynergy.upgradeName} was added to the team pool!");
             }
         }

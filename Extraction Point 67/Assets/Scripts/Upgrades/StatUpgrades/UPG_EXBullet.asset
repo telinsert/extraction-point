@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StatUpgrade
   upgradeName: Explosive Rounds
   description: Bullets now have a 20% chance to explode dealing 25 AOE damage with
-    a base radius of 1!(Legendary)
+    a base radius of 1!(Epic)
   icon: {fileID: 21300000, guid: 534d2a463232c524e842bbdc80d05fcb, type: 3}
-  rarity: 0
+  rarity: 3
   isTeamUpgrade: 0
   isUnlockable: 0
   removeAfterSelection: 1

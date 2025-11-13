@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eadf02aacdf79864986862c328e9c1df, type: 3}
   m_Name: UPG_CRIT5
   m_EditorClassIdentifier: Assembly-CSharp::StatUpgrade
-  upgradeName: Critical Damage Inf
-  description: Increases the damage critical hits do by 50% (Uncommon)
+  upgradeName: Critical Damage 5+
+  description: Increases the damage critical hits do by 25% (Uncommon)
   icon: {fileID: 914280371, guid: b507d1bc2457dca42898400437c4d035, type: 3}
   rarity: 1
   isTeamUpgrade: 0
@@ -25,5 +25,5 @@ MonoBehaviour:
     requiredUpgradesForP1: []
     requiredUpgradesForP2: []
   statToModify: 5
-  value: 0.5
+  value: 0.25
   isMultiplier: 0

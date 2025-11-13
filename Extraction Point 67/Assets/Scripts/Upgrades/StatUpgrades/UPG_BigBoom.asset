@@ -15,7 +15,7 @@ MonoBehaviour:
   upgradeName: The Solution
   description: Doubles explosive damage for both players!(Legendary)
   icon: {fileID: 21300000, guid: ab51c64e671fd01428987238059e139e, type: 3}
-  rarity: 0
+  rarity: 4
   isTeamUpgrade: 1
   isUnlockable: 1
   removeAfterSelection: 0

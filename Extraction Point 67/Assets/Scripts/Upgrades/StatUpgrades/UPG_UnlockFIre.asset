@@ -16,7 +16,7 @@ MonoBehaviour:
   description: Bullets now have a fire effect that deal 5 base per second for 3 seconds.
     Unlocks new fire upgrades. (Epic)
   icon: {fileID: 21300000, guid: 21be1ebf22ab9cb43a840d9464cbfcd2, type: 3}
-  rarity: 0
+  rarity: 3
   isTeamUpgrade: 0
   isUnlockable: 0
   removeAfterSelection: 1

@@ -19,11 +19,12 @@ MonoBehaviour:
   isTeamUpgrade: 0
   isUnlockable: 1
   removeAfterSelection: 1
-  unlocksUpgrades: []
+  unlocksUpgrades:
+  - {fileID: 11400000, guid: 3d89bbe8f513a7b439cde126e5824b70, type: 2}
   isSynergy: 0
   synergyRequirements:
     requiredUpgradesForP1: []
     requiredUpgradesForP2: []
-  statToModify: 5
+  statToModify: 4
   value: 0.05
   isMultiplier: 0

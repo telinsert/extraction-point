@@ -16,11 +16,15 @@ MonoBehaviour:
   description: Unlocks the ability to instantly one-shot any non-boss zombie at a
     very low chance of 0.01. (Legendary)
   icon: {fileID: 21300000, guid: 800e430cff924354e960df794df43de2, type: 3}
-  rarity: 0
+  rarity: 4
   isTeamUpgrade: 0
   isUnlockable: 0
   removeAfterSelection: 1
   unlocksUpgrades: []
+  isSynergy: 0
+  synergyRequirements:
+    requiredUpgradesForP1: []
+    requiredUpgradesForP2: []
   statToModify: 8
   value: 0.01
   isMultiplier: 0

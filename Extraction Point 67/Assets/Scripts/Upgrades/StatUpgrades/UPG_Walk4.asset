@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eadf02aacdf79864986862c328e9c1df, type: 3}
+  m_Name: UPG_Walk4
+  m_EditorClassIdentifier: Assembly-CSharp::StatUpgrade
+  upgradeName: Movespeed 4
+  description: 'Adds +1 movement speed for a movement speed of 9.
+
+    (Epic)'
+  icon: {fileID: -991906340, guid: f1a09197cfecd4d4d944597b04bc6e4a, type: 3}
+  rarity: 3
+  isTeamUpgrade: 0
+  isUnlockable: 1
+  removeAfterSelection: 1
+  unlocksUpgrades: []
+  isSynergy: 0
+  synergyRequirements:
+    requiredUpgradesForP1: []
+    requiredUpgradesForP2: []
+  statToModify: 0
+  value: 1
+  isMultiplier: 0

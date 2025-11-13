@@ -44,14 +44,14 @@ public class StatUpgrade : Upgrade
         {
             case StatType.MoveSpeed:
                 if (isMultiplier)
-                    targetStats.moveSpeed *= (1 + value); // e.g., value = 0.1 for +10%
+                    targetStats.moveSpeed *= (value); // e.g., value = 0.1 for +10%
                 else
                     targetStats.moveSpeed += value;
                 break;
 
             case StatType.FireRate:
                 if (isMultiplier)
-                    targetStats.fireRate *= (1 + value);
+                    targetStats.fireRate *= (value);
                 else
                     targetStats.fireRate += value;
                 break;
@@ -59,14 +59,14 @@ public class StatUpgrade : Upgrade
             case StatType.BulletDamage:
                 if (isMultiplier)
                     // We must cast to int for damage
-                    targetStats.bulletDamage = Mathf.CeilToInt(targetStats.bulletDamage * (1 + value));
+                    targetStats.bulletDamage = Mathf.CeilToInt(targetStats.bulletDamage * (value));
                 else
                     targetStats.bulletDamage += (int)value;
                 break;
 
             case StatType.BulletSpeed:
                 if (isMultiplier)
-                    targetStats.bulletSpeed *= (1 + value);
+                    targetStats.bulletSpeed *= (value);
                 else
                     targetStats.bulletSpeed += value;
                 break;

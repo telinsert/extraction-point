@@ -113,7 +113,23 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-        
+        if (player1Stats != null && player2Stats != null)
+        {
+            PlayerController p1Controller = player1Stats.GetComponent<PlayerController>();
+            PlayerController p2Controller = player2Stats.GetComponent<PlayerController>();
+
+            if (p1Controller != null && p2Controller != null)
+            {
+                p1Controller.SetTeammate(player2Stats.transform);
+                p2Controller.SetTeammate(player1Stats.transform);
+                Debug.Log("GameManager has successfully wired up player teammates for revive logic.");
+            }
+            else
+            {
+                Debug.LogError("Could not find PlayerController components on one or both players to wire them up!");
+            }
+        }
+
         // Find the interaction prompt UI
         GameObject promptPanelObject = GameObject.FindGameObjectWithTag("InteractionPrompt");
         if (promptPanelObject != null)

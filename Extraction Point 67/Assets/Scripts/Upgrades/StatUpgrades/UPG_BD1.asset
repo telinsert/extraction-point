@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eadf02aacdf79864986862c328e9c1df, type: 3}
+  m_Name: UPG_BD1
+  m_EditorClassIdentifier: Assembly-CSharp::StatUpgrade
+  upgradeName: Bullet Damage 1
+  description: Adds +5 bullet damage for a base total of 15 bullet damage and unlocks
+    more upgrades. (Common)
+  icon: {fileID: 21300000, guid: 24fa72970dd6f8b47abd75b6ca20624b, type: 3}
+  rarity: 0
+  isTeamUpgrade: 0
+  isUnlockable: 0
+  removeAfterSelection: 1
+  unlocksUpgrades:
+  - {fileID: 11400000, guid: c759e698c71cdd54caddf23ef033e9d3, type: 2}
+  isSynergy: 0
+  synergyRequirements:
+    requiredUpgradesForP1: []
+    requiredUpgradesForP2: []
+  statToModify: 2
+  value: 5
+  isMultiplier: 0

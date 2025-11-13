@@ -16,7 +16,7 @@ MonoBehaviour:
   description: 'Unlock poison rounds which slow down enemies by 30% and deals 3 damage
     over 5 seconds. Unlocks more poison upgrades.(Epic) '
   icon: {fileID: 21300000, guid: 71a01f30bac790044ac02854436d5575, type: 3}
-  rarity: 0
+  rarity: 3
   isTeamUpgrade: 0
   isUnlockable: 0
   removeAfterSelection: 1

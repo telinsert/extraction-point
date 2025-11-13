@@ -15,7 +15,7 @@ MonoBehaviour:
   upgradeName: Explosion Radius
   description: Increases the size of all explosions!(Epic)
   icon: {fileID: 21300000, guid: e01e9005ab4dd804bb925bc63fea8562, type: 3}
-  rarity: 0
+  rarity: 3
   isTeamUpgrade: 0
   isUnlockable: 1
   removeAfterSelection: 0
