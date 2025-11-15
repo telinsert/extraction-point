@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b123bc55296af174797db59345968883, type: 3}
+  m_Name: T31
+  m_EditorClassIdentifier: Assembly-CSharp::Dialogue
+  lines:
+  - speakerName: Moe
+    sentence: Currently, I recommend distributing upgrades evenly among yourselves
+      so that no one is left behind in terms of upgrades later on. Avoid the third
+      column until later, when stronger upgrades become available.
+    buttonText: 
+  - speakerName: Moe
+    sentence: Most upgrades early on unlock new upgrades that will appear in the
+      loot pool. These include synergy upgrades that appear in the third column when
+      both players possess a specific upgrade.
+    buttonText: 
+  - speakerName: Moe
+    sentence: These synergy upgrades that appear in the team upgrade column are often
+      much more substantial than regular upgrades, so it's best to acquire even the
+      weaker regular upgrades at first, as they could unlock strong upgrades later.
+    buttonText: Got it.

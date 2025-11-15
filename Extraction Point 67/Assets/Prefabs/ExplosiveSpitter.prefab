@@ -600,10 +600,10 @@ MonoBehaviour:
   projectilePrefab: {fileID: 7711599574270694102, guid: 72f28410d2a758d4794ea7fc71f13137,
     type: 3}
   firePoint: {fileID: 289623092487485580}
-  shootRange: 10
-  shootCooldown: 1
+  shootRange: 15
+  shootCooldown: 0.6
   hasExplosiveBullets: 1
-  bulletExplosionDamage: 30
+  bulletExplosionDamage: 80
   bulletExplosionRadius: 4
 --- !u!195 &3988810748100913754
 NavMeshAgent:
@@ -639,7 +639,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 750b4fd7ea2ff9b4c84078c8ac15c427, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
-  initialMaxHealth: 400
+  initialMaxHealth: 1200
 --- !u!114 &1428788067694012791
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -88,38 +88,38 @@ public class PlayerStats : MonoBehaviour
             health.UpdateMaxHealth(maxHealth, maxHealth); // Restore to full, new health
         }
     }
-    public void CopyStatsFrom(PlayerStats source)
+    public void ApplyStateData(PlayerStateData data)
     {
-        if (source == null) return;
+        if (data == null) return;
 
-        // Copy all the stat values
-        this.moveSpeed = source.moveSpeed;
-        this.fireRate = source.fireRate;
-        this.bulletDamage = source.bulletDamage;
-        this.bulletSpeed = source.bulletSpeed;
-        this.critChance = source.critChance;
-        this.critDamage = source.critDamage;
-        this.voidChance = source.voidChance;
-        this.fireDamagePerTick = source.fireDamagePerTick;
-        this.fireDuration = source.fireDuration;
-        this.poisonDamagePerTick = source.poisonDamagePerTick;
-        this.poisonDuration = source.poisonDuration;
-        this.poisonSlowAmount = source.poisonSlowAmount;
-        this.explosionChance = source.explosionChance;
-        this.explosionDamage = source.explosionDamage;
-        this.explosionRadius = source.explosionRadius;
-        this.ultimateChance = source.ultimateChance;
-        this.maxHealth = source.maxHealth;
-        this.healthRegenRate = source.healthRegenRate;
-        this.reviveTime = source.reviveTime;
+        // Copy all the stat values from the data container
+        this.moveSpeed = data.moveSpeed;
+        this.fireRate = data.fireRate;
+        this.bulletDamage = data.bulletDamage;
+        this.bulletSpeed = data.bulletSpeed;
+        this.critChance = data.critChance;
+        this.critDamage = data.critDamage;
+        this.voidChance = data.voidChance;
+        this.fireDamagePerTick = data.fireDamagePerTick;
+        this.fireDuration = data.fireDuration;
+        this.poisonDamagePerTick = data.poisonDamagePerTick;
+        this.poisonDuration = data.poisonDuration;
+        this.poisonSlowAmount = data.poisonSlowAmount;
+        this.explosionChance = data.explosionChance;
+        this.explosionDamage = data.explosionDamage;
+        this.explosionRadius = data.explosionRadius;
+        this.ultimateChance = data.ultimateChance;
+        this.maxHealth = data.maxHealth;
+        this.healthRegenRate = data.healthRegenRate;
+        this.reviveTime = data.reviveTime;
+
         // Copy the list of applied upgrades
-        this.appliedUpgrades = new List<Upgrade>(source.appliedUpgrades);
+        this.appliedUpgrades = new List<Upgrade>(data.appliedUpgrades);
 
         // IMPORTANT: Update the health component with the new max health
         Health health = GetComponent<Health>();
         if (health != null)
         {
-            // Update max health and heal to full
             health.UpdateMaxHealth(this.maxHealth, this.maxHealth);
         }
     }

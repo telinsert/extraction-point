@@ -26,8 +26,8 @@ public class GameManager : MonoBehaviour
 
     // --- NEW ---
     // Temporary components to hold player data during scene transitions
-    private PlayerStats p1_data_holder;
-    private PlayerStats p2_data_holder;
+    private PlayerStateData p1_data_holder;
+    private PlayerStateData p2_data_holder;
 
 
     private void Awake()
@@ -66,8 +66,6 @@ public class GameManager : MonoBehaviour
         // Also, clean up any data holders from a previous run.
         if (scene.buildIndex == 0)
         {
-            if (p1_data_holder != null) Destroy(p1_data_holder.gameObject);
-            if (p2_data_holder != null) Destroy(p2_data_holder.gameObject);
             return;
         }
 
@@ -92,8 +90,9 @@ public class GameManager : MonoBehaviour
                 }
                 if (p1_data_holder != null)
                 {
-                    player1Stats.CopyStatsFrom(p1_data_holder);
-                    Destroy(p1_data_holder.gameObject); // Clean up the temporary object
+                    player1Stats.ApplyStateData(p1_data_holder);
+                    // We no longer need to destroy a GameObject, just null the reference.
+                    p1_data_holder = null;
                     Debug.Log("Player 1 data successfully transferred.");
                 }
             }
@@ -107,8 +106,8 @@ public class GameManager : MonoBehaviour
                 // --- NEW: If we have stored data, apply it! ---
                 if (p2_data_holder != null)
                 {
-                    player2Stats.CopyStatsFrom(p2_data_holder);
-                    Destroy(p2_data_holder.gameObject); // Clean up the temporary object
+                    player2Stats.ApplyStateData(p2_data_holder);
+                    p2_data_holder = null;
                     Debug.Log("Player 2 data successfully transferred.");
                 }
             }
@@ -215,9 +214,9 @@ public class GameManager : MonoBehaviour
 
         // --- NEW ---
         // Clean up any lingering data holders to ensure a fresh start.
-        if (p1_data_holder != null) Destroy(p1_data_holder.gameObject);
-        if (p2_data_holder != null) Destroy(p2_data_holder.gameObject);
-        
+        p1_data_holder = null;
+        p2_data_holder = null;
+
         // The reset logic remains the same.
         if (player1Stats != null) player1Stats.ResetStats();
         if (player2Stats != null) player2Stats.ResetStats();
@@ -253,18 +252,12 @@ public class GameManager : MonoBehaviour
         // These objects are marked with DontDestroyOnLoad so they survive the scene change.
         if (player1Stats != null)
         {
-            GameObject p1_temp = new GameObject("P1_DataHolder");
-            p1_data_holder = p1_temp.AddComponent<PlayerStats>();
-            p1_data_holder.CopyStatsFrom(player1Stats); // Assumes PlayerStats has a CopyStatsFrom method
-            DontDestroyOnLoad(p1_temp);
+            p1_data_holder = new PlayerStateData(player1Stats);
             Debug.Log("Player 1 data stored for transition.");
         }
         if (player2Stats != null)
         {
-            GameObject p2_temp = new GameObject("P2_DataHolder");
-            p2_data_holder = p2_temp.AddComponent<PlayerStats>();
-            p2_data_holder.CopyStatsFrom(player2Stats);
-            DontDestroyOnLoad(p2_temp);
+            p2_data_holder = new PlayerStateData(player2Stats);
             Debug.Log("Player 2 data stored for transition.");
         }
     }

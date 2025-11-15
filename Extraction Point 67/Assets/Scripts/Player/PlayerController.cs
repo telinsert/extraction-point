@@ -43,7 +43,12 @@ public class PlayerController : MonoBehaviour
         // --- Input ---
         float horizontal = 0f;
         float vertical = 0f;
-
+        if (otherPlayer == null)
+        {
+            FindTeammate();
+            // If we still can't find one, exit Update early to prevent errors.
+            if (otherPlayer == null) return;
+        }
         if (playerNumber == 1)
         {
             horizontal = Input.GetAxis("Horizontal"); // A/D keys
@@ -109,7 +114,6 @@ public class PlayerController : MonoBehaviour
     // --- NEW METHOD ---
     private void HandleRevive()
     {
-
         if (otherPlayer == null || otherPlayerHealth == null) return;
 
 
@@ -214,6 +218,23 @@ public class PlayerController : MonoBehaviour
         if (otherPlayerHealth == null)
         {
             Debug.LogError($"CRITICAL: Player {playerNumber}'s teammate {teammate.name} is missing a Health component!");
+        }
+    }
+    private void FindTeammate()
+    {
+        // We use FindObjectsByType because it's more robust than relying on tags.
+        PlayerStats[] allPlayers = FindObjectsByType<PlayerStats>(FindObjectsSortMode.None);
+        foreach (PlayerStats player in allPlayers)
+        {
+            // Find the PlayerStats component that is NOT on our own GameObject.
+            if (player.gameObject != this.gameObject)
+            {
+                // We found our teammate, set the references and exit.
+                otherPlayer = player.transform;
+                otherPlayerHealth = player.GetComponent<Health>();
+                Debug.Log($"Player {playerNumber} self-corrected and found teammate: {player.name}");
+                break; // Stop searching once found.
+            }
         }
     }
 }
