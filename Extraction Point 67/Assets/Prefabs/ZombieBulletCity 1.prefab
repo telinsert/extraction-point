@@ -10,6 +10,21 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 901795955603514371, guid: ed7fc0b4b2a77af4dac37d0167666649,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 901795955603514371, guid: ed7fc0b4b2a77af4dac37d0167666649,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 901795955603514371, guid: ed7fc0b4b2a77af4dac37d0167666649,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 901795955603514371, guid: ed7fc0b4b2a77af4dac37d0167666649,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.8546124
       objectReference: {fileID: 0}
@@ -62,11 +77,11 @@ PrefabInstance:
         type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 52ea6c059df141141a19d4b80c3bd297, type: 2}
+      objectReference: {fileID: 2100000, guid: ecd9ba32606715c44a65e076012df005, type: 2}
     - target: {fileID: 8242929160270563135, guid: ed7fc0b4b2a77af4dac37d0167666649,
         type: 3}
       propertyPath: m_Name
-      value: ZombieBullet Variant
+      value: ZombieBulletCity 1
       objectReference: {fileID: 0}
     - target: {fileID: 8242929160270563135, guid: ed7fc0b4b2a77af4dac37d0167666649,
         type: 3}
@@ -101,9 +116,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5915a4625d2d5c441b05777e829b7b29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBulletController
-  speed: 15
-  lifetime: 1.5
-  damageAmount: 15
+  speed: 13
+  lifetime: 1
+  damageAmount: 30
   isExplosive: 0
   explosionDamage: 0
   explosionRadius: 0

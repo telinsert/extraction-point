@@ -62,11 +62,11 @@ PrefabInstance:
         type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 52ea6c059df141141a19d4b80c3bd297, type: 2}
+      objectReference: {fileID: 2100000, guid: 34b91a86f24cc6f4e9bf589109950a12, type: 2}
     - target: {fileID: 8242929160270563135, guid: ed7fc0b4b2a77af4dac37d0167666649,
         type: 3}
       propertyPath: m_Name
-      value: ZombieBullet Variant
+      value: ZombieBulletCity
       objectReference: {fileID: 0}
     - target: {fileID: 8242929160270563135, guid: ed7fc0b4b2a77af4dac37d0167666649,
         type: 3}
@@ -102,8 +102,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBulletController
   speed: 15
-  lifetime: 1.5
-  damageAmount: 15
+  lifetime: 1
+  damageAmount: 20
   isExplosive: 0
   explosionDamage: 0
   explosionRadius: 0
