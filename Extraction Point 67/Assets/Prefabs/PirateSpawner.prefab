@@ -44,7 +44,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2582515403723949749}
-  m_Mesh: {fileID: -327933688243400186, guid: 48f0aa790e68cac4e9b23a2f12085028, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 47d17097fabdaf4408a233d044af5bd1, type: 3}
 --- !u!23 &953853591440826781
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -132,7 +132,7 @@ MonoBehaviour:
   maxZombies: 2
   spawnPoints: []
   activationRange: 20
-  chestoffset: {x: 0, y: -0.25, z: 0}
+  chestoffset: {x: 0, y: 0, z: 0}
   chestPrefab: {fileID: 5971506605154683073, guid: 6871a7c0106106b4091b4851c2bed59c,
     type: 3}
 --- !u!114 &8825931454185214314
