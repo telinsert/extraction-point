@@ -232,16 +232,31 @@ public class GameManager : MonoBehaviour
         StorePlayerData();
 
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        int nextSceneIndex = currentSceneIndex + 1;
+        // ---- THIS IS THE MODIFIED LOGIC ----
 
-        if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
+        // !! IMPORTANT !!
+        // Change '3' to whatever your City Level's build index is!
+        int cityLevelBuildIndex = 3;
+
+        if (currentSceneIndex == cityLevelBuildIndex)
         {
-            SceneManager.LoadScene(nextSceneIndex);
+            // If we just finished the city level, go to our end screen.
+            SceneManager.LoadScene("DemoEndScreen"); // Use the exact name of your new scene.
         }
         else
         {
-            Debug.Log("You beat the game! Returning to Main Menu.");
-            SceneManager.LoadScene(0);
+            // Otherwise, do what we were doing before.
+            int nextSceneIndex = currentSceneIndex + 1;
+            if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
+            {
+                SceneManager.LoadScene(nextSceneIndex);
+            }
+            else
+            {
+                Debug.Log("You beat the game! Returning to Main Menu.");
+                // As a fallback, go to the end screen if something is wrong.
+                SceneManager.LoadScene("DemoEndScreen");
+            }
         }
     }
     
