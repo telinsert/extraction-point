@@ -987,6 +987,9 @@ MonoBehaviour:
   firePoint: {fileID: 0}
   shootRange: 15
   shootCooldown: 3
+  hasExplosiveBullets: 0
+  bulletExplosionDamage: 15
+  bulletExplosionRadius: 3
 --- !u!195 &645355428777208353
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1021,7 +1024,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 750b4fd7ea2ff9b4c84078c8ac15c427, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
-  initialMaxHealth: 100
+  initialMaxHealth: 175
 --- !u!114 &3582487744102726475
 MonoBehaviour:
   m_ObjectHideFlags: 0
