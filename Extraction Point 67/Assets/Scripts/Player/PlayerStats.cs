@@ -20,6 +20,7 @@ public class PlayerStats : MonoBehaviour
     public float critChance = 0.00f; // 0% chance
     public float critDamage = 2f;  // 100% damage
     public float voidChance = 0.00f;
+    public int pierceCount = 0;
     [Header("Elemental Effects")]
     // Fire
     public int fireDamagePerTick = 0;
@@ -78,6 +79,7 @@ public class PlayerStats : MonoBehaviour
         maxHealth = 100;
         healthRegenRate = 0f;
         reviveTime = 10f;
+        pierceCount = 0;
         // Clear the list of acquired upgrades
         appliedUpgrades.Clear();
 
@@ -112,6 +114,8 @@ public class PlayerStats : MonoBehaviour
         this.maxHealth = data.maxHealth;
         this.healthRegenRate = data.healthRegenRate;
         this.reviveTime = data.reviveTime;
+        this.pierceCount = data.pierceCount;
+
 
         // Copy the list of applied upgrades
         this.appliedUpgrades = new List<Upgrade>(data.appliedUpgrades);

@@ -191,6 +191,7 @@ public class PlayerController : MonoBehaviour
                 bulletCtrl.explosionDamage = stats.explosionDamage;
                 bulletCtrl.explosionRadius = stats.explosionRadius;
                 bulletCtrl.ultimateChance = stats.ultimateChance;
+                bulletCtrl.pierceCount = stats.pierceCount;
 
             }
         }

@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eadf02aacdf79864986862c328e9c1df, type: 3}
+  m_Name: U_P3
+  m_EditorClassIdentifier: Assembly-CSharp::StatUpgrade
+  upgradeName: Pierce Damage 3
+  description: Bullets pierce through +1 enemy for a total of 3.(Epic)
+  icon: {fileID: -2104791644, guid: 32f0edb0e4366394d8caa482c77ec74d, type: 3}
+  rarity: 3
+  isTeamUpgrade: 1
+  isUnlockable: 1
+  removeAfterSelection: 1
+  unlocksUpgrades:
+  - {fileID: 11400000, guid: d751f4406cde85f45aafb98c032cd7c8, type: 2}
+  isSynergy: 1
+  synergyRequirements:
+    requiredUpgradesForP1:
+    - {fileID: 11400000, guid: 06013ba243a64ba46920f2edb202239d, type: 2}
+    requiredUpgradesForP2:
+    - {fileID: 11400000, guid: 06013ba243a64ba46920f2edb202239d, type: 2}
+  statToModify: 19
+  value: 1
+  isMultiplier: 0

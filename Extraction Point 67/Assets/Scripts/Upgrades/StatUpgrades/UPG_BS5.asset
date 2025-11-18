@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: UPG_BS5
   m_EditorClassIdentifier: Assembly-CSharp::StatUpgrade
   upgradeName: Bullet Speed X
-  description: Increases bullet speed by 1.2x. (Uncommon)
+  description: Increases bullet speed by 1.1x. (Uncommon)
   icon: {fileID: 21300000, guid: bed1fb6eadc085c43993974edc85cb78, type: 3}
   rarity: 1
   isTeamUpgrade: 1
@@ -25,5 +25,5 @@ MonoBehaviour:
     requiredUpgradesForP1: []
     requiredUpgradesForP2: []
   statToModify: 3
-  value: 1.2
+  value: 1.1
   isMultiplier: 1

@@ -23,7 +23,8 @@ public enum StatType
     ExplosionDamage,
     ExplosionRadius,
     UltimateChance,
-    ReviveTime
+    ReviveTime,
+    PierceCount
 }
 
 // We add the CreateAssetMenu attribute here, on the specific type, not the base class.
@@ -156,6 +157,10 @@ public class StatUpgrade : Upgrade
                 }
                 // Clamp the value to a minimum of 1 second to prevent bugs
                 targetStats.reviveTime = Mathf.Max(1f, targetStats.reviveTime);
+                break;
+            case StatType.PierceCount:
+                // This is always a flat additive value.
+                targetStats.pierceCount += (int)value;
                 break;
 
         }

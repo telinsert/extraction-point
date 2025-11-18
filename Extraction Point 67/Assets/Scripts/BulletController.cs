@@ -22,83 +22,107 @@ public class BulletController : MonoBehaviour
     [Header("Ultimate Settings")]
     public float ultimateChance;
     public GameObject nukeEffectPrefab;
-
+    [HideInInspector] public int pierceCount;
+    private TrailRenderer trailRenderer; // Reference to the trail component
+    private MeshRenderer meshRenderer;   // Reference to the bullet's renderer
+    public Material piercingMaterial;
     [HideInInspector]
     public GameObject sourcePlayer;
     private Rigidbody rb;
 
+
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        // Make the bullet move forward from the moment it's created
         rb.linearVelocity = transform.forward * speed;
+        Destroy(gameObject, lifetime); // Clean up misses
 
-        // Destroy the bullet after a certain time to clean up misses
+        // Activate visuals if the bullet is a piercing one
+        if (pierceCount > 0)
+        {
+            if (trailRenderer != null) trailRenderer.enabled = true;
+            if (meshRenderer != null && piercingMaterial != null) meshRenderer.material = piercingMaterial;
+        }
         Destroy(gameObject, lifetime);
-    }
 
-    void OnCollisionEnter(Collision collision)
+    }
+    void Awake() // Use Awake instead of Start for component fetching
     {
-        // Ignore collisions with the player who fired the bullet
-        if (collision.gameObject == sourcePlayer)
+        rb = GetComponent<Rigidbody>();
+        trailRenderer = GetComponent<TrailRenderer>();
+        meshRenderer = GetComponent<MeshRenderer>();
+    }
+    void OnTriggerEnter(Collider other) // Renamed from OnCollisionEnter
+    {
+        // 1. Ignore collisions with the player who fired the bullet
+        if (other.gameObject == sourcePlayer)
         {
             return;
         }
 
-        Health health = collision.gameObject.GetComponent<Health>();
-        StatusEffectReceiver receiver = collision.gameObject.GetComponent<StatusEffectReceiver>();
+        // 2. Check if we hit something that can be damaged (enemies, spawners)
+        Health health = other.gameObject.GetComponent<Health>();
 
         if (health != null)
         {
-            if (ultimateChance > 0 && Random.value <= ultimateChance)
+            // --- It's an enemy or spawner ---
+
+            // Apply all damage and status effects (your logic here is great)
+            ApplyDamageAndEffects(health, other.gameObject.GetComponent<StatusEffectReceiver>());
+
+            // Decide whether to pierce or be destroyed.
+            if (pierceCount > 0)
             {
-                Debug.Log("ULTIMATE TRIGGERED! SINGULARITY DETONATED!");
-                NukeExplosion();
-                Destroy(gameObject); // Destroy the bullet that triggered it
-                return; // Exit immediately, no other effects apply
+                pierceCount--; // Use up one pierce and let the bullet continue.
             }
-            // 1. Check for a VOID hit first, as it overrides everything.
-            if (voidChance > 0 && Random.value <= voidChance)
+            else
             {
-                Debug.Log("VOID HIT! Obliterated target.");
-                health.TakeDamage(999999);
-                // We can still trigger an explosion on a void hit for a cool effect.
-                if (explosionRadius > 0) Explode();
+                // We have no pierces left, so destroy the bullet.
                 Destroy(gameObject);
-                return; // Exit immediately
-            }
-
-            // 2. Calculate and apply direct damage (base or crit).
-            int finalDamage = damageAmount;
-            if (critChance > 0 && Random.value <= critChance)
-            {
-                finalDamage = Mathf.CeilToInt(damageAmount * critDamage);
-                Debug.Log("CRITICAL HIT! Damage: " + finalDamage);
-            }
-            health.TakeDamage(finalDamage);
-
-            // 3. Apply status effects (Fire/Poison) to the direct target.
-            if (receiver != null)
-            {
-                if (fireDamagePerTick > 0)
-                {
-                    receiver.ApplyFire(fireDamagePerTick, fireDuration, sourcePlayer);
-                }
-                if (poisonDamagePerTick > 0)
-                {
-                    receiver.ApplyPoison(poisonDamagePerTick, poisonDuration, poisonSlowAmount, sourcePlayer);
-                }
-            }
-
-            // 4. Check for and trigger an explosion.
-            if (explosionRadius > 0 && Random.value <= explosionChance)
-            {
-                Explode();
             }
         }
+        else
+        {
+            // --- It's something else, like a wall ---
+            // If we hit something without health, always destroy the bullet.
+            Destroy(gameObject);
+            return;
+        }
+    }
 
-        // Destroy the bullet on any impact (that isn't the owner).
-        Destroy(gameObject);
+    // --- NEW HELPER METHOD TO KEEP THINGS CLEAN ---
+    private void ApplyDamageAndEffects(Health health, StatusEffectReceiver receiver)
+    {
+        if (ultimateChance > 0 && Random.value <= ultimateChance)
+        {
+            NukeExplosion();
+            Destroy(gameObject); // Special case: nuke destroys the bullet immediately
+            return;
+        }
+        if (voidChance > 0 && Random.value <= voidChance)
+        {
+            health.TakeDamage(999999);
+            if (explosionRadius > 0) Explode();
+            Destroy(gameObject); // Special case: void hit destroys the bullet immediately
+            return;
+        }
+
+        int finalDamage = damageAmount;
+        if (critChance > 0 && Random.value <= critChance)
+        {
+            finalDamage = Mathf.CeilToInt(damageAmount * critDamage);
+        }
+        health.TakeDamage(finalDamage);
+
+        if (receiver != null)
+        {
+            if (fireDamagePerTick > 0) receiver.ApplyFire(fireDamagePerTick, fireDuration, sourcePlayer);
+            if (poisonDamagePerTick > 0) receiver.ApplyPoison(poisonDamagePerTick, poisonDuration, poisonSlowAmount, sourcePlayer);
+        }
+
+        if (explosionRadius > 0 && Random.value <= explosionChance)
+        {
+            Explode();
+        }
     }
     void Explode()
     {

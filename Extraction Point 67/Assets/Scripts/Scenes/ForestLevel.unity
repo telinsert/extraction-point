@@ -38257,6 +38257,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8363809020297235273, guid: 52797c890391ef54388aa16dfb94e3bd,
         type: 3}
+      propertyPath: pierceCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8363809020297235273, guid: 52797c890391ef54388aa16dfb94e3bd,
+        type: 3}
+      propertyPath: bulletDamage
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8363809020297235273, guid: 52797c890391ef54388aa16dfb94e3bd,
+        type: 3}
       propertyPath: ultimateChance
       value: 0
       objectReference: {fileID: 0}
@@ -41610,6 +41620,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2916060406756906390, guid: 1ad0bc9922292ab47882bb3ea7a82f9e,
+        type: 3}
+      propertyPath: pierceCount
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -2916060406756906390, guid: 1ad0bc9922292ab47882bb3ea7a82f9e,
         type: 3}
       propertyPath: ultimateChance

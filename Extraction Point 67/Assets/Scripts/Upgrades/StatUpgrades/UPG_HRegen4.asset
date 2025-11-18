@@ -14,13 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StatUpgrade
   upgradeName: Health Regeneration 4
   description: Increases health regeneration by 5+ every second for a total of 10.
-    (Legendary)
+    (Epic)
   icon: {fileID: 1885232105, guid: 018073e9791a3ef47ad4f31c7afc5917, type: 3}
-  rarity: 4
+  rarity: 3
   isTeamUpgrade: 1
   isUnlockable: 1
   removeAfterSelection: 1
-  unlocksUpgrades: []
+  unlocksUpgrades:
+  - {fileID: 11400000, guid: b7dbce15f50ba71439494115ed5f7121, type: 2}
+  - {fileID: 11400000, guid: 3a12a5e9964dcae4fa4e31ef201c0273, type: 2}
+  - {fileID: 11400000, guid: b938db4805a0af24799045ee0bc18114, type: 2}
   isSynergy: 1
   synergyRequirements:
     requiredUpgradesForP1:

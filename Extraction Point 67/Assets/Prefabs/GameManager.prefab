@@ -64,6 +64,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeManager
   masterUpgradeList:
+  - {fileID: 11400000, guid: 94a8a903393bb194f86db2df9d702c5c, type: 2}
+  - {fileID: 11400000, guid: 06013ba243a64ba46920f2edb202239d, type: 2}
+  - {fileID: 11400000, guid: d15bbc5fb0c0b5244a31040cfd18f34a, type: 2}
   - {fileID: 11400000, guid: d99c6c6f72fb4d54696ce5b4e2a59b87, type: 2}
   - {fileID: 11400000, guid: f2fdc63e83898ed49aedcff92f2a6b48, type: 2}
   - {fileID: 11400000, guid: 83c7b0455ce73564a907dc77b45b2d8d, type: 2}
@@ -98,6 +101,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c3656da6c5807814d9ad6f0526a2c752, type: 2}
   - {fileID: 11400000, guid: ca510861af84e814cafb76de97981a2e, type: 2}
   - {fileID: 11400000, guid: d739c4882ea2eb649a6ea9ee5c3e52c5, type: 2}
+  - {fileID: 11400000, guid: 5ad9871f412943c4d94e952c254ba833, type: 2}
   - {fileID: 11400000, guid: b8437b92996266047a13eef9fa6c1e95, type: 2}
   - {fileID: 11400000, guid: 3c7dd674680e88d49b424b497b46bdfd, type: 2}
   - {fileID: 11400000, guid: af719bc9d6dbb654aa6fa0d5a44f8e10, type: 2}
@@ -112,10 +116,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a12aeafea051f24458dfc1e48f8252c5, type: 2}
   - {fileID: 11400000, guid: 4567917308c03ee4d84bc373e85ab967, type: 2}
   - {fileID: 11400000, guid: 4e6206af6391c3144adb84d70739fae8, type: 2}
+  - {fileID: 11400000, guid: d3c6c635e43524c4695ad47b71b60030, type: 2}
+  - {fileID: 11400000, guid: e1aecbc1ea326a045b385ac04b5ea75e, type: 2}
   - {fileID: 11400000, guid: 93c4aa29d40273b4bb7230b709da27b5, type: 2}
   - {fileID: 11400000, guid: fdecd488e38bd7c4897955da4be99eb1, type: 2}
   - {fileID: 11400000, guid: 1a3f1ae1bc5b4cb45bae916f9d19e46c, type: 2}
   - {fileID: 11400000, guid: a4dbcc895789aa9459a725b13afa6fb9, type: 2}
+  - {fileID: 11400000, guid: b7dbce15f50ba71439494115ed5f7121, type: 2}
+  - {fileID: 11400000, guid: 3a12a5e9964dcae4fa4e31ef201c0273, type: 2}
+  - {fileID: 11400000, guid: b938db4805a0af24799045ee0bc18114, type: 2}
   - {fileID: 11400000, guid: bff97c032f762e745a176852923b7339, type: 2}
   - {fileID: 11400000, guid: 85ce17c915467274db8b29eadd3a5548, type: 2}
   - {fileID: 11400000, guid: 9293f24065dfd0c4da91521b5d375faa, type: 2}
@@ -130,6 +139,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0ee641398ef3bbf40a778e6cc7d032da, type: 2}
   - {fileID: 11400000, guid: 7a1d28b2c1c4afe4da5c326fffef6e4a, type: 2}
   - {fileID: 11400000, guid: 52a13dc5718c1744180a8056fa49994c, type: 2}
-  - {fileID: 11400000, guid: 5ad9871f412943c4d94e952c254ba833, type: 2}
   player1Stats: {fileID: 0}
   player2Stats: {fileID: 0}

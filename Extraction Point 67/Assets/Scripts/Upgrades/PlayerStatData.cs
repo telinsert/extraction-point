@@ -26,6 +26,7 @@ public class PlayerStateData
     public int maxHealth;
     public float healthRegenRate;
     public float reviveTime;
+    public int pierceCount;
 
     // We also store the list of applied upgrades.
     public List<Upgrade> appliedUpgrades;
@@ -55,6 +56,7 @@ public class PlayerStateData
         this.maxHealth = source.maxHealth;
         this.healthRegenRate = source.healthRegenRate;
         this.reviveTime = source.reviveTime;
+        this.pierceCount = source.pierceCount;
 
         // Importantly, create a NEW list to avoid reference issues.
         this.appliedUpgrades = new List<Upgrade>(source.appliedUpgrades);
