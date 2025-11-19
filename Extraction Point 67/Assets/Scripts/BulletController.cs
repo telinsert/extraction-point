@@ -26,6 +26,8 @@ public class BulletController : MonoBehaviour
     private TrailRenderer trailRenderer; // Reference to the trail component
     private MeshRenderer meshRenderer;   // Reference to the bullet's renderer
     public Material piercingMaterial;
+    public string explosionSound = "Explosion";
+
     [HideInInspector]
     public GameObject sourcePlayer;
     private Rigidbody rb;
@@ -110,7 +112,14 @@ public class BulletController : MonoBehaviour
         if (critChance > 0 && Random.value <= critChance)
         {
             finalDamage = Mathf.CeilToInt(damageAmount * critDamage);
+            AudioManager.Instance.PlaySFXAtPosition("CritHit", transform.position);
         }
+        else
+        {
+            // --- NEW AUDIO ---
+            AudioManager.Instance.PlaySFXAtPosition("Hit", transform.position);
+        }
+
         health.TakeDamage(finalDamage);
 
         if (receiver != null)
@@ -126,6 +135,8 @@ public class BulletController : MonoBehaviour
     }
     void Explode()
     {
+        AudioManager.Instance.PlaySFXAtPosition(explosionSound, transform.position);
+
         // 1. Create the visual effect (unchanged)
         if (explosionEffectPrefab != null)
         {
@@ -168,6 +179,8 @@ public class BulletController : MonoBehaviour
     }
     void NukeExplosion()
     {
+        AudioManager.Instance.PlaySFXAtPosition("Nuke", transform.position);
+
         // 1. Create a massive visual effect.
         if (nukeEffectPrefab != null)
         {

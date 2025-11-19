@@ -15,7 +15,9 @@ public class Health : MonoBehaviour
     private PlayerStats stats;
     private Animator animator;
     private bool isDowned = false;
-
+    [Header("Audio")]
+    public string hurtSound = "EnemyHurt";
+    public string deathSound = "EnemyDeath";
     public event Action OnDeath;
     public event Action<int, int> OnHealthChanged;
 
@@ -28,6 +30,8 @@ public class Health : MonoBehaviour
         if (stats != null) // If this is a player
         {
             MaxHealth = stats.maxHealth;
+            hurtSound = "PlayerHurt";
+            deathSound = "PlayerDown";
         }
         else // If this is a Zombie or other non-player
         {
@@ -53,6 +57,9 @@ public class Health : MonoBehaviour
     {
         if (isDowned) return;
 
+        if (amount > 10)
+            AudioManager.Instance.PlaySFXAtPosition(hurtSound, transform.position);
+
         currentHealth -= amount;
         if (currentHealth <= 0)
         {
@@ -71,6 +78,8 @@ public class Health : MonoBehaviour
 
     void Die()
     {
+        AudioManager.Instance.PlaySFXAtPosition(deathSound, transform.position);
+
 
         OnDeath?.Invoke();
 

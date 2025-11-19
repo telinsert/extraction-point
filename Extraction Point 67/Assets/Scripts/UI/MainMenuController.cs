@@ -20,6 +20,14 @@ public class MainMenuController : MonoBehaviour
     void Start()
     {
         // A small delay before the player can start the game.
+        if (AudioManager.Instance != null)
+        {
+            // Check specifically for the menu scene (Build Index 0)
+            if (SceneManager.GetActiveScene().buildIndex == 0)
+            {
+                AudioManager.Instance.PlayMusic("MenuTheme");
+            }
+        }
         Invoke(nameof(EnableStart), 0.5f);
     }
 

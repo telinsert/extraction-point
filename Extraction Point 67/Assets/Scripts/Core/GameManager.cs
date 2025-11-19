@@ -60,13 +60,32 @@ public class GameManager : MonoBehaviour
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Debug.Log("A new scene has loaded. GameManager is finding its references.");
-
+        
         // --- MODIFIED ---
         // If we are loading the main menu, don't try to find game objects.
         // Also, clean up any data holders from a previous run.
         if (scene.buildIndex == 0)
         {
             return;
+        }
+        if (AudioManager.Instance != null)
+        {
+            if (scene.buildIndex == 0) // Main Menu
+            {
+                AudioManager.Instance.PlayMusic("MenuTheme");
+            }
+            else if (scene.buildIndex == 1) // Forest Level
+            {
+                AudioManager.Instance.PlayMusic("ForestTheme");
+            }
+            else if (scene.buildIndex == 2) // Beach Level
+            {
+                AudioManager.Instance.PlayMusic("BeachTheme");
+            }
+            else if (scene.buildIndex == 3) // City Level
+            {
+                AudioManager.Instance.PlayMusic("CityTheme");
+            }
         }
 
 
@@ -194,6 +213,8 @@ public class GameManager : MonoBehaviour
     private void TriggerGameOver()
     {
         IsGameOver = true;
+        AudioManager.Instance.PlaySFX("GameOver");
+
 
         if (gameOverUI != null)
         {
@@ -230,7 +251,7 @@ public class GameManager : MonoBehaviour
     {
         // --- NEW: Store player data before leaving the current scene ---
         StorePlayerData();
-
+        AudioManager.Instance.PlaySFX("LevelComplete");
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         // ---- THIS IS THE MODIFIED LOGIC ----
 

@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour
     private Transform otherPlayer;
     private Health otherPlayerHealth;
     private ReviveUIController reviveUI;
+    [Header("Audio")]
+    public string shootSoundName = "Shoot";
 
 
     void Start()
@@ -147,6 +149,7 @@ public class PlayerController : MonoBehaviour
             {
                 otherPlayerHealth.Revive(0.5f);
                 reviveProgress = 0f;
+                AudioManager.Instance.PlaySFX("Revive");
             }
 
         }
@@ -164,11 +167,12 @@ public class PlayerController : MonoBehaviour
 
     void Fire()
     {
+
         if (bulletPrefab != null && firePoint != null)
         {
             // 1. Instantiate the bullet and keep a reference to it
             GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-
+            AudioManager.Instance.PlaySFXAtPosition(shootSoundName, transform.position);
             // 2. Get the BulletController component from the new bullet
             BulletController bulletCtrl = bullet.GetComponent<BulletController>();
 
@@ -202,6 +206,7 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("PowerUp"))
         {
             GetComponent<Health>()?.Heal(25);
+            AudioManager.Instance.PlaySFX("Heal");
             Destroy(other.gameObject);
         }
     }
