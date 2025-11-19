@@ -57,7 +57,7 @@ public class Health : MonoBehaviour
     {
         if (isDowned) return;
 
-        if (amount > 10)
+        if (amount >= 10)
             AudioManager.Instance.PlaySFXAtPosition(hurtSound, transform.position);
 
         currentHealth -= amount;

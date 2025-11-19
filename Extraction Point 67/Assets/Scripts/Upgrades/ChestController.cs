@@ -10,6 +10,8 @@ public class ChestController : MonoBehaviour
 
     private UpgradeSelectionUI upgradeUI;
     private int playersInRange = 0;
+    [Header("Audio")]
+    public string openSound = "ChestOpen";
 
     void Start()
     {
@@ -65,6 +67,7 @@ public class ChestController : MonoBehaviour
         {
             interactionPrompt.gameObject.SetActive(false);
         }
+        AudioManager.Instance.PlaySFXAtPosition(openSound, transform.position);
 
         if (upgradeUI != null)
         {

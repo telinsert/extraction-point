@@ -34,7 +34,12 @@ public class UpgradeSelectionUI : MonoBehaviour
     public Image team_iconImage;// <-- Changed
     public Button team_selectButton; // Button stays the same
     private Upgrade team_upgrade;
-
+    [Header("Rarity Sounds")]
+    public string commonSound = "UpgradeCommon";
+    public string uncommonSound = "UpgradeUncommon";
+    public string rareSound = "UpgradeRare";
+    public string epicSound = "UpgradeEpic";
+    public string legendarySound = "UpgradeLegendary";
     void Start()
     {
         // --- NEW --- Find the persistent singleton instance.
@@ -95,10 +100,38 @@ public class UpgradeSelectionUI : MonoBehaviour
             if (player2Stats != null) player2Stats.Apply(chosenUpgrade);
         }
         upgradeManager.HandleUpgradeSelection(chosenUpgrade, choiceType);
+        PlayRaritySound(chosenUpgrade.rarity);
 
         // Hide the UI and resume the game
         if (columnsContainer != null) columnsContainer.SetActive(false);
         // --- MODIFIED ---
         GameManager.Instance.ResumeGameFromUI();
+    }
+    void PlayRaritySound(UpgradeRarity rarity)
+    {
+        string soundToPlay = commonSound;
+
+        switch (rarity)
+        {
+            case UpgradeRarity.Uncommon:
+                soundToPlay = uncommonSound;
+                break;
+            case UpgradeRarity.Rare:
+                soundToPlay = rareSound;
+                break;
+            case UpgradeRarity.Epic:
+                soundToPlay = epicSound;
+                break;
+            case UpgradeRarity.Legendary:
+                soundToPlay = legendarySound;
+                break;
+            case UpgradeRarity.Common:
+            default:
+                soundToPlay = commonSound;
+                break;
+        }
+
+        // Use PlaySFX (2D) because this is a UI event, unrelated to 3D space
+        AudioManager.Instance.PlaySFX(soundToPlay);
     }
 }

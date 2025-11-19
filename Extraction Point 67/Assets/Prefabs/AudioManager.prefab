@@ -77,13 +77,13 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Shoot
     clip: {fileID: 8300000, guid: 25f3f4ce02306e242bb82617d3fcf9b4, type: 3}
-    volume: 1
+    volume: 0.6
     pitch: 1
     spatialBlend: 1
     loop: 0
     source: {fileID: 0}
   - name: PlayerHurt
-    clip: {fileID: 8300000, guid: 30c5e83dfc724134eb56b94cd662afe3, type: 3}
+    clip: {fileID: 8300000, guid: 5ee30600963cb7f4ab9f3ea8126019ce, type: 3}
     volume: 1
     pitch: 1
     spatialBlend: 1
@@ -103,7 +103,7 @@ MonoBehaviour:
     spatialBlend: 1
     loop: 0
     source: {fileID: 0}
-  - name: Die
+  - name: PlayerDown
     clip: {fileID: 8300000, guid: c99e9fce1886a2549a145b765487b455, type: 3}
     volume: 1
     pitch: 1
@@ -115,6 +115,62 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     spatialBlend: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: GameOver
+    clip: {fileID: 8300000, guid: 26d2631f5139c2e4ba5cf523e1070bb6, type: 3}
+    volume: 1
+    pitch: 1
+    spatialBlend: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: EnemyDeath
+    clip: {fileID: 8300000, guid: a7b09c94eb9c8dd49a8a60eadb9690a4, type: 3}
+    volume: 1
+    pitch: 1
+    spatialBlend: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: ChestOpen
+    clip: {fileID: 8300000, guid: 5222b04b4ff82d14ea2b97c460e295da, type: 3}
+    volume: 1
+    pitch: 1
+    spatialBlend: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: UpgradeUncommon
+    clip: {fileID: 8300000, guid: 56f6ea84e9f79a94b8b73aa3b3d31ccd, type: 3}
+    volume: 1
+    pitch: 1
+    spatialBlend: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: UpgradeCommon
+    clip: {fileID: 8300000, guid: ae359bb4a39edc949b80a580c87a510e, type: 3}
+    volume: 1
+    pitch: 1
+    spatialBlend: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: UpgradeEpic
+    clip: {fileID: 8300000, guid: 2e7d0bb12d0824649922aee0e5f0adbd, type: 3}
+    volume: 1
+    pitch: 1
+    spatialBlend: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: UpgradeRare
+    clip: {fileID: 8300000, guid: f290e2246b1b4094c8d422dd09edf1a3, type: 3}
+    volume: 1
+    pitch: 1
+    spatialBlend: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: UpgradeLegendary
+    clip: {fileID: 8300000, guid: 5184e538263d37e47a445e6adbc7f2d8, type: 3}
+    volume: 1
+    pitch: 1
+    spatialBlend: 0
     loop: 0
     source: {fileID: 0}
   musicSource: {fileID: 3735562580007527453}
