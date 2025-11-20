@@ -57,7 +57,7 @@ MonoBehaviour:
   - name: ForestTheme
     clip: {fileID: 8300000, guid: 82fcaac20db051a438273c0fa7eae4a4, type: 3}
     volume: 0.5
-    pitch: 0
+    pitch: 0.1
     spatialBlend: 0
     loop: 1
     source: {fileID: 0}
@@ -172,6 +172,20 @@ MonoBehaviour:
     pitch: 1
     spatialBlend: 0
     loop: 0
+    source: {fileID: 0}
+  - name: BossPhase1
+    clip: {fileID: 8300000, guid: 5ce4a804aa52a3a409045d7abc8b50ac, type: 3}
+    volume: 1
+    pitch: 1
+    spatialBlend: 0
+    loop: 1
+    source: {fileID: 0}
+  - name: BossPhase2
+    clip: {fileID: 8300000, guid: b5ae3f8916604fd4291b05a030767e70, type: 3}
+    volume: 1
+    pitch: 1
+    spatialBlend: 0
+    loop: 1
     source: {fileID: 0}
   musicSource: {fileID: 3735562580007527453}
   sfxSource2D: {fileID: 7460577482946879971}
