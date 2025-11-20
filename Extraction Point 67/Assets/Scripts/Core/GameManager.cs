@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
         }
         if (AudioManager.Instance != null)
         {
-            if (scene.buildIndex == 0) // Main Menu
+            if (scene.buildIndex == 0 || scene.buildIndex == 4) // Main Menu
             {
                 AudioManager.Instance.PlayMusic("MenuTheme");
             }

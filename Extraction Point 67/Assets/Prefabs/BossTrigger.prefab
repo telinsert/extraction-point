@@ -48,7 +48,7 @@ MonoBehaviour:
   bossPrefab: {fileID: 7395907562248706976, guid: 613199c0d21242c4c9073d2a202b78f6,
     type: 3}
   spawnPoint: {fileID: 0}
-  spawnVFX: {fileID: 0}
+  spawnVFX: {fileID: 1753776141928924, guid: 045d5fbbf8161ea478959fe3c8e41207, type: 3}
 --- !u!65 &6733923026281883804
 BoxCollider:
   m_ObjectHideFlags: 0

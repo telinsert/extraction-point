@@ -639,7 +639,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 750b4fd7ea2ff9b4c84078c8ac15c427, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
-  initialMaxHealth: 1200
+  initialMaxHealth: 1800
+  hurtSound: EnemyHurt
+  deathSound: EnemyDeath
 --- !u!114 &1428788067694012791
 MonoBehaviour:
   m_ObjectHideFlags: 0

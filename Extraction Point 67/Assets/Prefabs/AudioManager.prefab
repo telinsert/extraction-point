@@ -187,6 +187,48 @@ MonoBehaviour:
     spatialBlend: 0
     loop: 1
     source: {fileID: 0}
+  - name: Explosion
+    clip: {fileID: 8300000, guid: 85725569efc53d74794c98a3ae0e0f72, type: 3}
+    volume: 1
+    pitch: 1
+    spatialBlend: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: BossAbility
+    clip: {fileID: 8300000, guid: d81296156f5a91f48846773d0732a8a0, type: 3}
+    volume: 0.4
+    pitch: 1
+    spatialBlend: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: CritHit
+    clip: {fileID: 8300000, guid: c6e8e00b6241b3f47b19eeea5929c2b0, type: 3}
+    volume: 0.5
+    pitch: 1
+    spatialBlend: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: BossSpawn
+    clip: {fileID: 8300000, guid: d81296156f5a91f48846773d0732a8a0, type: 3}
+    volume: 1
+    pitch: 1
+    spatialBlend: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: VoidHit
+    clip: {fileID: 8300000, guid: 7ad81a0726fa4834a81ad5ec1953e44f, type: 3}
+    volume: 1
+    pitch: 1
+    spatialBlend: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Nuke
+    clip: {fileID: 8300000, guid: 43fff358970f8c64099c0d647b5eef83, type: 3}
+    volume: 1
+    pitch: 1
+    spatialBlend: 1
+    loop: 0
+    source: {fileID: 0}
   musicSource: {fileID: 3735562580007527453}
   sfxSource2D: {fileID: 7460577482946879971}
   poolSize: 40

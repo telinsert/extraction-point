@@ -54,6 +54,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 198433644796749458, guid: 14cf9b5bc3f9faf4ca5ce80298f43111,
         type: 3}
+      propertyPath: stopAction
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 198433644796749458, guid: 14cf9b5bc3f9faf4ca5ce80298f43111,
+        type: 3}
       propertyPath: ColorModule.gradient.maxGradient.ctime4
       value: 52505
       objectReference: {fileID: 0}

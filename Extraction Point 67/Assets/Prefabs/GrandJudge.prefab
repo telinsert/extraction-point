@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: 645355428777208353, guid: 4f2d51d85f248124888303e559ec3afc,
         type: 3}
       propertyPath: m_Speed
-      value: 3
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 645355428777208353, guid: 4f2d51d85f248124888303e559ec3afc,
         type: 3}
@@ -155,8 +155,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6983075127145718254, guid: 4f2d51d85f248124888303e559ec3afc,
         type: 3}
+      propertyPath: deathSound
+      value: BossDeath
+      objectReference: {fileID: 0}
+    - target: {fileID: 6983075127145718254, guid: 4f2d51d85f248124888303e559ec3afc,
+        type: 3}
       propertyPath: initialMaxHealth
-      value: 65000
+      value: 80000
       objectReference: {fileID: 0}
     - target: {fileID: 7189002446497436077, guid: 4f2d51d85f248124888303e559ec3afc,
         type: 3}
@@ -171,7 +176,7 @@ PrefabInstance:
     - target: {fileID: 7189002446497436077, guid: 4f2d51d85f248124888303e559ec3afc,
         type: 3}
       propertyPath: meleeDamage
-      value: 750
+      value: 375
       objectReference: {fileID: 0}
     - target: {fileID: 7189002446497436077, guid: 4f2d51d85f248124888303e559ec3afc,
         type: 3}
@@ -181,7 +186,7 @@ PrefabInstance:
     - target: {fileID: 7189002446497436077, guid: 4f2d51d85f248124888303e559ec3afc,
         type: 3}
       propertyPath: attackCooldown
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7189002446497436077, guid: 4f2d51d85f248124888303e559ec3afc,
         type: 3}
@@ -316,6 +321,12 @@ MonoBehaviour:
       type: 3}
     cooldown: 10
     count: 2
+    nextSpawnTime: 0
+  - name: ConeHeads
+    prefab: {fileID: 3194487854970857134, guid: 89892ba0322a1814b9d461bf0dca7441,
+      type: 3}
+    cooldown: 15
+    count: 5
     nextSpawnTime: 0
   canEnrage: 1
   enrageThreshold: 0.5
