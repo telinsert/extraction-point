@@ -42,7 +42,8 @@ public class BulletController : MonoBehaviour
         if (pierceCount > 0)
         {
             if (trailRenderer != null) trailRenderer.enabled = true;
-            if (meshRenderer != null && piercingMaterial != null) meshRenderer.material = piercingMaterial;
+            if (meshRenderer != null && piercingMaterial != null) meshRenderer.sharedMaterial = piercingMaterial;
+
         }
     }
 

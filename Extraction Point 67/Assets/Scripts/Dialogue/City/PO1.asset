@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b123bc55296af174797db59345968883, type: 3}
+  m_Name: PO1
+  m_EditorClassIdentifier: Assembly-CSharp::Dialogue
+  lines:
+  - speakerName: Mike
+    sentence: "Be careful ahead, as there are several zombie spawners now spawning
+      even more dangerous zombie types all around. \n"
+    buttonText: 
+  - speakerName: Mike
+    sentence: 'Be wise in your upgrade choices, as you must prioritize unlocking
+      synergies among yourselves.
+
+'
+    buttonText: 
+  - speakerName: Mike
+    sentence: 'I recommend maxing out bullet upgrades to unlock bullet damage multipliers.
+      The same applies to bullet speed and fire rate.
+
+'
+    buttonText: 
+  - speakerName: Mike
+    sentence: Bullet speed especially unlocks something very beneficial for the later
+      part of the city.
+    buttonText: 
+  - speakerName: Mike
+    sentence: 'Overall, try to max out basic stat upgrades, as they will unlock more
+      powerful synergy upgrades.
+
+'
+    buttonText: 

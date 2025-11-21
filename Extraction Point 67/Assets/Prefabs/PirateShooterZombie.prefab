@@ -411,7 +411,7 @@ Transform:
   m_GameObject: {fileID: 3322125638635227908}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.059, y: 0.107, z: 0.225}
+  m_LocalPosition: {x: 0.518, y: 0.107, z: 0.225}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1092,6 +1092,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
   initialMaxHealth: 175
+  hurtSound: EnemyHurt
+  deathSound: EnemyDeath
 --- !u!114 &5063053566422313166
 MonoBehaviour:
   m_ObjectHideFlags: 0
