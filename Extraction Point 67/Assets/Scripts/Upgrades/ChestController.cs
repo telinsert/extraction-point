@@ -1,11 +1,9 @@
-// In /Scripts/Upgrades/ChestController.cs
 
 using UnityEngine;
 using TMPro;
 
 public class ChestController : MonoBehaviour
 {
-    // We get this from the GameManager now, so no public variable is needed here.
     private TextMeshProUGUI interactionPrompt;
 
     private UpgradeSelectionUI upgradeUI;
@@ -15,19 +13,16 @@ public class ChestController : MonoBehaviour
 
     void Start()
     {
-        // Get references from our reliable sources
         upgradeUI = FindFirstObjectByType<UpgradeSelectionUI>();
-        interactionPrompt = GameManager.Instance.interactionPrompt; // <-- Get the prompt from the manager
+        interactionPrompt = GameManager.Instance.interactionPrompt; 
 
-        // Ensure the prompt is hidden when the chest first spawns
         if (interactionPrompt != null)
         {
             interactionPrompt.gameObject.SetActive(false);
         }
     }
 
-    // The rest of the script (Update, OnTriggerEnter, OnTriggerExit, OpenChest)
-    // is now guaranteed to work and needs NO CHANGES.
+  
 
     void Update()
     {

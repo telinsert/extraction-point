@@ -1,4 +1,3 @@
-// In /Scripts/Upgrades/UpgradeManager.cs
 
 
 using UnityEngine;
@@ -7,13 +6,12 @@ using System.Linq;
 
 public class UpgradeManager : MonoBehaviour
 {
-    // --- NEW --- Singleton Pattern
     public static UpgradeManager Instance { get; private set; }
 
     [Tooltip("Drag ALL of your Upgrade ScriptableObject assets here. This is the master list.")]
     public List<Upgrade> masterUpgradeList;
     [Header("Player References")]
-    public PlayerStats player1Stats; // Note: These will be updated by GameManager
+    public PlayerStats player1Stats; 
     public PlayerStats player2Stats;
 
     private List<Upgrade> player1SoloPool;
@@ -21,32 +19,23 @@ public class UpgradeManager : MonoBehaviour
     private List<Upgrade> teamUpgradePool;
     private List<Upgrade> unlockedSynergiesThisRun;
 
-    // --- MODIFIED ---
     void Awake()
     {
-        // --- Singleton Logic ---
         if (Instance != null && Instance != this)
         {
-            // If another instance already exists, destroy this one.
             Destroy(gameObject);
             return;
         }
         Instance = this;
 
-        // --- Persistence ---
         DontDestroyOnLoad(gameObject);
 
-        // --- Initialize Pools ---
-        // This will now only run ONCE at the start of the entire game.
         InitializeUpgradePool();
     }
 
-    // The rest of your UpgradeManager script remains exactly the same.
-    // No other changes are needed in this file.
 
     public void InitializeUpgradePool()
     {
-        // ... (This method is unchanged)
         player1SoloPool = new List<Upgrade>();
         player2SoloPool = new List<Upgrade>();
         teamUpgradePool = new List<Upgrade>();
@@ -72,7 +61,6 @@ public class UpgradeManager : MonoBehaviour
 
     public Upgrade GetRandomUpgrade(int choiceType)
     {
-        // ... (This method is unchanged)
         List<Upgrade> sourcePool;
         if (choiceType == 1) sourcePool = player1SoloPool;
         else if (choiceType == 2) sourcePool = player2SoloPool;
@@ -101,7 +89,6 @@ public class UpgradeManager : MonoBehaviour
 
     public void HandleUpgradeSelection(Upgrade chosenUpgrade, int choiceType)
     {
-        // ... (This method is unchanged)
         if (chosenUpgrade.unlocksUpgrades != null && chosenUpgrade.unlocksUpgrades.Count > 0)
         {
             foreach (var unlockedUpgrade in chosenUpgrade.unlocksUpgrades)
@@ -155,9 +142,7 @@ public class UpgradeManager : MonoBehaviour
     {
         foreach (var potentialSynergy in masterUpgradeList)
         {
-            // --- UPDATED THIS CONDITION ---
-            // Skip if it's not a synergy, is already in the pool,
-            // OR if it has ALREADY BEEN UNLOCKED this run.
+            
             if (!potentialSynergy.isSynergy
                 || teamUpgradePool.Contains(potentialSynergy)
                 || unlockedSynergiesThisRun.Contains(potentialSynergy))
@@ -172,9 +157,8 @@ public class UpgradeManager : MonoBehaviour
 
             if (p1ConditionsMet && p2ConditionsMet)
             {
-                // Add the synergy to the pool AND to our permanent memory for this run.
                 teamUpgradePool.Add(potentialSynergy);
-                unlockedSynergiesThisRun.Add(potentialSynergy); // <-- ADD THIS LINE
+                unlockedSynergiesThisRun.Add(potentialSynergy); 
                 Debug.Log($"SYNERGY UNLOCKED: {potentialSynergy.upgradeName} was added to the team pool!");
             }
         }
@@ -182,7 +166,6 @@ public class UpgradeManager : MonoBehaviour
 
     private float GetWeightForRarity(UpgradeRarity rarity)
     {
-        // ... (This method is unchanged)
         switch (rarity)
         {
             case UpgradeRarity.Common: return 10.0f;

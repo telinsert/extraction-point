@@ -1,4 +1,3 @@
-// In /Scripts/UI/ReviveUIController.cs
 
 using TMPro;
 using UnityEngine;
@@ -7,8 +6,7 @@ using UnityEngine.UI;
 public class ReviveUIController : MonoBehaviour
 {
     [Header("UI Elements")]
-    // We REMOVED the reviveUIPanel variable and REPLACED it with this:
-    public GameObject contentHolder; // Drag the "ContentHolder" child object here
+    public GameObject contentHolder; 
 
     public TextMeshProUGUI playerDownedText;
     public GameObject reviveProgressBackground;
@@ -26,11 +24,9 @@ public class ReviveUIController : MonoBehaviour
         if (player1 != null) p1_health = player1.GetComponent<Health>();
         if (player2 != null) p2_health = player2.GetComponent<Health>();
 
-        // Hide the content right away, but the script itself stays active.
         HideAllUI();
     }
 
-    // This method shows the content holder if it's hidden
     private void ShowContentHolder()
     {
         if (contentHolder != null && !contentHolder.activeSelf)
@@ -41,7 +37,7 @@ public class ReviveUIController : MonoBehaviour
 
     public void ShowReviveProgress(float currentProgress, float maxTime)
     {
-        ShowContentHolder(); // Make sure the parent container is visible first
+        ShowContentHolder(); 
 
         if (playerDownedText.gameObject.activeSelf)
         {
@@ -64,7 +60,7 @@ public class ReviveUIController : MonoBehaviour
 
     public void ShowPlayerDownedMessage(int downedPlayerNumber)
     {
-        ShowContentHolder(); // Make sure the parent container is visible first
+        ShowContentHolder(); 
 
         if (reviveProgressBackground != null && reviveProgressBackground.activeSelf)
         {
@@ -90,7 +86,6 @@ public class ReviveUIController : MonoBehaviour
         }
         reviveProgressText.gameObject.SetActive(false);
 
-        // Check if we need to revert to the downed message or hide everything
         if (p1_health != null && p1_health.GetCurrentHealth() <= 0)
         {
             ShowPlayerDownedMessage(1);
@@ -105,7 +100,6 @@ public class ReviveUIController : MonoBehaviour
         }
     }
 
-    // This method now ONLY hides the content, not the whole panel.
     public void HideAllUI()
     {
         if (contentHolder != null)

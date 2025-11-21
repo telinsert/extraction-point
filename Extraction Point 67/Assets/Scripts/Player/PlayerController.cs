@@ -1,4 +1,3 @@
-// In PlayerController.cs
 
 using UnityEngine;
 [RequireComponent(typeof(PlayerStats))]
@@ -34,7 +33,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         stats = GetComponent<PlayerStats>();
 
-        reviveUI = Object.FindFirstObjectByType<ReviveUIController>(); // Replaced  FindObjectOfType<ReviveUIController>()  with  Object.FindFirstObjectByType<ReviveUIController>() on 11/04
+        reviveUI = Object.FindFirstObjectByType<ReviveUIController>(); 
 
         
     }
@@ -43,37 +42,30 @@ public class PlayerController : MonoBehaviour
     {
         if (GameManager.Instance.IsGamePaused) return;
 
-        // ... (All your movement, animation, and auto-aim logic) ...
-        // --- Input ---
 
         float horizontal = 0f;
         float vertical = 0f;
         if (otherPlayer == null)
         {
             FindTeammate();
-            // If we still can't find one, exit Update early to prevent errors.
             if (otherPlayer == null) return;
         }
         if (playerNumber == 1)
         {
-            horizontal = Input.GetAxis("Horizontal"); // A/D keys
-            vertical = Input.GetAxis("Vertical");     // W/S keys
+            horizontal = Input.GetAxis("Horizontal"); 
+            vertical = Input.GetAxis("Vertical");     
         }
-        else // Player 2 uses arrow keys
+        else 
         {
             horizontal = Input.GetAxis("Horizontal2");
             vertical = Input.GetAxis("Vertical2");
         }
 
-        // --- Movement ---
         moveDirection = new Vector3(horizontal, 0, vertical);
-        // Use stats.moveSpeed instead of moveSpeed
         controller.Move(moveDirection * stats.moveSpeed * Time.deltaTime);
 
-        // --- Animation ---
         animator.SetFloat("Speed", moveDirection.magnitude);
 
-        // --- Auto-Aim Rotation ---
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         GameObject closestEnemy = null;
         float closestDistance = Mathf.Infinity;
@@ -112,11 +104,9 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        // --- NEW METHOD CALL IN UPDATE() ---
         HandleRevive();
     }
 
-    // --- NEW METHOD ---
     private void HandleRevive()
     {
         if (otherPlayer == null || otherPlayerHealth == null) return;
@@ -173,18 +163,15 @@ public class PlayerController : MonoBehaviour
 
         if (bulletPrefab != null && firePoint != null)
         {
-            // 1. Instantiate the bullet and keep a reference to it
             GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
             AudioManager.Instance.PlaySFXAtPosition(shootSoundName, transform.position);
-            // 2. Get the BulletController component from the new bullet
             BulletController bulletCtrl = bullet.GetComponent<BulletController>();
 
-            // 3. Set the bullet's damage to the player's current damage
             if (bulletCtrl != null)
             {
                 bulletCtrl.damageAmount = stats.bulletDamage;
                 bulletCtrl.speed = stats.bulletSpeed;
-                bulletCtrl.critChance = stats.critChance;   // <-- ADD THIS
+                bulletCtrl.critChance = stats.critChance;   
                 bulletCtrl.critDamage = stats.critDamage;
                 bulletCtrl.voidChance = stats.voidChance;
 
@@ -215,34 +202,23 @@ public class PlayerController : MonoBehaviour
     }
     public void SetTeammate(Transform teammate)
     {
-        if (teammate == null)
-        {
-            Debug.LogWarning($"Player {playerNumber} was given a null teammate reference.");
-            return;
-        }
+       
 
         otherPlayer = teammate;
         otherPlayerHealth = teammate.GetComponent<Health>();
 
-        if (otherPlayerHealth == null)
-        {
-            Debug.LogError($"CRITICAL: Player {playerNumber}'s teammate {teammate.name} is missing a Health component!");
-        }
+        
     }
     private void FindTeammate()
     {
-        // We use FindObjectsByType because it's more robust than relying on tags.
         PlayerStats[] allPlayers = FindObjectsByType<PlayerStats>(FindObjectsSortMode.None);
         foreach (PlayerStats player in allPlayers)
         {
-            // Find the PlayerStats component that is NOT on our own GameObject.
             if (player.gameObject != this.gameObject)
             {
-                // We found our teammate, set the references and exit.
                 otherPlayer = player.transform;
                 otherPlayerHealth = player.GetComponent<Health>();
-                Debug.Log($"Player {playerNumber} self-corrected and found teammate: {player.name}");
-                break; // Stop searching once found.
+                
             }
         }
     }

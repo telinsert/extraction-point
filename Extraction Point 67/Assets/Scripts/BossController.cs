@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class BossController : MonoBehaviour
 {
     [Header("Boss Configuration")]
-    public string bossName = "Subject Zero";
+    public string bossName = "Boss";
 
     [System.Serializable]
     public class BossSummonEntry
@@ -33,7 +33,7 @@ public class BossController : MonoBehaviour
     public string spawnSound = "BossSpawn";
     public string abilitySound = "BossAbility";
 
-    // --- NEW MUSIC SETTINGS ---
+    
     [Header("Audio - Music")]
     [Tooltip("Name of the music track in AudioManager to play when boss spawns.")]
     public string bossMusicName = "BossPhase1";
@@ -52,22 +52,18 @@ public class BossController : MonoBehaviour
 
         
 
-        // 2. Initialize UI
         if (BossHealthUI.Instance != null)
         {
             BossHealthUI.Instance.InitializeBoss(health, bossName);
         }
 
-        // 3. Play Spawn SFX
         if (AudioManager.Instance != null)
         {
             AudioManager.Instance.PlaySFX(spawnSound);
 
-            // --- NEW: Play Phase 1 Music ---
             AudioManager.Instance.PlayMusic(bossMusicName);
         }
 
-        // 4. Initialize timers
         foreach (var entry in summons)
         {
             entry.nextSpawnTime = Time.time + entry.cooldown;
@@ -127,27 +123,22 @@ public class BossController : MonoBehaviour
         {
             isEnraged = true;
 
-            // Physics/Stats
             if (agent != null) agent.speed *= enrageSpeedMultiplier;
 
-            // Visuals (Model)
             if (enrageMaterial != null)
             {
                 foreach (var r in renderers) r.material = enrageMaterial;
             }
 
-            // --- NEW: Visuals (UI) ---
             if (BossHealthUI.Instance != null)
             {
                 BossHealthUI.Instance.EnableEnragedVisuals(bossName);
             }
 
-            // Audio (SFX)
             if (AudioManager.Instance != null)
             {
-                AudioManager.Instance.PlaySFX(spawnSound); // Roar again
+                AudioManager.Instance.PlaySFX(spawnSound); 
 
-                // --- NEW: Music Switch ---
                 AudioManager.Instance.PlayMusic(enrageMusicName);
             }
 
@@ -160,21 +151,20 @@ public class BossController : MonoBehaviour
         if (BossHealthUI.Instance != null) BossHealthUI.Instance.HideUI();
         if (AudioManager.Instance != null)
         {
-            // Fix: Get the active scene using UnityEngine.SceneManagement
             var activeScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
             if (activeScene.buildIndex == 0) // Main Menu
             {
                 AudioManager.Instance.PlayMusic("MenuTheme");
             }
-            else if (activeScene.buildIndex == 1) // Forest Level
+            else if (activeScene.buildIndex == 1)
             {
                 AudioManager.Instance.PlayMusic("ForestTheme");
             }
-            else if (activeScene.buildIndex == 2) // Beach Level
+            else if (activeScene.buildIndex == 2) 
             {
                 AudioManager.Instance.PlayMusic("BeachTheme");
             }
-            else if (activeScene.buildIndex == 3) // City Level
+            else if (activeScene.buildIndex == 3) 
             {
                 AudioManager.Instance.PlayMusic("CityTheme");
             }

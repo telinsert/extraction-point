@@ -6,7 +6,6 @@ public class Billboard : MonoBehaviour
 
     void Start()
     {
-        // Cache the main camera reference
         mainCamera = Camera.main;
     }
 
@@ -14,7 +13,6 @@ public class Billboard : MonoBehaviour
     {
         if (mainCamera != null)
         {
-            // Make the health bar face the camera
             transform.LookAt(transform.position + mainCamera.transform.forward);
         }
     }

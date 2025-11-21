@@ -1,4 +1,3 @@
-// In /Scripts/Upgrades/Upgrade.cs
 
 using UnityEngine;
 using System.Collections.Generic;
@@ -19,8 +18,7 @@ public enum UpgradeRarity
     Epic,
     Legendary
 }
-// This attribute allows you to create instances of this script as assets in the Unity Editor
-// menuName is the path you will use to create a new Upgrade asset
+
 [CreateAssetMenu(fileName = "New Upgrade", menuName = "Roguelike/Upgrade")]
 public class Upgrade : ScriptableObject
 {
@@ -28,11 +26,11 @@ public class Upgrade : ScriptableObject
     public string upgradeName;
     [TextArea(3, 5)]
     public string description;
-    public Sprite icon; // For the UI later
+    public Sprite icon; 
 
     [Header("Upgrade Stats")]
     public UpgradeRarity rarity;
-    public bool isTeamUpgrade = false; // Is this a smaller boost for both players?
+    public bool isTeamUpgrade = false; 
     [Header("Unlock & Progression Logic")]
     [Tooltip("If checked, this upgrade will NOT appear in the pool until another upgrade unlocks it.")]
     public bool isUnlockable = false;
@@ -45,14 +43,11 @@ public class Upgrade : ScriptableObject
     [Header("Synergy Logic")]
     [Tooltip("If checked, this upgrade will only be unlocked if the Synergy Requirements are met.")]
     public bool isSynergy = false;
-    // This will only appear in the Inspector if isSynergy is checked.
     public SynergyDefinition synergyRequirements;
 
-    // This is the core function. Each specific upgrade type will override this
-    // to implement its own logic.
+  
     public virtual void ApplyUpgrade(PlayerStats targetStats)
     {
-        // Base implementation does nothing.
         Debug.Log($"Applying base upgrade '{upgradeName}' to {targetStats.gameObject.name}. This should be overridden!");
     }
 }

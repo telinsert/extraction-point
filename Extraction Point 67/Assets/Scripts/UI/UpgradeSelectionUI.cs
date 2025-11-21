@@ -1,4 +1,3 @@
-// In /Scripts/UI/UpgradeSelectionUI.cs
 
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,32 +6,32 @@ using TMPro;
 public class UpgradeSelectionUI : MonoBehaviour
 {
     [Header("Dependencies")]
-    public PlayerStats player1Stats; // Drag Player 1 here
-    public PlayerStats player2Stats; // Drag Player 2 here
+    public PlayerStats player1Stats;
+    public PlayerStats player2Stats; 
     private UpgradeManager upgradeManager;
 
     [Header("UI Structure")]
     public GameObject columnsContainer;
 
     [Header("Column 1 UI (Player 1)")]
-    public TextMeshProUGUI p1_upgradeNameText; // <-- Changed
+    public TextMeshProUGUI p1_upgradeNameText; 
     public TextMeshProUGUI p1_descriptionText;
-    public Image p1_iconImage;// <-- Changed
-    public Button p1_selectButton; // Button stays the same
+    public Image p1_iconImage;
+    public Button p1_selectButton; 
     private Upgrade p1_upgrade;
 
     [Header("Column 2 UI (Player 2)")]
-    public TextMeshProUGUI p2_upgradeNameText; // <-- Changed
-    public TextMeshProUGUI p2_descriptionText; // <-- Changed
-    public Image p2_iconImage;// <-- Changed
-    public Button p2_selectButton; // Button stays the same
+    public TextMeshProUGUI p2_upgradeNameText; 
+    public TextMeshProUGUI p2_descriptionText; 
+    public Image p2_iconImage;
+    public Button p2_selectButton; 
     private Upgrade p2_upgrade;
 
     [Header("Column 3 UI (Team)")]
-    public TextMeshProUGUI team_upgradeNameText; // <-- Changed
-    public TextMeshProUGUI team_descriptionText; // <-- Changed
-    public Image team_iconImage;// <-- Changed
-    public Button team_selectButton; // Button stays the same
+    public TextMeshProUGUI team_upgradeNameText; 
+    public TextMeshProUGUI team_descriptionText; 
+    public Image team_iconImage;
+    public Button team_selectButton; 
     private Upgrade team_upgrade;
     [Header("Rarity Sounds")]
     public string commonSound = "UpgradeCommon";
@@ -42,7 +41,6 @@ public class UpgradeSelectionUI : MonoBehaviour
     public string legendarySound = "UpgradeLegendary";
     void Start()
     {
-        // --- NEW --- Find the persistent singleton instance.
         upgradeManager = UpgradeManager.Instance;
         if (upgradeManager == null)
         {
@@ -50,7 +48,6 @@ public class UpgradeSelectionUI : MonoBehaviour
             return;
         }
 
-        // Wire up the button clicks to call our selection methods
         p1_selectButton.onClick.AddListener(() => OnUpgradeSelected(p1_upgrade, 1));
         p2_selectButton.onClick.AddListener(() => OnUpgradeSelected(p2_upgrade, 2));
         team_selectButton.onClick.AddListener(() => OnUpgradeSelected(team_upgrade, 3));
@@ -58,15 +55,12 @@ public class UpgradeSelectionUI : MonoBehaviour
 
     public void ShowUpgradeChoices()
     {
-        // 1. Pause the game
         GameManager.Instance.PauseGameForUI();
         if (columnsContainer != null) columnsContainer.SetActive(true);
-        // 2. Get random upgrades from the manager
-        p1_upgrade = upgradeManager.GetRandomUpgrade(1); // 1 = Player 1 Solo
-        p2_upgrade = upgradeManager.GetRandomUpgrade(2); // 2 = Player 2 Solo
+        p1_upgrade = upgradeManager.GetRandomUpgrade(1); 
+        p2_upgrade = upgradeManager.GetRandomUpgrade(2); 
         team_upgrade = upgradeManager.GetRandomUpgrade(3);
 
-        // 3. Populate the UI with the upgrade data
         p1_upgradeNameText.text = p1_upgrade.upgradeName;
         p1_descriptionText.text = p1_upgrade.description;
         p1_iconImage.sprite = p1_upgrade.icon;
@@ -79,22 +73,20 @@ public class UpgradeSelectionUI : MonoBehaviour
         team_descriptionText.text = team_upgrade.description;
         team_iconImage.sprite = team_upgrade.icon;
 
-        // 4. Show the UI panel
 
     }
 
     void OnUpgradeSelected(Upgrade chosenUpgrade, int choiceType)
     {
-        // Apply the upgrade to the correct player(s)
-        if (choiceType == 1 && player1Stats != null) // Player 1
+        if (choiceType == 1 && player1Stats != null) 
         {
             player1Stats.Apply(chosenUpgrade);
         }
-        else if (choiceType == 2 && player2Stats != null) // Player 2
+        else if (choiceType == 2 && player2Stats != null) 
         {
             player2Stats.Apply(chosenUpgrade);
         }
-        else if (choiceType == 3) // Team
+        else if (choiceType == 3) 
         {
             if (player1Stats != null) player1Stats.Apply(chosenUpgrade);
             if (player2Stats != null) player2Stats.Apply(chosenUpgrade);
@@ -102,9 +94,7 @@ public class UpgradeSelectionUI : MonoBehaviour
         upgradeManager.HandleUpgradeSelection(chosenUpgrade, choiceType);
         PlayRaritySound(chosenUpgrade.rarity);
 
-        // Hide the UI and resume the game
         if (columnsContainer != null) columnsContainer.SetActive(false);
-        // --- MODIFIED ---
         GameManager.Instance.ResumeGameFromUI();
     }
     void PlayRaritySound(UpgradeRarity rarity)
@@ -131,7 +121,6 @@ public class UpgradeSelectionUI : MonoBehaviour
                 break;
         }
 
-        // Use PlaySFX (2D) because this is a UI event, unrelated to 3D space
         AudioManager.Instance.PlaySFX(soundToPlay);
     }
 }

@@ -23,23 +23,23 @@ public class EnemyBulletController : MonoBehaviour
         Destroy(gameObject, lifetime);
     }
 
-    // --- CHANGED FROM OnCollisionEnter TO OnTriggerEnter ---
+    
     void OnTriggerEnter(Collider other)
     {
-        // Ignore collisions with other enemies or bullets
+        
         if (other.CompareTag("Enemy") || other.CompareTag("Bullet"))
         {
             return;
         }
 
-        // Handle Explosion
+        
         if (isExplosive)
         {
             Explode();
         }
         else
         {
-            // Check if we hit a player
+            
             Health victimHealth = other.GetComponent<Health>();
             if (victimHealth != null)
             {
@@ -47,7 +47,7 @@ public class EnemyBulletController : MonoBehaviour
             }
         }
 
-        // Destroy the bullet on impact (unless it's a trigger volume like a zone)
+        
         if (!other.isTrigger)
         {
             Destroy(gameObject);
@@ -61,7 +61,7 @@ public class EnemyBulletController : MonoBehaviour
             Instantiate(explosionEffectPrefab, transform.position, Quaternion.identity);
         }
 
-        // Play Sound if available
+        
         if (AudioManager.Instance != null) AudioManager.Instance.PlaySFXAtPosition("Explosion", transform.position);
 
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius, damageableLayerMask);

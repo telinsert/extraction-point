@@ -1,26 +1,22 @@
-// New script: HealthDisplay.cs
 using UnityEngine;
 using UnityEngine.UI;
 
 public class HealthDisplay : MonoBehaviour
 {
-    public Health health;       // Reference to the Health script
-    public Slider healthSlider; // Optional: drag the slider here
-    public Text healthText;     // Optional: drag the text here
+    public Health health;       
+    public Slider healthSlider; 
+    public Text healthText;    
 
-    // Subscribe to events when this object is enabled
     void OnEnable()
     {
         if (health != null)
         {
             health.OnHealthChanged += UpdateHealthUI;
-            // Also update the UI immediately on start
-            // --- THIS IS THE LINE TO CHANGE ---
+
             UpdateHealthUI(health.GetCurrentHealth(), health.MaxHealth);
         }
     }
 
-    // Unsubscribe when the object is disabled to prevent errors
     void OnDisable()
     {
         if (health != null)
@@ -29,7 +25,6 @@ public class HealthDisplay : MonoBehaviour
         }
     }
 
-    // This function is now only called when the health actually changes
     private void UpdateHealthUI(int currentHealth, int maxHealth)
     {
         if (healthSlider != null)

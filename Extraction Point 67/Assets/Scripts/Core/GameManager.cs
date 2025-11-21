@@ -1,4 +1,3 @@
-// In /Scripts/Core/GameManager.cs
 
 using TMPro;
 using UnityEngine;
@@ -6,10 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    // The Singleton pattern
     public static GameManager Instance { get; private set; }
 
-    // These references will be found automatically at runtime.
     public TextMeshProUGUI interactionPrompt;
     public PlayerStats player1Stats;
     public PlayerStats player2Stats;
@@ -17,22 +14,18 @@ public class GameManager : MonoBehaviour
     public UpgradeManager upgradeManager;
     public ReviveUIController reviveUIController;
 
-    // Public properties to check player status from other scripts
     public bool IsPlayer1Down { get; private set; }
     public bool IsPlayer2Down { get; private set; }
     public bool IsGamePaused { get; private set; }
     public bool IsGameOver { get; private set; }
 
 
-    // --- NEW ---
-    // Temporary components to hold player data during scene transitions
     private PlayerStateData p1_data_holder;
     private PlayerStateData p2_data_holder;
 
 
     private void Awake()
     {
-        // --- Singleton Logic ---
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -40,30 +33,24 @@ public class GameManager : MonoBehaviour
         }
         Instance = this;
 
-        // --- Persistence ---
         DontDestroyOnLoad(gameObject);
     }
 
-    // Subscribe to the sceneLoaded event when the object is enabled
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    // Unsubscribe when the object is disabled to prevent memory leaks
     private void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    // This method is called every time a scene finishes loading.
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Debug.Log("A new scene has loaded. GameManager is finding its references.");
         
-        // --- MODIFIED ---
-        // If we are loading the main menu, don't try to find game objects.
-        // Also, clean up any data holders from a previous run.
+
         if (scene.buildIndex == 0)
         {
             return;
@@ -74,35 +61,32 @@ public class GameManager : MonoBehaviour
             {
                 AudioManager.Instance.PlayMusic("MenuTheme");
             }
-            else if (scene.buildIndex == 1) // Forest Level
+            else if (scene.buildIndex == 1) 
             {
                 AudioManager.Instance.PlayMusic("ForestTheme");
             }
-            else if (scene.buildIndex == 2) // Beach Level
+            else if (scene.buildIndex == 2) 
             {
                 AudioManager.Instance.PlayMusic("BeachTheme");
             }
-            else if (scene.buildIndex == 3) // City Level
+            else if (scene.buildIndex == 3) 
             {
                 AudioManager.Instance.PlayMusic("CityTheme");
             }
         }
 
 
-        // Use FindFirstObjectByType to get the single instance of these critical components.
         gameOverUI = FindFirstObjectByType<GameOverUIController>();
         upgradeManager = UpgradeManager.Instance;
         reviveUIController = FindFirstObjectByType<ReviveUIController>();
 
 
-        // Re-link the players and apply any stored data from the previous level.
         PlayerStats[] allPlayers = FindObjectsByType<PlayerStats>(FindObjectsSortMode.None);
         foreach (var p_stats in allPlayers)
         {
             if (p_stats.playerNumber == 1)
             {
                 player1Stats = p_stats;
-                // --- NEW: If we have stored data, apply it! ---
                 if (UpgradeManager.Instance != null)
                 {
                     UpgradeManager.Instance.player1Stats = p_stats;
@@ -110,7 +94,6 @@ public class GameManager : MonoBehaviour
                 if (p1_data_holder != null)
                 {
                     player1Stats.ApplyStateData(p1_data_holder);
-                    // We no longer need to destroy a GameObject, just null the reference.
                     p1_data_holder = null;
                     Debug.Log("Player 1 data successfully transferred.");
                 }
@@ -122,7 +105,6 @@ public class GameManager : MonoBehaviour
                 {
                     UpgradeManager.Instance.player2Stats = p_stats;
                 }
-                // --- NEW: If we have stored data, apply it! ---
                 if (p2_data_holder != null)
                 {
                     player2Stats.ApplyStateData(p2_data_holder);
@@ -140,7 +122,6 @@ public class GameManager : MonoBehaviour
             {
                 p1Controller.SetTeammate(player2Stats.transform);
                 p2Controller.SetTeammate(player1Stats.transform);
-                Debug.Log("GameManager has successfully wired up player teammates for revive logic.");
             }
             else
             {
@@ -148,7 +129,6 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        // Find the interaction prompt UI
         GameObject promptPanelObject = GameObject.FindGameObjectWithTag("InteractionPrompt");
         if (promptPanelObject != null)
         {
@@ -163,11 +143,9 @@ public class GameManager : MonoBehaviour
             Debug.LogWarning("GameManager could not find a GameObject with the 'InteractionPrompt' tag!");
         }
 
-        // After finding all references, reset the player down status for the new level.
         IsPlayer1Down = false;
         IsPlayer2Down = false;
 
-        // Log a warning if a critical component is missing in the new scene.
         if (gameOverUI == null && scene.buildIndex != 0)
         {
             Debug.LogWarning("GameManager could not find a GameOverUIController in the scene!");
@@ -226,19 +204,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // --- MODIFIED ---
     public void ResetRun()
     {
         Debug.Log("Resetting run...");
         ResumeGameFromUI();
         IsGameOver = false;
 
-        // --- NEW ---
-        // Clean up any lingering data holders to ensure a fresh start.
         p1_data_holder = null;
         p2_data_holder = null;
 
-        // The reset logic remains the same.
         if (player1Stats != null) player1Stats.ResetStats();
         if (player2Stats != null) player2Stats.ResetStats();
         if (upgradeManager != null) upgradeManager.InitializeUpgradePool();
@@ -246,27 +220,20 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    // --- MODIFIED ---
     public void LoadNextLevel()
     {
-        // --- NEW: Store player data before leaving the current scene ---
         StorePlayerData();
         AudioManager.Instance.PlaySFX("LevelComplete");
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        // ---- THIS IS THE MODIFIED LOGIC ----
 
-        // !! IMPORTANT !!
-        // Change '3' to whatever your City Level's build index is!
         int cityLevelBuildIndex = 3;
 
         if (currentSceneIndex == cityLevelBuildIndex)
         {
-            // If we just finished the city level, go to our end screen.
-            SceneManager.LoadScene("DemoEndScreen"); // Use the exact name of your new scene.
+            SceneManager.LoadScene("DemoEndScreen"); 
         }
         else
         {
-            // Otherwise, do what we were doing before.
             int nextSceneIndex = currentSceneIndex + 1;
             if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
             {
@@ -275,17 +242,13 @@ public class GameManager : MonoBehaviour
             else
             {
                 Debug.Log("You beat the game! Returning to Main Menu.");
-                // As a fallback, go to the end screen if something is wrong.
                 SceneManager.LoadScene("DemoEndScreen");
             }
         }
     }
     
-    // --- NEW METHOD ---
     private void StorePlayerData()
     {
-        // Create temporary GameObjects with PlayerStats components to hold the data.
-        // These objects are marked with DontDestroyOnLoad so they survive the scene change.
         if (player1Stats != null)
         {
             p1_data_holder = new PlayerStateData(player1Stats);

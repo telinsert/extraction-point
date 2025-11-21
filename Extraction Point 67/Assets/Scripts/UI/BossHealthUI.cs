@@ -7,7 +7,6 @@ public class BossHealthUI : MonoBehaviour
     public static BossHealthUI Instance { get; private set; }
 
     [Header("UI Structure")]
-    [Tooltip("Drag the child GameObject (Panel Container) here.")]
     public GameObject contentHolder;
 
     [Header("UI Elements")]
@@ -15,7 +14,6 @@ public class BossHealthUI : MonoBehaviour
     public TextMeshProUGUI bossNameText;
     public TextMeshProUGUI healthAmountText;
 
-    // Keep track of the original color to reset it if needed
     private Color originalNameColor;
 
     private void Awake()
@@ -35,14 +33,12 @@ public class BossHealthUI : MonoBehaviour
     {
         if (contentHolder != null) contentHolder.SetActive(true);
 
-        // Reset visual style (in case a previous boss was enraged)
         if (bossNameText != null)
         {
             bossNameText.text = name;
             bossNameText.color = originalNameColor;
         }
 
-        // Initialize Slider & Text
         if (healthSlider != null)
         {
             healthSlider.maxValue = bossHealth.MaxHealth;
@@ -50,7 +46,6 @@ public class BossHealthUI : MonoBehaviour
         }
         UpdateHealthText(bossHealth.GetCurrentHealth(), bossHealth.MaxHealth);
 
-        // Subscribe
         bossHealth.OnHealthChanged += (current, max) =>
         {
             if (healthSlider != null) healthSlider.value = current;
@@ -60,7 +55,6 @@ public class BossHealthUI : MonoBehaviour
         bossHealth.OnDeath += HideUI;
     }
 
-    // --- NEW METHOD ---
     public void EnableEnragedVisuals(string originalName)
     {
         if (bossNameText != null)

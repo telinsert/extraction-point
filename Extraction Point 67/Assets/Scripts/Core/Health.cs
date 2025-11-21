@@ -1,4 +1,3 @@
-// In /Scripts/Core/Health.cs
 using System;
 using UnityEngine;
 using UnityEngine.AI;
@@ -23,19 +22,17 @@ public class Health : MonoBehaviour
 
     void Awake()
     {
-        // --- THIS METHOD IS NOW CORRECTED ---
         stats = GetComponent<PlayerStats>();
         animator = GetComponent<Animator>();
 
-        if (stats != null) // If this is a player
+        if (stats != null) 
         {
             MaxHealth = stats.maxHealth;
             hurtSound = "PlayerHurt";
             deathSound = "PlayerDown";
         }
-        else // If this is a Zombie or other non-player
+        else 
         {
-            // Restore the original, correct logic:
             MaxHealth = initialMaxHealth;
         }
     }
@@ -83,7 +80,7 @@ public class Health : MonoBehaviour
 
         OnDeath?.Invoke();
 
-        if (stats != null) // If this is a player
+        if (stats != null) 
         {
             isDowned = true;
             GameManager.Instance.OnPlayerDowned(stats.playerNumber);
@@ -97,21 +94,21 @@ public class Health : MonoBehaviour
             }
             Debug.Log($"Player {stats.playerNumber} is downed.");
         }
-        else // If this is an Enemy
+        else 
         {
             if (GetComponent<ZombieAI>() != null)
             {
-                // It's a ZOMBIE. Use the animation and delay.
+                
                 if (animator != null) animator.SetTrigger("Die");
                 if (GetComponent<NavMeshAgent>() != null) GetComponent<NavMeshAgent>().enabled = false;
                 if (GetComponent<Collider>() != null) GetComponent<Collider>().enabled = false;
-                GetComponent<ZombieAI>().enabled = false; // Disable the AI script itself.
+                GetComponent<ZombieAI>().enabled = false; 
 
                 Destroy(gameObject, 0.65f);
             }
             else
             {
-                // It's a SPAWNER or some other destructible object.
+                
                 Destroy(gameObject);
             }
 

@@ -30,7 +30,6 @@ public class ZombieAI : MonoBehaviour
     public int explosionDamage = 30;
     public float explosionRadius = 5f;
     public GameObject explosionEffectPrefab;
-    [Tooltip("Set this to include both 'Player' and 'Enemy' layers.")]
     public LayerMask damageableLayerMask;
 
     [Header("Ranged Attack Behavior")]
@@ -41,14 +40,12 @@ public class ZombieAI : MonoBehaviour
     public float shootCooldown = 3.0f;
     private float lastShootTime;
 
-    // --- NEW --- Settings for explosive bullets
     [Header("Explosive Bullet Settings")]
     public bool hasExplosiveBullets = false;
     public int bulletExplosionDamage = 15;
     public float bulletExplosionRadius = 3f;
 
 
-    // --- Optimization Variables ---
     private Transform currentTarget;
     private float targetUpdateInterval = 0.5f;
     private float timeSinceLastTargetUpdate = 0f;
@@ -209,21 +206,17 @@ public class ZombieAI : MonoBehaviour
         }
     }
 
-    // --- THIS METHOD IS NOW UPDATED ---
     void Shoot()
     {
         if (projectilePrefab == null || firePoint == null) return;
 
-        // Instantiate the bullet
         GameObject bulletGO = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
         EnemyBulletController bulletCtrl = bulletGO.GetComponent<EnemyBulletController>();
 
         if (bulletCtrl != null)
         {
-            // Check if this zombie has the explosive bullet upgrade
             if (hasExplosiveBullets)
             {
-                // Pass the explosive properties to the bullet
                 bulletCtrl.isExplosive = true;
                 bulletCtrl.explosionDamage = this.bulletExplosionDamage;
                 bulletCtrl.explosionRadius = this.bulletExplosionRadius;

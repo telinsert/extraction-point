@@ -1,8 +1,6 @@
-// In /Scripts/Upgrades/StatUpgrade.cs
 
 using UnityEngine;
 
-// This defines which player stat we are going to modify
 public enum StatType
 {
     MoveSpeed,
@@ -27,25 +25,22 @@ public enum StatType
     PierceCount
 }
 
-// We add the CreateAssetMenu attribute here, on the specific type, not the base class.
 [CreateAssetMenu(fileName = "New Stat Upgrade", menuName = "Roguelike/Stat Upgrade")]
 public class StatUpgrade : Upgrade
 {
     [Header("Stat Upgrade Settings")]
-    public StatType statToModify; // Which stat will this upgrade change?
+    public StatType statToModify; 
 
-    public float value;           // How much to change it by?
-    public bool isMultiplier = false; // Is this a percentage (e.g., +10%) or a flat value (e.g., +5)?
+    public float value;           
+    public bool isMultiplier = false; 
 
-    // This is the core logic. We override the base class's empty method.
     public override void ApplyUpgrade(PlayerStats targetStats)
     {
-        // Use a switch statement to find the correct stat and modify it
         switch (statToModify)
         {
             case StatType.MoveSpeed:
                 if (isMultiplier)
-                    targetStats.moveSpeed *= (value); // e.g., value = 0.1 for +10%
+                    targetStats.moveSpeed *= (value); 
                 else
                     targetStats.moveSpeed += value;
                 break;
@@ -59,7 +54,6 @@ public class StatUpgrade : Upgrade
 
             case StatType.BulletDamage:
                 if (isMultiplier)
-                    // We must cast to int for damage
                     targetStats.bulletDamage = Mathf.CeilToInt(targetStats.bulletDamage * (value));
                 else
                     targetStats.bulletDamage += (int)value;
@@ -73,8 +67,7 @@ public class StatUpgrade : Upgrade
                 break;
 
             case StatType.CritChance:
-                // Crit chance is almost always additive
-                targetStats.critChance += value; // e.g., value = 0.05 for +5%
+                targetStats.critChance += value; 
                 break;
 
             case StatType.CritDamage:
@@ -86,26 +79,22 @@ public class StatUpgrade : Upgrade
             case StatType.MaxHealth:
                 int healthIncrease = (int)value;
 
-                // 1. Permanently increase the stat on the PlayerStats component.
                 targetStats.maxHealth += healthIncrease;
 
-                // 2. Find the Health component on the player.
                 Health health = targetStats.GetComponent<Health>();
                 if (health != null)
                 {
-                    // 3. Tell the Health component to update itself with the new value.
                     health.UpdateMaxHealth(targetStats.maxHealth, healthIncrease);
                 }
                 break;
             case StatType.HealthRegen:
-                // Regen is a simple additive value
                 targetStats.healthRegenRate += value;
                 break;
             case StatType.VoidChance:
                 if (isMultiplier)
                     targetStats.voidChance *= (value);
                 else
-                    targetStats.voidChance += value; // Value should be small, like 0.01
+                    targetStats.voidChance += value; 
                 break;
             case StatType.FireDamage:
                 if (isMultiplier)
@@ -125,8 +114,7 @@ public class StatUpgrade : Upgrade
             case StatType.PoisonDuration:
                 targetStats.poisonDuration += value;
                 break;
-            case StatType.PoisonSlow: // <-- ADD THIS CASE
-                                      // Increase the slow amount. Clamp at 90% to prevent total stoppage.
+            case StatType.PoisonSlow: 
                 targetStats.poisonSlowAmount = Mathf.Clamp(targetStats.poisonSlowAmount + value, 0f, 0.9f);
                 break;
             case StatType.ExplosionChance:
@@ -142,24 +130,20 @@ public class StatUpgrade : Upgrade
                 targetStats.explosionRadius += value;
                 break;
             case StatType.UltimateChance:
-                targetStats.ultimateChance += value; // e.g., value = 0.02 for a 2% chance
+                targetStats.ultimateChance += value;
                 break;
             case StatType.ReviveTime:
                 if (isMultiplier)
                 {
-                    // A value of 0.1 will reduce revive time by 10%
                     targetStats.reviveTime *= (1 - value);
                 }
                 else
                 {
-                    // A value of 1.5 will reduce revive time by 1.5 seconds
                     targetStats.reviveTime -= value;
                 }
-                // Clamp the value to a minimum of 1 second to prevent bugs
                 targetStats.reviveTime = Mathf.Max(1f, targetStats.reviveTime);
                 break;
             case StatType.PierceCount:
-                // This is always a flat additive value.
                 targetStats.pierceCount += (int)value;
                 break;
 

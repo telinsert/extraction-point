@@ -10,9 +10,9 @@ public class CameraMovement : MonoBehaviour
     public float smoothSpeed = 0.125f;
 
     [Header("Zoom")]
-    public float minZoom = 10f; // Min distance from midpoint
-    public float maxZoom = 25f; // Max distance from midpoint
-    public float zoomLimiter = 50f; // Controls how "zoomed in" the view is
+    public float minZoom = 10f; 
+    public float maxZoom = 25f;
+    public float zoomLimiter = 50f; 
 
     private Vector3 offset;
     private Camera cam;
@@ -28,39 +28,34 @@ public class CameraMovement : MonoBehaviour
         if (player1 == null && player2 == null)
             return;
 
-        // Find the midpoint and the new zoom level
         Vector3 midpoint = GetMidpoint();
         float newZoom = Mathf.Lerp(minZoom, maxZoom, GetDistanceBetweenPlayers() / zoomLimiter);
 
-        // Calculate the camera's new position
         Vector3 desiredPosition = midpoint + offset.normalized * newZoom;
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
 
-        // Apply the new position
         transform.position = smoothedPosition;
     }
 
-    // A helper function to get the distance between players
     float GetDistanceBetweenPlayers()
     {
         if (player1 != null && player2 != null)
             return Vector3.Distance(player1.position, player2.position);
         else if (player1 != null)
-            return 0f; // Single player, no distance
+            return 0f; 
         else if (player2 != null)
-            return 0f; // Single player, no distance
+            return 0f;
         return 0f;
     }
 
-    // A helper function to find the midpoint
     Vector3 GetMidpoint()
     {
         if (player1 != null && player2 != null)
             return (player1.position + player2.position) / 2f;
         else if (player1 != null)
-            return player1.position; // Focus on player1
+            return player1.position; 
         else if (player2 != null)
-            return player2.position; // Focus on player2
+            return player2.position; 
         return Vector3.zero;
     }
 }

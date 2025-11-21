@@ -7,7 +7,6 @@ public class DialogueLine
     [TextArea(3, 10)]
     public string sentence;
 
-    [Tooltip("The text that will appear on the continue button for this line. If left empty, it will default to 'Continue'.")]
     public string buttonText = "Continue";
 }
 
