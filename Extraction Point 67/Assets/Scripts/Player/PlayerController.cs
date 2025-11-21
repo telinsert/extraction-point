@@ -41,8 +41,11 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.Instance.IsGamePaused) return;
+
         // ... (All your movement, animation, and auto-aim logic) ...
         // --- Input ---
+
         float horizontal = 0f;
         float vertical = 0f;
         if (otherPlayer == null)
